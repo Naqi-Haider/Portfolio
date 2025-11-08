@@ -36,7 +36,7 @@ const Projects = () => {
       id: 2,
       title: 'Movie Ticket Booking System',
       description: 'A comprehensive movie ticket booking system developed in C++. Includes features for browsing movies, selecting seats, booking tickets, and managing reservations with a command-line interface.',
-      image: '../public/assets/Movie-Ticket-Booking-System.png', // Cinema theme
+      image: '/Movie-Ticket-Booking-System.png',
       technologies: ['C++', 'OOP', 'Data Structures'],
       github: 'https://github.com/Naqi-Haider/movie-ticket-booking',
       live: '#'
@@ -45,7 +45,7 @@ const Projects = () => {
       id: 3,
       title: 'Amazon RawJS',
       description: 'An Amazon e-commerce clone built with vanilla JavaScript. Features product listings, shopping cart functionality, user authentication, and a complete checkout process without using any frameworks.',
-      image: '../public/assets/JavaScript Amazon RawJS Clone.png', // Shopping/ecommerce theme
+      image: '/JavaScript Amazon RawJS Clone.png',
       technologies: ['JavaScript', 'HTML', 'CSS', 'Local Storage'],
       github: 'https://github.com/Naqi-Haider/amazon-rawjs',
       live: '#'
@@ -54,7 +54,7 @@ const Projects = () => {
       id: 4,
       title: 'Shopify Store Clone',
       description: 'A complete Shopify store clone featuring product catalogs, shopping cart, checkout process, and admin dashboard. Built with modern web technologies and responsive design principles.',
-      image: '../public/assets/JonesRoadClone.png', // Online store theme
+      image: '/JonesRoadClone.png',
       technologies: ['React', 'Node.js', 'MongoDB', 'Express'],
       github: 'https://github.com/Naqi-Haider/shopify-store-clone',
       live: '#'
@@ -75,7 +75,15 @@ const Projects = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="project-image-large">
-                <img src={project.image} alt={project.title} />
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  loading="lazy"
+                  onError={(e) => {
+                    console.error(`Failed to load image: ${project.image}`);
+                    e.target.src = `https://via.placeholder.com/1200x630/1a1a1a/b4f461?text=${encodeURIComponent(project.title)}`;
+                  }}
+                />
               </div>
               
               <div className="project-content-large">
@@ -136,12 +144,12 @@ const Projects = () => {
             </div>
           </div>
 
-          {/* GitHub Native Calendar - Exact Match */}
           <div className="github-graph">
             <img 
               src="https://ghchart.rshah.org/39d353/Naqi-Haider" 
               alt="GitHub Contributions Graph"
               className="contributions-graph-native"
+              loading="lazy"
             />
           </div>
 
