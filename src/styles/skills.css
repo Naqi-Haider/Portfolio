@@ -206,12 +206,13 @@
 
 .marquee-fullwidth-container::before {
   left: 0;
-  background: linear-gradient(to right, #0a0a0a, transparent);
+  background: linear-gradient(to right, var(--bg-dark), transparent);
 }
+
 
 .marquee-fullwidth-container::after {
   right: 0;
-  background: linear-gradient(to left, #0a0a0a, transparent);
+  background: linear-gradient(to left, var(--bg-dark), transparent);
 }
 
 .marquee-fullwidth {
@@ -551,6 +552,15 @@
   color: var(--text-color);
 }
 
+/* Also update the marquee section background */
 [data-theme="light"] .marquee-fullwidth-section {
-  background: linear-gradient(180deg, var(--bg-dark) 0%, #e8e9ea 100%);
+  background: linear-gradient(180deg, #f8f9fa 0%, #e8e9ea 100%);
+}
+
+[data-theme="light"] .marquee-fullwidth-container::before {
+  background: linear-gradient(to right, #f8f9fa, transparent);
+}
+
+[data-theme="light"] .marquee-fullwidth-container::after {
+  background: linear-gradient(to left, #f8f9fa, transparent);
 }

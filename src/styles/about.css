@@ -19,16 +19,15 @@
   margin: 0 auto;
 }
 
-/* Top Grid: Who I Am (Left) + Stats (Right) */
+/* Top Grid: Who I Am (Left) + Highlight Cards (Right) */
 .about-top-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
   gap: 40px;
-  margin-bottom: 50px;
   align-items: start;
 }
 
-/* Glass Card Effect */
+/* Glass Card Effect - "Who I Am" */
 .glass-card {
   background: rgba(26, 26, 26, 0.6);
   backdrop-filter: blur(10px);
@@ -48,7 +47,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(180, 244, 97, 0.1), transparent);
   transition: var(--transition-slow);
 }
 
@@ -57,9 +56,9 @@
 }
 
 .glass-card:hover {
-  border-color: rgba(102, 126, 234, 0.3);
+  border-color: rgba(180, 244, 97, 0.3);
   transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+  box-shadow: 0 20px 60px rgba(180, 244, 97, 0.2);
 }
 
 .about-card {
@@ -101,79 +100,12 @@
   font-weight: 600;
 }
 
-/* Stats Section - Vertical Stack */
-.about-stats {
+/* Vertical Highlight Cards - Right Side */
+.about-highlights-vertical {
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.stat-card {
-  background: rgba(26, 26, 26, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius);
-  padding: 25px;
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-}
-
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0;
   height: 100%;
-  background: var(--bg-gradient);
-  opacity: 0.1;
-  transition: var(--transition-slow);
-}
-
-.stat-card:hover::before {
-  width: 100%;
-}
-
-.stat-card:hover {
-  transform: translateX(10px);
-  border-color: var(--primary-color);
-  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-}
-
-.stat-icon {
-  color: var(--primary-color);
-  flex-shrink: 0;
-}
-
-.stat-content {
-  flex: 1;
-}
-
-.stat-number {
-  font-size: 2.2rem;
-  font-weight: 700;
-  background: var(--bg-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  margin-bottom: 5px;
-  line-height: 1;
-}
-
-.stat-label {
-  color: var(--text-secondary);
-  font-size: 0.95rem;
-}
-
-/* Highlights Section - Stays Same */
-.about-highlights {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 30px;
 }
 
 .highlight-card {
@@ -181,11 +113,12 @@
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--border-radius);
-  padding: 35px;
+  padding: 30px;
   text-align: center;
   transition: var(--transition);
   position: relative;
   overflow: hidden;
+  flex: 1;
 }
 
 .highlight-card::after {
@@ -195,7 +128,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(180, 244, 97, 0.1) 0%, transparent 70%);
   opacity: 0;
   transition: var(--transition-slow);
 }
@@ -215,30 +148,45 @@
 }
 
 .highlight-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-5px);
   border-color: var(--primary-color);
-  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+  box-shadow: 0 15px 40px rgba(180, 244, 97, 0.3);
 }
 
 .highlight-icon {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   display: inline-block;
   color: var(--primary-color);
 }
 
 .highlight-card h4 {
-  font-size: 1.5rem;
-  margin-bottom: 15px;
+  font-size: 1.3rem;
+  margin-bottom: 12px;
   background: var(--bg-gradient);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .highlight-card p {
   color: var(--text-secondary);
   line-height: 1.7;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
+}
+
+/* Fade In Animation */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: var(--transition-slow);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Responsive Design */
@@ -255,6 +203,15 @@
   .about-text h3 {
     font-size: 1.7rem;
   }
+
+  .about-highlights-vertical {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .highlight-card {
+    flex: 1;
+  }
 }
 
 @media (max-width: 768px) {
@@ -266,61 +223,117 @@
     font-size: 1.5rem;
   }
   
-  .about-highlights {
-    grid-template-columns: 1fr;
+  .about-highlights-vertical {
+    flex-direction: column;
+  }
+
+  .highlight-card {
+    padding: 25px;
+  }
+
+  .highlight-card h4 {
+    font-size: 1.2rem;
   }
 }
 
-/* Add these at the end of your existing About.css */
-/* Add these light mode overrides at the end if not already present */
+@media (max-width: 480px) {
+  .glass-card {
+    padding: 25px;
+  }
+
+  .about-icon {
+    width: 70px;
+    height: 70px;
+  }
+
+  .about-text h3 {
+    font-size: 1.3rem;
+  }
+
+  .highlight-card {
+    padding: 20px;
+  }
+
+  .highlight-card h4 {
+    font-size: 1.1rem;
+  }
+
+  .highlight-card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* ========================================
+   LIGHT MODE OVERRIDES - ABOUT SECTION
+======================================== */
 
 [data-theme="light"] .about {
-  background: var(--bg-dark);
+  background: #f8f9fa;
 }
 
-[data-theme="light"] .about-intro-card,
-[data-theme="light"] .about-detail-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+/* Light Mode - "Who I Am" Glass Card */
+[data-theme="light"] .glass-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-[data-theme="light"] .about-intro-card:hover,
-[data-theme="light"] .about-detail-card:hover {
-  border-color: var(--primary-color);
-  box-shadow: 0 15px 40px rgba(93, 184, 15, 0.15);
+[data-theme="light"] .glass-card::before {
+  background: linear-gradient(90deg, transparent, rgba(93, 184, 15, 0.08), transparent);
 }
 
-[data-theme="light"] .about-icon-large,
+[data-theme="light"] .glass-card:hover {
+  border-color: #7ec850;
+  box-shadow: 0 20px 60px rgba(93, 184, 15, 0.2);
+}
+
 [data-theme="light"] .about-icon {
-  background: var(--bg-gradient);
+  background: linear-gradient(135deg, #7ec850 0%, #5db80f 100%);
   color: #ffffff;
 }
 
-[data-theme="light"] .about-detail-card h4,
-[data-theme="light"] .about-intro-card h3 {
-  color: var(--text-color);
+[data-theme="light"] .about-text h3 {
+  background: linear-gradient(135deg, #7ec850 0%, #5db80f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-[data-theme="light"] .about-detail-card p,
-[data-theme="light"] .about-intro-card p {
-  color: var(--text-secondary);
+[data-theme="light"] .about-text p {
+  color: #4a4a4a;
 }
 
-[data-theme="light"] .stat-card {
-  background: rgba(93, 184, 15, 0.08);
-  border-color: rgba(93, 184, 15, 0.2);
+[data-theme="light"] .about-text p strong {
+  color: #1a1a1a;
 }
 
-[data-theme="light"] .stat-card:hover {
-  background: rgba(93, 184, 15, 0.12);
-  box-shadow: 0 10px 25px rgba(93, 184, 15, 0.15);
+/* Light Mode - Highlight Cards (Mission, Approach, Values) */
+[data-theme="light"] .highlight-card {
+  background: #ffffff;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-[data-theme="light"] .stat-number {
-  color: var(--primary-color);
+[data-theme="light"] .highlight-card:hover {
+  border-color: #7ec850;
+  box-shadow: 0 15px 40px rgba(93, 184, 15, 0.2);
 }
 
-[data-theme="light"] .stat-label {
-  color: var(--text-secondary);
+[data-theme="light"] .highlight-card::after {
+  background: radial-gradient(circle, rgba(93, 184, 15, 0.08) 0%, transparent 70%);
+}
+
+[data-theme="light"] .highlight-icon {
+  color: #5db80f;
+}
+
+[data-theme="light"] .highlight-card h4 {
+  background: linear-gradient(135deg, #7ec850 0%, #5db80f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+[data-theme="light"] .highlight-card p {
+  color: #4a4a4a;
 }
