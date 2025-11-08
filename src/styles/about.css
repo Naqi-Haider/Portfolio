@@ -1,0 +1,326 @@
+.about {
+  padding: var(--section-padding);
+  background: var(--bg-dark);
+  position: relative;
+}
+
+.about::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+}
+
+.about-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Top Grid: Who I Am (Left) + Stats (Right) */
+.about-top-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  margin-bottom: 50px;
+  align-items: start;
+}
+
+/* Glass Card Effect */
+.glass-card {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 50px;
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition);
+  height: 100%;
+}
+
+.glass-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: var(--transition-slow);
+}
+
+.glass-card:hover::before {
+  left: 100%;
+}
+
+.glass-card:hover {
+  border-color: rgba(102, 126, 234, 0.3);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 60px rgba(102, 126, 234, 0.2);
+}
+
+.about-card {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.about-icon {
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-gradient);
+  border-radius: 20px;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.about-text h3 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  background: var(--bg-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-text p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+}
+
+.about-text p strong {
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+/* Stats Section - Vertical Stack */
+.about-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.stat-card {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 25px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: var(--bg-gradient);
+  opacity: 0.1;
+  transition: var(--transition-slow);
+}
+
+.stat-card:hover::before {
+  width: 100%;
+}
+
+.stat-card:hover {
+  transform: translateX(10px);
+  border-color: var(--primary-color);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+}
+
+.stat-icon {
+  color: var(--primary-color);
+  flex-shrink: 0;
+}
+
+.stat-content {
+  flex: 1;
+}
+
+.stat-number {
+  font-size: 2.2rem;
+  font-weight: 700;
+  background: var(--bg-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 5px;
+  line-height: 1;
+}
+
+.stat-label {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Highlights Section - Stays Same */
+.about-highlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+}
+
+.highlight-card {
+  background: rgba(26, 26, 26, 0.6);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  padding: 35px;
+  text-align: center;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.highlight-card::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+  opacity: 0;
+  transition: var(--transition-slow);
+}
+
+.highlight-card:hover::after {
+  opacity: 1;
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.highlight-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--primary-color);
+  box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+}
+
+.highlight-icon {
+  margin-bottom: 20px;
+  display: inline-block;
+  color: var(--primary-color);
+}
+
+.highlight-card h4 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  background: var(--bg-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.highlight-card p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 968px) {
+  .about-top-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  
+  .glass-card {
+    padding: 35px;
+  }
+  
+  .about-text h3 {
+    font-size: 1.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .glass-card {
+    padding: 30px;
+  }
+  
+  .about-text h3 {
+    font-size: 1.5rem;
+  }
+  
+  .about-highlights {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Add these at the end of your existing About.css */
+/* Add these light mode overrides at the end if not already present */
+
+[data-theme="light"] .about {
+  background: var(--bg-dark);
+}
+
+[data-theme="light"] .about-intro-card,
+[data-theme="light"] .about-detail-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .about-intro-card:hover,
+[data-theme="light"] .about-detail-card:hover {
+  border-color: var(--primary-color);
+  box-shadow: 0 15px 40px rgba(93, 184, 15, 0.15);
+}
+
+[data-theme="light"] .about-icon-large,
+[data-theme="light"] .about-icon {
+  background: var(--bg-gradient);
+  color: #ffffff;
+}
+
+[data-theme="light"] .about-detail-card h4,
+[data-theme="light"] .about-intro-card h3 {
+  color: var(--text-color);
+}
+
+[data-theme="light"] .about-detail-card p,
+[data-theme="light"] .about-intro-card p {
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .stat-card {
+  background: rgba(93, 184, 15, 0.08);
+  border-color: rgba(93, 184, 15, 0.2);
+}
+
+[data-theme="light"] .stat-card:hover {
+  background: rgba(93, 184, 15, 0.12);
+  box-shadow: 0 10px 25px rgba(93, 184, 15, 0.15);
+}
+
+[data-theme="light"] .stat-number {
+  color: var(--primary-color);
+}
+
+[data-theme="light"] .stat-label {
+  color: var(--text-secondary);
+}
