@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import ProgressiveImage from './ProgressiveImage';
 import '../styles/projects.css';
 
 const Projects = () => {
@@ -14,7 +15,7 @@ const Projects = () => {
       id: 1,
       title: 'YouTube Clone',
       description: 'A fully functional YouTube clone with video playback, search functionality, and responsive design. Built to replicate the core features of the original platform with a focus on clean UI and smooth user experience.',
-      image: 'https://www.researchgate.net/publication/376956293/figure/fig3/AS:11431281217094493@1705029863831/YouTube-homepage-for-User-A-trained-with-positive-video-set.png',
+      image: '/Youtube-clone.webp',
       category: 'DESIGN • DEVELOPMENT',
       technologies: ['HTML', 'CSS', 'JavaScript'],
       github: 'https://github.com/Naqi-Haider/youtube-clone'
@@ -23,7 +24,7 @@ const Projects = () => {
       id: 2,
       title: 'Movie Ticket Booking System',
       description: 'A comprehensive C++ based movie ticket booking system featuring seat selection, reservation management, and a user-friendly command-line interface. Demonstrates strong OOP principles.',
-      image: '/Movie-Ticket-Booking-System.png',
+      image: '/Movie-Ticket-Booking-System.webp',
       category: 'DEVELOPMENT • OOP',
       technologies: ['C++', 'OOP', 'Data Structures'],
       github: 'https://github.com/Naqi-Haider/movie-ticket-booking'
@@ -32,7 +33,7 @@ const Projects = () => {
       id: 3,
       title: 'Amazon RawJS Clone',
       description: 'An Amazon e-commerce clone built with vanilla JavaScript. Features include product catalogs, shopping cart functionality, and a complete checkout process with order tracking.',
-      image: '/JavaScript Amazon RawJS Clone.png',
+      image: '/JavaScript Amazon RawJS Clone.webp',
       category: 'E-COMMERCE • FRONTEND',
       technologies: ['JavaScript', 'HTML', 'CSS'],
       github: 'https://github.com/Naqi-Haider/amazon-rawjs'
@@ -41,7 +42,7 @@ const Projects = () => {
       id: 4,
       title: 'Shopify Store Clone',
       description: 'A complete Shopify store clone built with modern technologies. Features product catalogs, shopping cart, user authentication, and a seamless checkout experience.',
-      image: '/JonesRoadClone.png',
+      image: '/JonesRoadClone.webp',
       category: 'E-COMMERCE • SHOPIFY',
       technologies: ['React', 'Node.js', 'MongoDB'],
       github: 'https://github.com/Naqi-Haider/shopify-store-clone'
@@ -143,12 +144,11 @@ const Projects = () => {
             {projectsData.map((project, index) => (
               <div key={project.id} className="mobile-project-card">
                 <div className="mobile-project-image">
-                  <img
+                  <ProgressiveImage
                     src={project.image}
                     alt={project.title}
-                    onError={(e) => {
-                      e.target.src = `https://via.placeholder.com/800x600/2a2a2a/ffffff?text=${encodeURIComponent(project.title)}`;
-                    }}
+                    fallbackText={project.title}
+                    aspectRatio="16/10"
                   />
                   <span className="project-category">{project.category}</span>
                 </div>
@@ -261,12 +261,11 @@ const Projects = () => {
 
               {/* Right Column - Project Image */}
               <div className="project-image-container">
-                <img
+                <ProgressiveImage
                   src={currentProject.image}
                   alt={currentProject.title}
-                  onError={(e) => {
-                    e.target.src = `https://via.placeholder.com/800x600/2a2a2a/ffffff?text=${encodeURIComponent(currentProject.title)}`;
-                  }}
+                  fallbackText={currentProject.title}
+                  aspectRatio="16/10"
                 />
               </div>
             </motion.div>

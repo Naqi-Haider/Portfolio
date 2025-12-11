@@ -253,8 +253,11 @@ const Header = () => {
           <div className="hero-image">
             <div className="image-wrapper">
               <img
-                src="/linkedin-profile.jpg"
+                src="/linkedin-profile.webp"
                 alt="Muhammad Naqi Haider"
+                loading="eager"
+                fetchpriority="high"
+                decoding="async"
               />
             </div>
           </div>
