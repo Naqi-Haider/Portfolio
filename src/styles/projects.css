@@ -145,25 +145,27 @@
   position: relative;
   border-radius: 24px;
   overflow: hidden;
-  background: #2a2a2a;
-  aspect-ratio: 16 / 10;
+  background: #1a1a1a;
+  aspect-ratio: 16 / 9;
   margin-right: 24px;
 }
 
 .project-image-container .progressive-image-container {
   height: 100%;
+  background: #1a1a1a;
 }
 
 .project-image-container .progressive-image {
   width: 100%;
-  height: 200%;
-  object-fit: cover;
-  object-position: top center;
-  transition: object-position 3s ease-in-out;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1);
+  transition: transform 0.5s ease-out;
 }
 
 .project-image-container:hover .progressive-image {
-  object-position: bottom center;
+  transform: scale(1.05);
 }
 
 /* Navigation Arrows - Absolute Positioned */
@@ -311,24 +313,27 @@
 .mobile-project-image {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
+  background: #1a1a1a;
 }
 
 .mobile-project-image .progressive-image-container {
   height: 100%;
+  background: #1a1a1a;
 }
 
 .mobile-project-image .progressive-image {
   width: 100%;
-  height: 200%;
-  object-fit: cover;
-  object-position: top center;
-  transition: object-position 2.5s ease-in-out;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transform: scale(1);
+  transition: transform 0.5s ease-out;
 }
 
 .mobile-project-image:active .progressive-image {
-  object-position: bottom center;
+  transform: scale(1.05);
 }
 
 .mobile-project-image .project-category {
