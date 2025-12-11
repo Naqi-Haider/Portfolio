@@ -1,0 +1,52 @@
+/* Jumbo Text Section */
+.jumbo {
+  background: #121212;
+  padding: 120px 24px;
+  overflow: hidden;
+}
+
+[data-theme="light"] .jumbo {
+  background: #fdfdfd;
+}
+
+.jumbo-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.jumbo-text {
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0;
+  opacity: 0.9;
+}
+
+[data-theme="light"] .jumbo-text {
+  color: #121212;
+}
+
+/* Highlight effect on certain words */
+.jumbo-text span {
+  color: #D4F231;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .jumbo {
+    padding: 80px 24px;
+  }
+
+  .jumbo-text {
+    font-size: clamp(2rem, 10vw, 3.5rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .jumbo {
+    padding: 60px 16px;
+  }
+}

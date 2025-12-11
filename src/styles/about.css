@@ -1,339 +1,250 @@
+/* About Section - Full Width Dark Design */
 .about {
-  padding: var(--section-padding);
-  background: var(--bg-dark);
-  position: relative;
-}
-
-.about::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+  background: #222222;
+  padding: 140px 24px;
   width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
 }
 
-.about-content {
-  max-width: 1200px;
-  margin: 0 auto;
+.about-container {
+  width: 100%;
+  padding: 0;
 }
 
-/* Top Grid: Who I Am (Left) + Highlight Cards (Right) */
-.about-top-grid {
+/* Two Column Grid - Full Width */
+.about-grid {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 40px;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
   align-items: start;
+  margin-bottom: 100px;
+  padding: 0 24px;
 }
 
-/* Glass Card Effect - "Who I Am" */
-.glass-card {
-  background: rgba(26, 26, 26, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius);
-  padding: 50px;
-  position: relative;
-  overflow: hidden;
-  transition: var(--transition);
-  height: 100%;
+/* Left Column - Headline */
+.about-headline {
+  position: sticky;
+  top: 120px;
 }
 
-.glass-card::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(180, 244, 97, 0.1), transparent);
-  transition: var(--transition-slow);
-}
-
-.glass-card:hover::before {
-  left: 100%;
-}
-
-.glass-card:hover {
-  border-color: rgba(180, 244, 97, 0.3);
-  transform: translateY(-5px);
-  box-shadow: 0 20px 60px rgba(180, 244, 97, 0.2);
-}
-
-.about-card {
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-}
-
-.about-icon {
-  width: 80px;
-  height: 80px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--bg-gradient);
-  border-radius: 20px;
-  color: white;
-  margin-bottom: 10px;
-}
-
-.about-text h3 {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  background: var(--bg-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.about-text p {
-  color: var(--text-secondary);
-  line-height: 1.8;
-  margin-bottom: 15px;
-  font-size: 1.05rem;
-}
-
-.about-text p strong {
-  color: var(--text-color);
+.about-label {
+  display: inline-block;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
   font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #888888;
+  margin-bottom: 24px;
+  padding: 8px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
 }
 
-/* Vertical Highlight Cards - Right Side */
-.about-highlights-vertical {
+.about-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.about-title .highlight {
+  color: #888888;
+}
+
+/* Right Column - Content */
+.about-content {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  height: 100%;
 }
 
-.highlight-card {
-  background: rgba(26, 26, 26, 0.6);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: var(--border-radius);
-  padding: 30px;
-  text-align: center;
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-  flex: 1;
+.about-bio {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.8;
+  color: #999999;
+  margin: 0;
 }
 
-.highlight-card::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(180, 244, 97, 0.1) 0%, transparent 70%);
-  opacity: 0;
-  transition: var(--transition-slow);
+.about-bio strong {
+  color: #ffffff;
+  font-weight: 600;
 }
 
-.highlight-card:hover::after {
-  opacity: 1;
-  animation: rotate 10s linear infinite;
+/* Meta Data Labels */
+.about-meta {
+  display: flex;
+  gap: 40px;
+  margin-top: 32px;
+  padding-top: 32px;
+  border-top: 1px solid #333333;
 }
 
-@keyframes rotate {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.highlight-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary-color);
-  box-shadow: 0 15px 40px rgba(180, 244, 97, 0.3);
-}
-
-.highlight-icon {
-  margin-bottom: 15px;
-  display: inline-block;
-  color: var(--primary-color);
-}
-
-.highlight-card h4 {
-  font-size: 1.3rem;
-  margin-bottom: 12px;
-  background: var(--bg-gradient);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+.meta-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #666666;
 }
 
-.highlight-card p {
-  color: var(--text-secondary);
-  line-height: 1.7;
-  font-size: 0.9rem;
+.meta-value {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-/* Fade In Animation */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: var(--transition-slow);
+/* Stats Row - Full Width */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 0 24px;
 }
 
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+.stat-card {
+  background: #2a2a2a;
+  border: 1px solid #333333;
+  border-radius: 16px;
+  padding: 48px 40px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  background: #2f2f2f;
+  border-color: #444444;
+  transform: translateY(-4px);
+}
+
+.stat-number {
+  display: block;
+  font-family: 'Inter', sans-serif;
+  font-size: 4rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 12px;
+}
+
+.stat-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #888888;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Success Card - Job Success */
+.stat-card.success-card {
+  background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
+  border-color: rgba(212, 242, 49, 0.2);
+}
+
+.stat-card.success-card:hover {
+  border-color: rgba(212, 242, 49, 0.4);
+}
+
+.stat-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.trophy-icon {
+  color: #D4F231;
+  flex-shrink: 0;
+}
+
+.stat-icon-wrapper .stat-number {
+  margin-bottom: 0;
 }
 
 /* Responsive Design */
-@media (max-width: 968px) {
-  .about-top-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-  
-  .glass-card {
-    padding: 35px;
-  }
-  
-  .about-text h3 {
-    font-size: 1.7rem;
+@media (max-width: 1024px) {
+  .about-grid {
+    gap: 60px;
   }
 
-  .about-highlights-vertical {
-    flex-direction: row;
-    gap: 20px;
+  .about-title {
+    font-size: 3rem;
   }
 
-  .highlight-card {
-    flex: 1;
+  .stat-number {
+    font-size: 3rem;
   }
 }
 
 @media (max-width: 768px) {
-  .glass-card {
-    padding: 30px;
-  }
-  
-  .about-text h3 {
-    font-size: 1.5rem;
-  }
-  
-  .about-highlights-vertical {
-    flex-direction: column;
+  .about {
+    padding: 100px 16px;
   }
 
-  .highlight-card {
-    padding: 25px;
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 0 16px;
   }
 
-  .highlight-card h4 {
-    font-size: 1.2rem;
+  .about-headline {
+    position: relative;
+    top: 0;
+  }
+
+  .about-title {
+    font-size: 2.5rem;
+  }
+
+  .about-meta {
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .stats-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 0 16px;
+  }
+
+  .stat-card {
+    padding: 32px 24px;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .glass-card {
-    padding: 25px;
+  .about {
+    padding: 80px 16px;
   }
 
-  .about-icon {
-    width: 70px;
-    height: 70px;
+  .about-title {
+    font-size: 2rem;
   }
 
-  .about-text h3 {
-    font-size: 1.3rem;
+  .about-bio {
+    font-size: 1rem;
   }
 
-  .highlight-card {
-    padding: 20px;
+  .about-meta {
+    flex-direction: column;
+    gap: 16px;
   }
-
-  .highlight-card h4 {
-    font-size: 1.1rem;
-  }
-
-  .highlight-card p {
-    font-size: 0.85rem;
-  }
-}
-
-/* ========================================
-   LIGHT MODE OVERRIDES - ABOUT SECTION
-======================================== */
-
-[data-theme="light"] .about {
-  background: #f8f9fa;
-}
-
-/* Light Mode - "Who I Am" Glass Card */
-[data-theme="light"] .glass-card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="light"] .glass-card::before {
-  background: linear-gradient(90deg, transparent, rgba(93, 184, 15, 0.08), transparent);
-}
-
-[data-theme="light"] .glass-card:hover {
-  border-color: #7ec850;
-  box-shadow: 0 20px 60px rgba(93, 184, 15, 0.2);
-}
-
-[data-theme="light"] .about-icon {
-  background: linear-gradient(135deg, #7ec850 0%, #5db80f 100%);
-  color: #ffffff;
-}
-
-[data-theme="light"] .about-text h3 {
-  background: linear-gradient(135deg, #7ec850 0%, #5db80f 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-[data-theme="light"] .about-text p {
-  color: #4a4a4a;
-}
-
-[data-theme="light"] .about-text p strong {
-  color: #1a1a1a;
-}
-
-/* Light Mode - Highlight Cards (Mission, Approach, Values) */
-[data-theme="light"] .highlight-card {
-  background: #ffffff;
-  border: 1px solid #e0e0e0;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-}
-
-[data-theme="light"] .highlight-card:hover {
-  border-color: #7ec850;
-  box-shadow: 0 15px 40px rgba(93, 184, 15, 0.2);
-}
-
-[data-theme="light"] .highlight-card::after {
-  background: radial-gradient(circle, rgba(93, 184, 15, 0.08) 0%, transparent 70%);
-}
-
-[data-theme="light"] .highlight-icon {
-  color: #5db80f;
-}
-
-[data-theme="light"] .highlight-card h4 {
-  background: linear-gradient(135deg, #7ec850 0%, #5db80f 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-[data-theme="light"] .highlight-card p {
-  color: #4a4a4a;
 }

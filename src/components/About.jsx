@@ -26,83 +26,77 @@ const About = () => {
     return () => observer.disconnect();
   }, []);
 
+  const stats = [
+    { number: '2+', label: 'Years Experience', type: 'number' },
+    { number: '10+', label: 'Projects Completed', type: 'number' },
+    { number: '100%', label: 'Job Success', type: 'success', icon: true }
+  ];
+
+  const metaData = [
+    { label: 'Location', value: 'Pakistan' },
+    { label: 'Experience', value: '2+ Years' },
+    { label: 'Availability', value: 'Freelance' }
+  ];
+
   return (
     <section className="about" id="about" ref={sectionRef}>
-      <div className="about-content">
-        <h2 className="section-title fade-in">About Me</h2>
-        
-        {/* Top Grid: Who I Am (Left) + Highlight Cards (Right) */}
-        <div className="about-top-grid fade-in">
-          {/* Left Side - Who I Am */}
-          <div className="glass-card about-card">
-            <div className="about-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
-                <line x1="8" y1="21" x2="16" y2="21"/>
-                <line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-            </div>
-            <div className="about-text">
-              <h3>Who I Am</h3>
-              <p>
-                Hello! I'm <strong>Muhammad Naqi Haider</strong>, a passionate coding enthusiast. I love turning ideas into reality through clean, efficient code and beautiful user interfaces.
-              </p>
-              <p>
-                My journey in software development has been driven by curiosity and a constant desire to learn. I believe in writing code that not only works but is also maintainable, scalable, and elegant.
-              </p>
-              <p>
-                With a strong foundation in both front-end & back-end technologies for 
-                <strong> two years</strong>, I enjoy tackling challenges that require creative problem-solving and innovative thinking.
-              </p>
-              <p>
-                I thrive in collaborative environments where I can contribute to meaningful projects and grow alongside talented individuals. <i>Let's build something amazing together!</i>
-              </p>
-            </div>
+      <div className="about-container">
+        {/* Two Column Layout */}
+        <div className="about-grid fade-in">
+          {/* Left Column - Headline */}
+          <div className="about-headline">
+            <span className="about-label">About Me</span>
+            <h2 className="about-title">
+              Freelance<br />
+              <span className="highlight">Full Stack</span> &<br />
+              Shopify Developer
+            </h2>
           </div>
 
-          {/* Right Side - Highlight Cards (Mission, Approach, Values) */}
-          <div className="about-highlights-vertical">
-            <div className="highlight-card">
-              <div className="highlight-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <circle cx="12" cy="12" r="10"/>
-                  <polyline points="12 6 12 12 16 14"/>
-                </svg>
-              </div>
-              <h4>My Mission</h4>
-              <p>
-                To create innovative solutions that make a positive impact and help people solve real-world problems.
-              </p>
-            </div>
+          {/* Right Column - Bio & Meta */}
+          <div className="about-content">
+            <p className="about-bio">
+              Hello! I'm <strong>Muhammad Naqi Haider</strong>, a passionate developer who loves turning ideas into reality through clean, efficient code and beautiful user interfaces.
+            </p>
+            <p className="about-bio">
+              With a strong foundation in both front-end and back-end technologies, I specialize in building modern web applications and custom Shopify stores. I thrive on solving complex problems and creating seamless digital experiences.
+            </p>
+            <p className="about-bio">
+              I believe in writing code that not only works but is also maintainable, scalable, and elegant. Let's build something amazing together.
+            </p>
 
-            <div className="highlight-card">
-              <div className="highlight-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                  <path d="M2 17l10 5 10-5"/>
-                  <path d="M2 12l10 5 10-5"/>
-                </svg>
-              </div>
-              <h4>My Approach</h4>
-              <p>
-                I focus on continuous learning, best practices, and staying updated with the latest technologies.
-              </p>
-            </div>
-
-            <div className="highlight-card">
-              <div className="highlight-icon">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                  <line x1="12" y1="22.08" x2="12" y2="12"/>
-                </svg>
-              </div>
-              <h4>My Values</h4>
-              <p>
-                Clean code, user-centric design, collaborative teamwork, and a commitment to excellence.
-              </p>
+            {/* Meta Data Labels */}
+            <div className="about-meta">
+              {metaData.map((item, index) => (
+                <div key={index} className="meta-item">
+                  <span className="meta-label">{item.label}</span>
+                  <span className="meta-value">{item.value}</span>
+                </div>
+              ))}
             </div>
           </div>
+        </div>
+
+        {/* Stats Row */}
+        <div className="stats-row fade-in">
+          {stats.map((stat, index) => (
+            <div key={index} className={`stat-card ${stat.type === 'success' ? 'success-card' : ''}`}>
+              {stat.icon ? (
+                <div className="stat-icon-wrapper">
+                  <svg className="trophy-icon" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M12 17H12.01" />
+                    <path d="M6 3H18V9C18 14.5228 14.5228 21 12 21C9.47715 21 6 14.5228 6 9V3Z" />
+                    <path d="M6 9C3 9 2 6 2 4.5C2 4.22386 2.22386 4 2.5 4H6" />
+                    <path d="M18 9C21 9 22 6 22 4.5C22 4.22386 21.7761 4 21.5 4H18" />
+                  </svg>
+                  <span className="stat-number">{stat.number}</span>
+                </div>
+              ) : (
+                <span className="stat-number">{stat.number}</span>
+              )}
+              <span className="stat-label">{stat.label}</span>
+            </div>
+          ))}
         </div>
       </div>
     </section>
