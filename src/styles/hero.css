@@ -1,0 +1,174 @@
+/* Hero Section Layout Styles */
+.home-card .hero-container {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 60px;
+  align-items: center;
+  width: 100%;
+}
+
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.hero-greeting-label {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-secondary); /* Slate Blue */
+}
+
+.hero-name {
+  font-family: var(--font-heading);
+  font-size: clamp(2.8rem, 7vw, 5.2rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: #FFFFE3; /* Cream text */
+}
+
+/* Subheading Tag */
+.hero-subheading-tag {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  color: rgba(255, 255, 227, 0.85);
+  letter-spacing: 0.5px;
+  margin-bottom: 5px;
+}
+
+/* Action Buttons Grid */
+.hero-actions-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 32px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+/* Primary — filled pill */
+.btn-primary-pill {
+  background: #FFFFE3;
+  color: #4A4A4A;
+  border: none;
+  border-radius: 100px;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-primary-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 255, 227, 0.2);
+}
+
+/* Secondary — ghost pill */
+.btn-ghost-pill {
+  background: transparent;
+  color: #FFFFE3;
+  border: 1.5px solid rgba(255, 255, 227, 0.35);
+  border-radius: 100px;
+  padding: 0.85rem 1.75rem;
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.btn-ghost-pill:hover {
+  border-color: rgba(255, 255, 227, 0.7);
+  background: rgba(255, 255, 227, 0.06);
+  transform: translateY(-2px);
+}
+
+/* Profile Photo Card */
+.hero-image-pane {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.profile-brutal-card {
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1 / 1;
+  border-radius: var(--inner-card-radius);
+  background: #ffffff;
+  padding: 12px;
+  border: 3px solid #FFFFE3;
+  box-shadow: 8px 8px 0px var(--text-secondary);
+  transition: var(--transition);
+}
+
+.profile-brutal-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 12px 12px 0px var(--text-secondary);
+}
+
+.profile-img-wrapper {
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  overflow: hidden;
+  position: relative;
+  background: #4A4A4A;
+}
+
+.profile-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Responsiveness overrides */
+@media (max-width: 1024px) {
+  .home-card .hero-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .hero-image-pane {
+    order: -1;
+  }
+
+  .profile-brutal-card {
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    align-items: center;
+    text-align: center;
+  }
+
+  .hero-actions-container {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+  }
+
+  .btn-primary-pill,
+  .btn-ghost-pill {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+  }
+}

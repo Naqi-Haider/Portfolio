@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/footer.css';
 
 const Footer = () => {
+  // Contact Form State
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -9,6 +10,84 @@ const Footer = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
+
+  // LoveCounter State
+  const [likeCount, setLikeCount] = useState(0);
+  const [hasLiked, setHasLiked] = useState(false);
+  const [isLikeAnimating, setIsLikeAnimating] = useState(false);
+  const [isLikeLoading, setIsLikeLoading] = useState(true);
+
+  const STORAGE_KEY = 'naqi_portfolio_liked_v1';
+  const API_NAMESPACE = 'naqi-portfolio-prod';
+  const API_KEY = 'likes-v1';
+
+  const createCounter = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `https://api.countapi.xyz/create?namespace=${API_NAMESPACE}&key=${API_KEY}&value=0`
+      );
+      const data = await response.json();
+      if (data && data.value !== undefined) {
+        setLikeCount(data.value);
+      }
+    } catch {
+      console.log('Failed to create counter');
+      setLikeCount(0);
+    }
+  }, [API_NAMESPACE, API_KEY]);
+
+  const fetchCount = useCallback(async () => {
+    try {
+      const response = await fetch(
+        `https://api.countapi.xyz/get/${API_NAMESPACE}/${API_KEY}`
+      );
+      const data = await response.json();
+      if (data && data.value !== undefined && data.value !== null) {
+        setLikeCount(data.value);
+      } else {
+        await createCounter();
+      }
+    } catch {
+      console.log('CountAPI unavailable - starting at 0');
+      setLikeCount(0);
+    } finally {
+      setIsLikeLoading(false);
+    }
+  }, [createCounter, API_NAMESPACE, API_KEY]);
+
+  // Check localStorage and fetch count on mount
+  useEffect(() => {
+    const liked = localStorage.getItem(STORAGE_KEY);
+    if (liked === 'true') {
+      setHasLiked(true);
+    }
+    fetchCount();
+  }, [fetchCount]);
+
+  const incrementCount = async () => {
+    if (hasLiked) return;
+
+    setIsLikeAnimating(true);
+    setHasLiked(true);
+    localStorage.setItem(STORAGE_KEY, 'true');
+
+    try {
+      const response = await fetch(
+        `https://api.countapi.xyz/hit/${API_NAMESPACE}/${API_KEY}`
+      );
+      const data = await response.json();
+      if (data && data.value !== undefined) {
+        setLikeCount(data.value);
+      } else {
+        setLikeCount((prev) => prev + 1);
+      }
+    } catch {
+      console.log('Failed to update count - applying local increment');
+      setLikeCount((prev) => prev + 1);
+    }
+
+    setTimeout(() => setIsLikeAnimating(false), 600);
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -21,7 +100,6 @@ const Footer = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
     setTimeout(() => {
       setIsSubmitting(false);
       setSubmitStatus('success');
@@ -57,41 +135,65 @@ const Footer = () => {
       url: 'https://www.instagram.com/naqi_ryou',
       icon: (
         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
-        </svg>
-      )
-    },
-    {
-      name: 'Dribbble',
-      url: '#',
-      icon: (
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0C5.375 0 0 5.375 0 12s5.375 12 12 12 12-5.375 12-12S18.625 0 12 0zm7.938 5.563a10.18 10.18 0 0 1 2.312 6.312c-.344-.063-3.75-.688-7.188-.313-.063-.125-.125-.25-.188-.375-.219-.469-.438-.938-.688-1.406 3.813-1.563 5.532-3.782 5.752-4.218zM12 1.75c2.656 0 5.094.938 7 2.5-.219.407-1.75 2.469-5.406 3.844A47.633 47.633 0 0 0 9.5 1.938c.813-.125 1.656-.188 2.5-.188zM7.594 2.563C8.469 4 9.469 5.5 10.375 7.125c-4.875 1.281-9.156 1.25-9.625 1.25a10.28 10.28 0 0 1 6.844-5.812zM1.75 12v-.313c.469.007 5.5.094 10.688-1.469.313.594.594 1.188.875 1.781-.125.031-.25.063-.375.094-5.406 1.75-8.219 6.531-8.438 6.906A10.203 10.203 0 0 1 1.75 12zm10.25 10.25c-2.375 0-4.563-.813-6.312-2.156.188-.375 2.313-4.438 8.219-6.5.031 0 .031-.031.063-.031a42.1 42.1 0 0 1 2.25 7.906 10.166 10.166 0 0 1-4.22.781zm5.906-1.969a44.75 44.75 0 0 0-2-7.219c3.25-.5 6.125.344 6.5.469a10.222 10.222 0 0 1-4.5 6.75z" />
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0 3.259-.014 3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
         </svg>
       )
     }
   ];
 
   return (
-    <footer className="contact" id="contact">
+    <section className="section-card contact-card" id="contact">
       <div className="contact-container">
+        {/* Section labels */}
+        <span className="section-label">Contact</span>
         <h2 className="section-title">Get In Touch</h2>
+
+        {/* Highlight quote */}
+        <div className="contact-quote-bar">
+          <p className="contact-quote">"Let's build something meaningful."</p>
+        </div>
+
+        {/* Embedded Love Counter */}
+        <div className="love-counter-box">
+          <span className="love-prompt">Enjoyed this portfolio? Show some support!</span>
+          <button
+            className={`love-hit-button ${hasLiked ? 'liked' : ''} ${isLikeAnimating ? 'animating' : ''}`}
+            onClick={incrementCount}
+            disabled={hasLiked}
+            aria-label={hasLiked ? 'Already liked' : 'Like this portfolio'}
+          >
+            <span className="heart-svg">
+              {hasLiked ? (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                </svg>
+              ) : (
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              )}
+            </span>
+            <span className="love-count-num">
+              {isLikeLoading ? '...' : likeCount.toLocaleString()}
+            </span>
+          </button>
+          {hasLiked && <span className="love-thanks">Thank you! 💛</span>}
+        </div>
 
         {/* Contact Grid */}
         <div className="contact-grid">
-          {/* Left Column */}
-          <div className="contact-left">
-            {/* Connect Card */}
-            <div className="contact-card connect-card">
+          {/* Left Column - Socials & Location */}
+          <div className="contact-meta-pane">
+            <div className="inner-brutal-card card-socials">
               <h3>Connect with Me</h3>
-              <div className="social-grid">
+              <div className="socials-flex">
                 {socialLinks.map((link, index) => (
                   <a
                     key={index}
                     href={link.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-link"
+                    className="social-icon-box"
                     aria-label={link.name}
                   >
                     {link.icon}
@@ -100,27 +202,26 @@ const Footer = () => {
               </div>
             </div>
 
-            {/* Email & Phone Row */}
-            <div className="contact-info-row">
-              <div className="contact-card info-card">
-                <span className="info-label">Email</span>
-                <a href="mailto:naqi073@gmail.com" className="info-value">
+            <div className="contact-details-row">
+              <div className="inner-brutal-card details-box">
+                <span className="details-header">Email</span>
+                <a href="mailto:naqi073@gmail.com" className="details-value">
                   naqi073@gmail.com
                 </a>
               </div>
-              <div className="contact-card info-card">
-                <span className="info-label">Location</span>
-                <span className="info-value">Pakistan</span>
+              <div className="inner-brutal-card details-box">
+                <span className="details-header">Location</span>
+                <span className="details-value">Pakistan</span>
               </div>
             </div>
           </div>
 
           {/* Right Column - Contact Form */}
-          <div className="contact-card form-card">
+          <div className="inner-brutal-card card-form">
             <h3>Send a Message</h3>
-            <form className="contact-form" onSubmit={handleSubmit}>
-              <div className="form-row">
-                <div className="form-group">
+            <form className="form-element" onSubmit={handleSubmit}>
+              <div className="form-fields-row">
+                <div className="form-input-group">
                   <label htmlFor="name">Name</label>
                   <input
                     id="name"
@@ -132,7 +233,7 @@ const Footer = () => {
                     required
                   />
                 </div>
-                <div className="form-group">
+                <div className="form-input-group">
                   <label htmlFor="email">Email</label>
                   <input
                     id="email"
@@ -145,7 +246,7 @@ const Footer = () => {
                   />
                 </div>
               </div>
-              <div className="form-group">
+              <div className="form-input-group">
                 <label htmlFor="message">Message</label>
                 <textarea
                   id="message"
@@ -154,23 +255,23 @@ const Footer = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows="5"
+                  rows="4"
                 ></textarea>
               </div>
               <button
                 type="submit"
-                className="submit-btn"
+                className="btn-submit-brutal"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
                   <>
-                    <span className="spinner"></span>
+                    <span className="btn-spinner"></span>
                     Sending...
                   </>
                 ) : (
                   <>
                     Send Message
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <line x1="22" y1="2" x2="11" y2="13" />
                       <polygon points="22 2 15 22 11 13 2 9 22 2" />
                     </svg>
@@ -178,7 +279,7 @@ const Footer = () => {
                 )}
               </button>
               {submitStatus === 'success' && (
-                <div className="success-message">
+                <div className="form-success-banner">
                   ✓ Message sent successfully!
                 </div>
               )}
@@ -186,17 +287,17 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bottom */}
-        <div className="footer-bottom">
+        {/* Footer Bottom copyright banner */}
+        <div className="footer-copyright-bar">
           <p>
             © {new Date().getFullYear()} <strong>Muhammad Naqi Haider</strong>. All rights reserved.
           </p>
-          <p className="footer-tagline">
-            Built with ❤️ and React
+          <p className="footer-credits">
+            Built with React & Space Grotesk
           </p>
         </div>
       </div>
-    </footer>
+    </section>
   );
 };
 

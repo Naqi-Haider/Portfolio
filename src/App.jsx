@@ -1,12 +1,11 @@
 import React, { useEffect, useRef } from 'react';
 import './App.css';
 import Lenis from 'lenis';
-import Header from './components/Header';
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
 import About from './components/About';
-import Jumbo from './components/Jumbo';
 import Skills from './components/Skills';
 import Projects from './components/Projects';
-import LoveCounter from './components/LoveCounter';
 import Footer from './components/Footer';
 import ScrollToTop from './components/Scroll-to-top';
 
@@ -22,7 +21,7 @@ function App() {
       gestureDirection: 'vertical',
       smooth: true,
       smoothTouch: false,
-      touchMultiplier: 2,
+      touchMultiplier: 1.5,
     });
 
     lenisRef.current = lenis;
@@ -34,21 +33,48 @@ function App() {
 
     requestAnimationFrame(raf);
 
-    // Cleanup on unmount
     return () => {
       lenis.destroy();
     };
   }, []);
 
+  // IntersectionObserver to scale down previous cards in the sticky stack
+  useEffect(() => {
+    const cards = document.querySelectorAll('.section-card');
+    
+    const observerOptions = {
+      root: null,
+      threshold: [0.15, 0.9],
+      rootMargin: '-80px 0px -10% 0px' // accounts for pill navbar at top
+    };
+
+    const observerCallback = (entries) => {
+      entries.forEach((entry) => {
+        // Toggle the is-active class depending on scroll visibility
+        if (entry.isIntersecting && entry.intersectionRatio > 0.15) {
+          entry.target.classList.add('is-active');
+        } else {
+          entry.target.classList.remove('is-active');
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    cards.forEach((card) => observer.observe(card));
+
+    return () => {
+      cards.forEach((card) => observer.unobserve(card));
+    };
+  }, []);
+
   return (
     <div className="App">
-      <Header />
+      <Navbar />
       <main>
+        <Hero />
         <About />
-        <Jumbo />
         <Skills />
         <Projects />
-        <LoveCounter />
         <Footer />
       </main>
       <ScrollToTop />

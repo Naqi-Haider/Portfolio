@@ -1,0 +1,218 @@
+/* Floating Pill Navbar Styles */
+.navbar-floating {
+  position: fixed;
+  top: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92%;
+  max-width: 1400px;
+  background: #4A4A4A;
+  border: 1px solid rgba(255, 255, 227, 0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 100px;
+  padding: 14px 40px;
+  z-index: 1000;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.navbar-floating.scrolled {
+  padding: 10px 32px;
+  background: rgba(74, 74, 74, 0.92);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+}
+
+.navbar-floating .nav-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Nav Logo */
+.navbar-floating .nav-logo {
+  cursor: pointer;
+}
+
+.navbar-floating .logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFFE3;
+  letter-spacing: -0.03em;
+}
+
+/* Desktop Menu Links */
+.navbar-floating .nav-menu {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.navbar-floating .nav-menu li a {
+  font-family: var(--font-heading);
+  color: rgba(255, 255, 227, 0.7);
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  transition: var(--transition);
+  padding: 6px 0;
+}
+
+.navbar-floating .nav-menu li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: var(--text-secondary); /* Slate Blue */
+  transition: width 0.3s ease;
+}
+
+.navbar-floating .nav-menu li a:hover {
+  color: #FFFFE3;
+}
+
+.navbar-floating .nav-menu li a.active {
+  color: #FFFFE3;
+}
+
+.navbar-floating .nav-menu li a.active::after {
+  width: 100%;
+}
+
+/* Mobile Hamburger Button */
+.navbar-floating .hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.navbar-floating .hamburger-line {
+  width: 22px;
+  height: 2px;
+  background: #FFFFE3;
+  transition: var(--transition);
+  margin: 2px 0;
+}
+
+.navbar-floating .hamburger-btn.open .hamburger-line:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 4px);
+}
+
+.navbar-floating .hamburger-btn.open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+
+.navbar-floating .hamburger-btn.open .hamburger-line:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -4px);
+}
+
+/* Mobile Menu Overlay */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(74, 74, 74, 0.98);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+}
+
+.mobile-menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  transform: translateY(-30px);
+  transition: transform 0.4s ease;
+}
+
+.mobile-menu-overlay.open .mobile-menu-content {
+  transform: translateY(0);
+}
+
+.mobile-nav-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+.mobile-nav-links li a {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 700;
+  color: rgba(255, 255, 227, 0.6);
+  transition: var(--transition);
+  display: block;
+}
+
+.mobile-nav-links li a:hover,
+.mobile-nav-links li a.active {
+  color: #FFFFE3;
+}
+
+.mobile-nav-links li a.active {
+  color: var(--text-secondary);
+}
+
+.mobile-socials {
+  display: flex;
+  gap: 16px;
+}
+
+.mobile-socials .social-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 227, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 227, 0.7);
+  transition: var(--transition);
+}
+
+.mobile-socials .social-icon:hover {
+  background: var(--text-secondary);
+  color: #FFFFE3;
+}
+
+/* Responsive Rules */
+@media (max-width: 768px) {
+  .navbar-floating {
+    padding: 10px 24px;
+    width: 95%;
+  }
+
+  .desktop-menu {
+    display: none;
+  }
+
+  .navbar-floating .hamburger-btn {
+    display: flex;
+  }
+}

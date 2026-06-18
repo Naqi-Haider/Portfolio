@@ -1,250 +1,165 @@
-/* About Section - Full Width Dark Design */
-.about {
-  background: #222222;
-  padding: 140px 24px;
-  width: 100%;
-}
-
+/* About Section Styles */
 .about-container {
   width: 100%;
-  padding: 0;
 }
 
-/* Two Column Grid - Full Width */
+.about-title-accent {
+  color: var(--text-secondary); /* Slate Blue */
+}
+
+/* Grid Layout */
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 60px;
+  margin-top: 2rem;
   align-items: start;
-  margin-bottom: 100px;
-  padding: 0 24px;
 }
 
-/* Left Column - Headline */
-.about-headline {
-  position: sticky;
-  top: 120px;
-}
-
-.about-label {
-  display: inline-block;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: #888888;
-  margin-bottom: 24px;
-  padding: 8px 16px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 4px;
-}
-
-.about-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 4rem;
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: #ffffff;
-  margin: 0;
-}
-
-.about-title .highlight {
-  color: #888888;
-}
-
-/* Right Column - Content */
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.5rem;
 }
 
 .about-bio {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.125rem;
-  line-height: 1.8;
-  color: #999999;
-  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-color);
 }
 
 .about-bio strong {
-  color: #ffffff;
   font-weight: 600;
 }
 
-/* Meta Data Labels */
-.about-meta {
-  display: flex;
-  gap: 40px;
-  margin-top: 32px;
-  padding-top: 32px;
-  border-top: 1px solid #333333;
+/* Adaptability Quote styling */
+.about-quote-container {
+  margin-top: 1.5rem;
+  position: relative;
+  padding-left: 28px;
+  border-left: 4px solid var(--text-secondary);
 }
 
-.meta-item {
+.about-quote {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-style: italic;
+  color: var(--text-secondary);
+  opacity: 0.85;
+  line-height: 1.4;
+  margin: 0;
+}
+
+.quote-mark {
+  display: none; /* Substituted by elegant border-left */
+}
+
+/* Sidebar Styling */
+.about-sidebar {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 32px;
+}
+
+.about-meta-card {
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(74, 74, 74, 0.08);
+}
+
+.meta-row:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
 }
 
 .meta-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
   font-weight: 500;
   text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: #666666;
+  color: var(--text-secondary);
 }
 
 .meta-value {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
   font-size: 1rem;
   font-weight: 600;
-  color: #ffffff;
+  color: var(--text-color);
 }
 
-/* Stats Row - Full Width */
-.stats-row {
+/* Stats Layout */
+.stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  padding: 0 24px;
-}
-
-.stat-card {
-  background: #2a2a2a;
-  border: 1px solid #333333;
-  border-radius: 16px;
-  padding: 48px 40px;
-  text-align: center;
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-  background: #2f2f2f;
-  border-color: #444444;
-  transform: translateY(-4px);
-}
-
-.stat-number {
-  display: block;
-  font-family: 'Inter', sans-serif;
-  font-size: 4rem;
-  font-weight: 800;
-  color: #ffffff;
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-bottom: 12px;
-}
-
-.stat-label {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9375rem;
-  font-weight: 500;
-  color: #888888;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-
-/* Success Card - Job Success */
-.stat-card.success-card {
-  background: linear-gradient(135deg, #2a2a2a, #1e1e1e);
-  border-color: rgba(212, 242, 49, 0.2);
-}
-
-.stat-card.success-card:hover {
-  border-color: rgba(212, 242, 49, 0.4);
-}
-
-.stat-icon-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  grid-template-columns: repeat(2, 1fr);
   gap: 16px;
-  margin-bottom: 12px;
 }
 
-.trophy-icon {
-  color: #D4F231;
-  flex-shrink: 0;
+.stat-box {
+  background: rgba(255, 255, 255, 0.4);
+  border: 2px solid var(--border-subtle);
+  border-radius: 24px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: var(--transition);
 }
 
-.stat-icon-wrapper .stat-number {
-  margin-bottom: 0;
+.stat-box:hover {
+  transform: translateY(-2px);
+  border-color: var(--text-secondary);
 }
 
-/* Responsive Design */
+.stat-box.success-box {
+  grid-column: span 2;
+}
+
+.stat-num {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--text-color);
+  line-height: 1;
+}
+
+.stat-lbl {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* Responsiveness overrides */
 @media (max-width: 1024px) {
   .about-grid {
-    gap: 60px;
-  }
-
-  .about-title {
-    font-size: 3rem;
-  }
-
-  .stat-number {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .about {
-    padding: 100px 16px;
-  }
-
-  .about-grid {
     grid-template-columns: 1fr;
-    gap: 48px;
-    padding: 0 16px;
-  }
-
-  .about-headline {
-    position: relative;
-    top: 0;
-  }
-
-  .about-title {
-    font-size: 2.5rem;
-  }
-
-  .about-meta {
-    flex-wrap: wrap;
-    gap: 24px;
-  }
-
-  .stats-row {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 0 16px;
-  }
-
-  .stat-card {
-    padding: 32px 24px;
-  }
-
-  .stat-number {
-    font-size: 2.5rem;
+    gap: 40px;
   }
 }
 
 @media (max-width: 480px) {
-  .about {
-    padding: 80px 16px;
+  .stats-grid {
+    grid-template-columns: 1fr;
   }
 
-  .about-title {
-    font-size: 2rem;
+  .stat-box.success-box {
+    grid-column: span 1;
   }
 
-  .about-bio {
-    font-size: 1rem;
-  }
-
-  .about-meta {
-    flex-direction: column;
-    gap: 16px;
+  .about-quote {
+    font-size: 1.25rem;
   }
 }

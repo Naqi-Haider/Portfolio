@@ -1,38 +1,30 @@
-/* Global CSS Variables - Dark Mode Only */
+/* Ink Wash Theme Design System & Global Styles */
 :root {
-  /* Colors - Dark Mode */
-  --primary-color: #ffffff;
-  --accent-color: #D4F231;
-  --text-color: #ffffff;
-  --text-secondary: #888888;
-  --text-muted: #555555;
-  --bg-primary: #121212;
-  --bg-secondary: #1a1a1a;
-  --bg-card: #1e1e1e;
-  --border-color: #2a2a2a;
-  --border-subtle: #333333;
+  /* Colors */
+  --bg-primary: #FFFFE3;       /* Soft Cream / Off-White */
+  --bg-card: #ffffff;          /* Card Background (Light default) */
+  --text-color: #4A4A4A;       /* Charcoal Slate Body text */
+  --text-secondary: #6D8196;   /* Muted Slate Blue */
+  --border-color: #4A4A4A;     /* Charcoal Border */
+  --border-subtle: #CBCBCB;    /* Silver Divider */
 
-  /* Spacing - Minimal padding for full-width */
-  --section-padding: 140px 24px;
-  --edge-padding: 24px;
+  /* Typography Stack */
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
-  /* Border Radius */
-  --border-radius: 12px;
-  --border-radius-sm: 8px;
-  --border-radius-lg: 16px;
+  /* Card Layout Constants */
+  --section-card-radius: 48px 12px 48px 12px;
+  --inner-card-radius: 40px;
+  --btn-radius: 16px;
 
   /* Transitions */
   --transition: all 0.3s ease;
-  --transition-slow: all 0.6s ease;
-  --transition-fast: all 0.15s ease;
-
-  /* Shadows - Subtle */
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
-  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.3);
-  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --transition-slow: all 0.5s ease;
+  --transition-card: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
 }
 
-/* Lenis Smooth Scroll */
+/* Lenis Smooth Scroll Setup */
 html.lenis {
   height: auto;
 }
@@ -49,90 +41,157 @@ html.lenis {
   overflow: hidden;
 }
 
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* Custom Scrollbar - Minimal */
+/* Custom Scrollbar - Transparent track so full-bleed cards go underneath */
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-primary);
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--border-color);
-  border-radius: 4px;
+  background: rgba(74, 74, 74, 0.2);
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--accent-color);
+  background: rgba(74, 74, 74, 0.4);
 }
 
-/* Firefox Scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--border-color) var(--bg-primary);
+  scrollbar-color: rgba(74, 74, 74, 0.2) transparent;
 }
 
-/* App Container - Full Width */
+/* Main App Wrapper */
 .App {
   position: relative;
   width: 100%;
   min-height: 100vh;
   background: var(--bg-primary);
+  color: var(--text-color);
+  font-family: var(--font-body);
   overflow-x: hidden;
+}
+
+.App::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.035;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 main {
   position: relative;
-  z-index: 1;
   width: 100%;
+  padding-bottom: 0;
 }
 
-/* Section Styling - Full Width */
-section {
+/* Section Card Base Styles - Option A Full Bleed Stack */
+.section-card {
+  position: sticky;
+  top: 100px; /* Aligns card stack underneath navbar */
+  min-height: calc(100vh - 140px);
   width: 100%;
-  padding: var(--section-padding);
-  position: relative;
+  margin: 0 0 120px 0;
+  border-radius: 40px;
+  padding: 4rem;
+  overflow: hidden;
+  transition: var(--transition-card);
+  will-change: transform, opacity;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-/* Container - Removed max-width, use edge padding only */
-.container {
+/* Centered Containers for Full-Bleed Cards layout */
+.hero-container,
+.about-container,
+.skills-container,
+.projects-container,
+.contact-container {
   width: 100%;
-  padding: 0 var(--edge-padding);
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* Section Titles - Minimal */
-.section-title {
-  font-family: 'Inter', sans-serif;
-  font-size: 2.5rem;
-  font-weight: 700;
-  text-align: center;
-  margin-bottom: 80px;
-  color: var(--text-color);
-  position: relative;
-  letter-spacing: -0.02em;
+/* Scale and Opacity adjustments for covered (inactive) sticky cards */
+.section-card:not(.is-active) {
+  transform: scale(0.96);
+  opacity: 0.9;
+  filter: brightness(0.9);
 }
 
-.section-title::after {
-  content: '';
+/* Core Cards Section Details - Background strategy mapping */
+.section-card.home-card {
+  background: #4A4A4A;
+  color: #FFFFE3;
+  margin-top: 120px; /* Offset to push first card below floating navbar */
+}
+
+.section-card.about-card {
+  background: #FFFFE3;
+  color: #4A4A4A;
+  border: 3px solid rgba(74, 74, 74, 0.08);
+}
+
+.section-card.skills-card {
+  background: #CBCBCB;
+  color: #4A4A4A;
+  border: 3px solid rgba(74, 74, 74, 0.08);
+}
+
+.section-card.projects-card {
+  background: #6D8196;
+  color: #FFFFE3;
+}
+
+.section-card.contact-card {
+  background: #4A4A4A;
+  color: #FFFFE3;
+  margin-bottom: 0;
+  border-radius: 40px 40px 0 0;
+}
+
+/* Section Titles & Labels */
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin-bottom: 1rem;
   display: block;
-  width: 60px;
-  height: 2px;
-  background: var(--accent-color);
-  margin: 24px auto 0;
-  border-radius: 1px;
 }
 
-/* Fade In Animation */
+.projects-card .section-label,
+.home-card .section-label,
+.contact-card .section-label {
+  color: rgba(255, 255, 227, 0.6);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 2rem;
+}
+
+/* Fade in class overrides (Clean standard transition) */
 .fade-in {
   opacity: 0;
-  transform: translateY(30px);
-  transition: var(--transition-slow);
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
 .fade-in.visible {
@@ -140,54 +199,21 @@ section {
   transform: translateY(0);
 }
 
-/* Button Styles - Minimal */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 14px 28px;
-  background: var(--accent-color);
-  color: #000000;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: 0.875rem;
-  border-radius: var(--border-radius);
-  transition: var(--transition);
-  position: relative;
-  overflow: hidden;
-  z-index: 1;
-  letter-spacing: 0.01em;
-  border: none;
-  cursor: pointer;
+/* Legacy CV styles removed */
+
+/* Responsive Overrides */
+@media (max-width: 1024px) {
+  .section-card {
+    padding: 3rem;
+    min-height: calc(100vh - 160px);
+  }
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(212, 242, 49, 0.3);
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-  :root {
-    --section-padding: 100px 16px;
-    --edge-padding: 16px;
-  }
-
-  .section-title {
-    font-size: 2rem;
+  .section-card {
+    padding: 2rem;
+    width: 100%;
     margin-bottom: 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  :root {
-    --section-padding: 80px 16px;
-    --edge-padding: 16px;
-  }
-
-  .section-title {
-    font-size: 1.75rem;
-    margin-bottom: 48px;
+    min-height: auto;
   }
 }

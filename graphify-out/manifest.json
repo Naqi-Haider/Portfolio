@@ -1,0 +1,167 @@
+{
+  "eslint.config.js": {
+    "mtime": 1765427817.1017437,
+    "ast_hash": "2c92ee8c1d7c10a6cb0e834c108be353",
+    "semantic_hash": "2c92ee8c1d7c10a6cb0e834c108be353"
+  },
+  "package.json": {
+    "mtime": 1765433638.3208055,
+    "ast_hash": "e37ecd3c151faa3b00ae036c3e8ae919",
+    "semantic_hash": "e37ecd3c151faa3b00ae036c3e8ae919"
+  },
+  "src/App.jsx": {
+    "mtime": 1781789883.7496908,
+    "ast_hash": "e064450d5cc6870725302c5d572d05e5",
+    "semantic_hash": ""
+  },
+  "src/components/About.jsx": {
+    "mtime": 1781792748.5540197,
+    "ast_hash": "15c1de259f16961592dc70bff1c60d60",
+    "semantic_hash": ""
+  },
+  "src/components/Footer.jsx": {
+    "mtime": 1781789946.7043378,
+    "ast_hash": "5e039ffd2e0b8c03fec14ffa7049b492",
+    "semantic_hash": ""
+  },
+  "src/components/ProgressiveImage.jsx": {
+    "mtime": 1781789926.531653,
+    "ast_hash": "1309f0f5abae3b3411584fd827999922",
+    "semantic_hash": ""
+  },
+  "src/components/Projects.jsx": {
+    "mtime": 1781792770.0916712,
+    "ast_hash": "e0220fd57503e51b070710dd7f82de00",
+    "semantic_hash": ""
+  },
+  "src/components/Scroll-to-top.jsx": {
+    "mtime": 1765427817.1318681,
+    "ast_hash": "91501a120765c5e2ebbe453f276c1765",
+    "semantic_hash": "91501a120765c5e2ebbe453f276c1765"
+  },
+  "src/components/Skills.jsx": {
+    "mtime": 1781789780.1460497,
+    "ast_hash": "d4b64239bef7fa68f90ea11bb647b68d",
+    "semantic_hash": ""
+  },
+  "src/main.jsx": {
+    "mtime": 1765427817.1358662,
+    "ast_hash": "51fd21c378330142b61bf8d1ef3795ef",
+    "semantic_hash": "51fd21c378330142b61bf8d1ef3795ef"
+  },
+  "vite.config.js": {
+    "mtime": 1765427817.1428657,
+    "ast_hash": "199e1221ae03d6974fdc8b5e23787b98",
+    "semantic_hash": "199e1221ae03d6974fdc8b5e23787b98"
+  },
+  ".agents/rules/graphify.md": {
+    "mtime": 1781785648.5698838,
+    "ast_hash": "a0e4d192b9e2e17256124dbfc8e24e6a",
+    "semantic_hash": "a0e4d192b9e2e17256124dbfc8e24e6a"
+  },
+  ".agents/workflows/graphify.md": {
+    "mtime": 1781785648.570881,
+    "ast_hash": "637776aa6f7496d069afe7520c845c8a",
+    "semantic_hash": "637776aa6f7496d069afe7520c845c8a"
+  },
+  "README.md": {
+    "mtime": 1765427817.100748,
+    "ast_hash": "a35031cdadd3d3add78fbf2beb5b4b0a",
+    "semantic_hash": "a35031cdadd3d3add78fbf2beb5b4b0a"
+  },
+  "index.html": {
+    "mtime": 1781789616.6588323,
+    "ast_hash": "2ffadfe96746a29ba9ca35662357a3fa",
+    "semantic_hash": ""
+  },
+  "public/Naqi_Haider_CV.pdf": {
+    "mtime": 1765431142.3284729,
+    "ast_hash": "d1f3ebb708ccf258d396ec5bebe8f955",
+    "semantic_hash": "d1f3ebb708ccf258d396ec5bebe8f955"
+  },
+  "public/JavaScript Amazon RawJS Clone.webp": {
+    "mtime": 1765437371.3529563,
+    "ast_hash": "c7a4ccfc34c520590fc1c3367b4a82f1",
+    "semantic_hash": "c7a4ccfc34c520590fc1c3367b4a82f1"
+  },
+  "public/JonesRoadClone.webp": {
+    "mtime": 1765437378.6603007,
+    "ast_hash": "63b92c609738bc37e4bb12727e3b0044",
+    "semantic_hash": "63b92c609738bc37e4bb12727e3b0044"
+  },
+  "public/Movie-Ticket-Booking-System.webp": {
+    "mtime": 1765437386.481388,
+    "ast_hash": "d7ed63cd9e538be9f54f191aa8a65a40",
+    "semantic_hash": "d7ed63cd9e538be9f54f191aa8a65a40"
+  },
+  "public/Youtube-clone.webp": {
+    "mtime": 1765437906.5452917,
+    "ast_hash": "08856a84e5b3f3f08c81ec5cd7d29656",
+    "semantic_hash": "08856a84e5b3f3f08c81ec5cd7d29656"
+  },
+  "public/css-icon.svg": {
+    "mtime": 1765427817.1208189,
+    "ast_hash": "4d785e947345a30360b0571979e70fdf",
+    "semantic_hash": "4d785e947345a30360b0571979e70fdf"
+  },
+  "public/html-icon.svg": {
+    "mtime": 1765427817.1218176,
+    "ast_hash": "0caacd80fa627ad5c76ff9525f6236d4",
+    "semantic_hash": "0caacd80fa627ad5c76ff9525f6236d4"
+  },
+  "public/javascript-icon.svg": {
+    "mtime": 1765427817.1228187,
+    "ast_hash": "4b48442d2f2cc7d651c013a33360f0d8",
+    "semantic_hash": "4b48442d2f2cc7d651c013a33360f0d8"
+  },
+  "public/linkedin-profile.webp": {
+    "mtime": 1765437382.6692343,
+    "ast_hash": "cd4ac1fad77cd73a8abad253a29eb564",
+    "semantic_hash": "cd4ac1fad77cd73a8abad253a29eb564"
+  },
+  "public/mongodb-icon.svg": {
+    "mtime": 1765427817.1238203,
+    "ast_hash": "77053f9a15ef851ea0095d3dc095cb01",
+    "semantic_hash": "77053f9a15ef851ea0095d3dc095cb01"
+  },
+  "public/node-js-icon.svg": {
+    "mtime": 1765427817.1238203,
+    "ast_hash": "f96ac8e52f6faa9b5898f091d097bf50",
+    "semantic_hash": "f96ac8e52f6faa9b5898f091d097bf50"
+  },
+  "public/react-js-icon.svg": {
+    "mtime": 1765427817.1248188,
+    "ast_hash": "a03a8833e53dfa6c581691d24c25557f",
+    "semantic_hash": "a03a8833e53dfa6c581691d24c25557f"
+  },
+  "public/shopify-icon.svg": {
+    "mtime": 1765427817.1248188,
+    "ast_hash": "154268d3f2e280a4c21b8de299d3e7d0",
+    "semantic_hash": "154268d3f2e280a4c21b8de299d3e7d0"
+  },
+  "src/assets/react.svg": {
+    "mtime": 1765427817.127816,
+    "ast_hash": "f0402b67b6ce880f65666bb49e841696",
+    "semantic_hash": "f0402b67b6ce880f65666bb49e841696"
+  },
+  "src/components/Hero.jsx": {
+    "mtime": 1781792737.6855295,
+    "ast_hash": "893309b7b08002d9fbb5d8f92112f4e1",
+    "semantic_hash": ""
+  },
+  "src/components/Navbar.jsx": {
+    "mtime": 1781789650.8692777,
+    "ast_hash": "4000c0ac95933a692d927bfcfdcb4118",
+    "semantic_hash": ""
+  },
+  "regarding this plan.txt": {
+    "mtime": 1781788976.589431,
+    "ast_hash": "e4140bfe13bb63f22bff95032a955370",
+    "semantic_hash": ""
+  },
+  "public/typing-sprint thumbnail.webp": {
+    "mtime": 1781789562.940195,
+    "ast_hash": "d8414c03b4844156267e2f95aa80e77e",
+    "semantic_hash": ""
+  }
+}

@@ -1,4 +1,4 @@
-/* CSS Reset and Base Styles */
+/* global resets, premium typography variables, and base body styling. */
 * {
   margin: 0;
   padding: 0;
@@ -12,26 +12,23 @@
 
 html {
   scroll-behavior: auto;
-  /* Lenis handles smooth scrolling */
   font-size: 16px;
+  background-color: #FFFFE3; /* Matches var(--bg-primary) for seamless scroll transitions */
 }
 
 body {
   margin: 0;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #121212;
-  color: #ffffff;
+  background-color: #FFFFE3;
+  color: #4A4A4A;
   overflow-x: hidden;
   line-height: 1.6;
 }
 
 code {
-  font-family: 'SF Mono', 'Fira Code', 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'JetBrains Mono', monospace;
 }
 
 a {
@@ -63,8 +60,8 @@ textarea {
   outline: none;
 }
 
-/* Selection */
+/* Custom premium text selection colors */
 ::selection {
-  background: rgba(212, 242, 49, 0.3);
-  color: #ffffff;
+  background: rgba(109, 129, 150, 0.3);
+  color: #4A4A4A;
 }

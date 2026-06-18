@@ -1,240 +1,89 @@
-/* Skills Section - Full Width Dark Design */
-.skills {
-  background: #121212;
-  padding: 140px 24px;
-  padding-bottom: 0;
+/* Skills Section Layout Styles */
+.skills-container {
   width: 100%;
 }
 
-.skills .container {
-  width: 100%;
-  padding: 0 24px;
-  margin-bottom: 80px;
-}
-
-/* Competencies Bento Grid */
-.competencies-bento {
+.competencies-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 40px;
-}
-
-.competency-card {
-  background: #1e1e1e;
-  border: 1px solid #2a2a2a;
-  border-radius: 16px;
-  padding: 36px;
-  transition: all 0.3s ease;
-}
-
-.competency-card:hover {
-  transform: translateY(-4px);
-  border-color: #333333;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-}
-
-.competency-icon {
-  width: 52px;
-  height: 52px;
-  border-radius: 12px;
-  background: #2a2a2a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-}
-
-.competency-icon svg {
-  width: 26px;
-  height: 26px;
-  color: #ffffff;
-  stroke: #ffffff;
-}
-
-.competency-card h3 {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #ffffff;
-  margin-bottom: 12px;
-}
-
-.competency-card p {
-  font-family: 'Inter', sans-serif;
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #888888;
-  margin: 0;
-}
-
-/* Tech Stack Marquee - Full Width */
-.tech-marquee-section {
-  width: 100vw;
-  margin-left: calc(-50vw + 50%);
-  padding: 70px 0;
-  background: #1a1a1a;
-  border-top: 1px solid #2a2a2a;
-  border-bottom: 1px solid #2a2a2a;
-  overflow: hidden;
-}
-
-.marquee-wrapper {
+  gap: 32px;
+  margin-top: 2rem;
   width: 100%;
-  overflow: hidden;
-  position: relative;
 }
 
-/* Fade edges */
-.marquee-wrapper::before,
-.marquee-wrapper::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 120px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.marquee-wrapper::before {
-  left: 0;
-  background: linear-gradient(to right, #1a1a1a, transparent);
-}
-
-.marquee-wrapper::after {
-  right: 0;
-  background: linear-gradient(to left, #1a1a1a, transparent);
-}
-
-.marquee-track {
-  display: flex;
-  gap: 100px;
-  width: max-content;
-  animation: infiniteScroll 40s linear infinite;
-  padding: 32px 0;
-}
-
-@keyframes infiniteScroll {
-  0% {
-    transform: translateX(0);
-  }
-
-  100% {
-    transform: translateX(calc(-100% / 3));
-  }
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-.tech-item {
+.competency-box {
+  background: #ffffff; /* Inner cards have white background */
+  border: 3px solid var(--border-color);
+  border-radius: var(--inner-card-radius); /* 40px */
+  padding: 36px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 14px;
-  flex-shrink: 0;
-  opacity: 0.6;
-  transition: all 0.3s ease;
-  cursor: default;
+  gap: 16px;
+  box-shadow: 6px 6px 0px var(--text-secondary); /* Brutalist offset shadow */
+  transition: var(--transition);
 }
 
-.tech-item:hover {
-  opacity: 1;
-  transform: scale(1.15);
+.competency-box:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0px var(--text-secondary);
 }
 
-.tech-icon {
-  width: 64px;
-  height: 64px;
+.competency-title {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.competency-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  opacity: 0.85;
+}
+
+/* Skills Chip Layout */
+.skills-chip-row {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  filter: grayscale(40%);
-  transition: filter 0.3s ease;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto; /* Push chips row to bottom of bento card */
 }
 
-.tech-item:hover .tech-icon {
-  filter: grayscale(0%);
-}
-
-.tech-icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.tech-name {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
+.skill-chip {
+  background: rgba(109, 129, 150, 0.12);
+  border: 1px solid #6D8196;
+  color: #4A4A4A;
+  font-family: var(--font-mono);
+  font-size: 0.825rem;
+  padding: 6px 14px;
+  border-radius: 100px;
   font-weight: 500;
-  color: #888888;
-  white-space: nowrap;
-  transition: color 0.3s ease;
+  transition: var(--transition);
 }
 
-.tech-item:hover .tech-name {
-  color: #ffffff;
+.skill-chip:hover {
+  background: var(--text-secondary);
+  color: #FFFFE3;
+  border-color: var(--text-secondary);
 }
 
-/* Responsive Design */
+/* Responsiveness overrides */
 @media (max-width: 1024px) {
-  .competencies-bento {
+  .competencies-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
 }
 
 @media (max-width: 768px) {
-  .skills {
-    padding: 100px 16px;
-  }
-
-  .skills .container {
-    padding: 0 16px;
-  }
-
-  .competencies-bento {
+  .competencies-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
-  .competency-card {
-    padding: 28px;
-  }
-
-  .tech-marquee-section {
-    padding: 50px 0;
-  }
-
-  .marquee-track {
-    gap: 60px;
-  }
-
-  .tech-icon {
-    width: 52px;
-    height: 52px;
-  }
-
-  .tech-name {
-    font-size: 0.8125rem;
-  }
-
-  .marquee-wrapper::before,
-  .marquee-wrapper::after {
-    width: 60px;
-  }
-}
-
-@media (max-width: 480px) {
-  .skills {
-    padding: 80px 16px;
-  }
-
-  .tech-icon {
-    width: 44px;
-    height: 44px;
-  }
-
-  .marquee-track {
-    gap: 48px;
+  .competency-box {
+    padding: 24px;
   }
 }
