@@ -208,7 +208,7 @@
     width: 95%;
   }
 
-  .desktop-menu {
+  .navbar-floating .desktop-menu {
     display: none;
   }
 

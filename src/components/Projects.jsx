@@ -157,10 +157,10 @@ const Projects = () => {
                     fallbackText={project.title}
                     aspectRatio="16/10"
                   />
-                  <span className="project-category">{project.category}</span>
                 </div>
 
                 <div className="mobile-project-content">
+                  <span className="project-category">{project.category}</span>
                   <h3 className="project-title">{project.title}</h3>
                   <p className="project-description">{project.description}</p>
 
