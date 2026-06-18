@@ -123,8 +123,13 @@
   border-color: var(--text-secondary);
 }
 
-.stat-box.success-box {
+.stat-box.wide-box {
   grid-column: span 2;
+}
+
+.stat-box.wide-box .stat-num {
+  font-size: clamp(1.1rem, 3.5vw, 1.45rem);
+  letter-spacing: -0.01em;
 }
 
 .stat-num {

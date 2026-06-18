@@ -15,8 +15,8 @@
     "semantic_hash": ""
   },
   "src/components/About.jsx": {
-    "mtime": 1781792748.5540197,
-    "ast_hash": "15c1de259f16961592dc70bff1c60d60",
+    "mtime": 1781797417.1523528,
+    "ast_hash": "5290ef9458bbf6ee14b97643cad9c7ec",
     "semantic_hash": ""
   },
   "src/components/Footer.jsx": {
@@ -75,9 +75,9 @@
     "semantic_hash": ""
   },
   "public/Naqi_Haider_CV.pdf": {
-    "mtime": 1765431142.3284729,
-    "ast_hash": "d1f3ebb708ccf258d396ec5bebe8f955",
-    "semantic_hash": "d1f3ebb708ccf258d396ec5bebe8f955"
+    "mtime": 1781796178.0306408,
+    "ast_hash": "4fab7db5d3f6850df4e78bf01ad9177a",
+    "semantic_hash": ""
   },
   "public/JavaScript Amazon RawJS Clone.webp": {
     "mtime": 1765437371.3529563,
@@ -162,6 +162,11 @@
   "public/typing-sprint thumbnail.webp": {
     "mtime": 1781789562.940195,
     "ast_hash": "d8414c03b4844156267e2f95aa80e77e",
+    "semantic_hash": ""
+  },
+  "compile_cv.py": {
+    "mtime": 1781796152.868325,
+    "ast_hash": "607a1b67b00bf7ae413d98940ceac108",
     "semantic_hash": ""
   }
 }

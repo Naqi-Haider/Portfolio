@@ -4,6 +4,26 @@
   "graph": {},
   "nodes": [
     {
+      "label": "compile_cv.py",
+      "file_type": "code",
+      "source_file": "compile_cv.py",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "compile_cv",
+      "community": 6,
+      "norm_label": "compile_cv.py"
+    },
+    {
+      "label": "build_pdf()",
+      "file_type": "code",
+      "source_file": "compile_cv.py",
+      "source_location": "L7",
+      "_origin": "ast",
+      "id": "compile_cv_build_pdf",
+      "community": 6,
+      "norm_label": "build_pdf()"
+    },
+    {
       "label": "eslint.config.js",
       "file_type": "code",
       "source_file": "eslint.config.js",
@@ -520,7 +540,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "readme",
-      "community": 6,
+      "community": 0,
       "norm_label": "readme.md"
     },
     {
@@ -530,7 +550,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "readme_react_vite",
-      "community": 6,
+      "community": 0,
       "norm_label": "react + vite"
     },
     {
@@ -540,7 +560,7 @@
       "source_location": "L10",
       "_origin": "ast",
       "id": "readme_react_compiler",
-      "community": 6,
+      "community": 0,
       "norm_label": "react compiler"
     },
     {
@@ -550,7 +570,7 @@
       "source_location": "L14",
       "_origin": "ast",
       "id": "readme_expanding_the_eslint_configuration",
-      "community": 6,
+      "community": 0,
       "norm_label": "expanding the eslint configuration"
     },
     {
@@ -711,6 +731,16 @@
     }
   ],
   "links": [
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "compile_cv.py",
+      "source_location": "L7",
+      "weight": 1.0,
+      "source": "compile_cv",
+      "target": "compile_cv_build_pdf",
+      "confidence_score": 1.0
+    },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
@@ -1012,9 +1042,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_hero",
-      "confidence_score": 1.0
+      "target": "components_hero"
     },
     {
       "relation": "imports",
@@ -1023,9 +1053,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_hero_hero",
-      "confidence_score": 1.0
+      "target": "components_hero_hero"
     },
     {
       "relation": "imports_from",
@@ -1034,9 +1064,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_navbar",
-      "confidence_score": 1.0
+      "target": "components_navbar"
     },
     {
       "relation": "imports",
@@ -1045,9 +1075,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_navbar_navbar",
-      "confidence_score": 1.0
+      "target": "components_navbar_navbar"
     },
     {
       "relation": "imports_from",
@@ -1173,9 +1203,9 @@
       "source_file": "src/components/Hero.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_hero",
-      "target": "components_hero_hero",
-      "confidence_score": 1.0
+      "target": "components_hero_hero"
     },
     {
       "relation": "contains",
@@ -1183,9 +1213,9 @@
       "source_file": "src/components/Navbar.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_navbar",
-      "target": "components_navbar_navbar",
-      "confidence_score": 1.0
+      "target": "components_navbar_navbar"
     },
     {
       "relation": "contains",
@@ -1265,9 +1295,9 @@
       "source_file": ".agents/rules/graphify.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "rules_graphify",
-      "target": "rules_graphify_graphify",
-      "confidence_score": 1.0
+      "target": "rules_graphify_graphify"
     },
     {
       "relation": "contains",
@@ -1275,9 +1305,9 @@
       "source_file": ".agents/workflows/graphify.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "workflows_graphify",
-      "target": "workflows_graphify_workflow_graphify",
-      "confidence_score": 1.0
+      "target": "workflows_graphify_workflow_graphify"
     },
     {
       "relation": "references",
@@ -1295,9 +1325,9 @@
       "source_file": "README.md",
       "source_location": "L1",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme",
-      "target": "readme_react_vite",
-      "confidence_score": 1.0
+      "target": "readme_react_vite"
     },
     {
       "relation": "contains",
@@ -1305,9 +1335,9 @@
       "source_file": "README.md",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_react_vite",
-      "target": "readme_expanding_the_eslint_configuration",
-      "confidence_score": 1.0
+      "target": "readme_expanding_the_eslint_configuration"
     },
     {
       "relation": "contains",
@@ -1315,9 +1345,9 @@
       "source_file": "README.md",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "readme_react_vite",
-      "target": "readme_react_compiler",
-      "confidence_score": 1.0
+      "target": "readme_react_compiler"
     },
     {
       "relation": "rationale_for",
@@ -1420,5 +1450,6 @@
       "target": "concepts_shopify_ecommerce"
     }
   ],
-  "hyperedges": []
+  "hyperedges": [],
+  "built_at_commit": "3bdb2acd3fe95e7d9eda373c0beddc3500d09363"
 }

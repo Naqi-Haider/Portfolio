@@ -287,10 +287,10 @@
       "label": "App()",
       "file_type": "code",
       "source_file": "src/App.jsx",
-      "source_location": "L13",
+      "source_location": "L12",
       "_origin": "ast",
       "id": "src_app_app",
-      "community": 6,
+      "community": 3,
       "norm_label": "app()"
     },
     {
@@ -334,64 +334,44 @@
       "norm_label": "footer()"
     },
     {
-      "label": "Header.jsx",
+      "label": "Hero.jsx",
       "file_type": "code",
-      "source_file": "src/components/Header.jsx",
+      "source_file": "src/components/Hero.jsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "components_header",
+      "id": "components_hero",
       "community": 3,
-      "norm_label": "header.jsx"
+      "norm_label": "hero.jsx"
     },
     {
-      "label": "Header()",
+      "label": "Hero()",
       "file_type": "code",
-      "source_file": "src/components/Header.jsx",
+      "source_file": "src/components/Hero.jsx",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "components_header_header",
+      "id": "components_hero_hero",
       "community": 3,
-      "norm_label": "header()"
+      "norm_label": "hero()"
     },
     {
-      "label": "Jumbo.jsx",
+      "label": "Navbar.jsx",
       "file_type": "code",
-      "source_file": "src/components/Jumbo.jsx",
+      "source_file": "src/components/Navbar.jsx",
       "source_location": "L1",
       "_origin": "ast",
-      "id": "components_jumbo",
-      "community": 7,
-      "norm_label": "jumbo.jsx"
+      "id": "components_navbar",
+      "community": 3,
+      "norm_label": "navbar.jsx"
     },
     {
-      "label": "Jumbo()",
+      "label": "Navbar()",
       "file_type": "code",
-      "source_file": "src/components/Jumbo.jsx",
+      "source_file": "src/components/Navbar.jsx",
       "source_location": "L4",
       "_origin": "ast",
-      "id": "components_jumbo_jumbo",
-      "community": 7,
-      "norm_label": "jumbo()"
-    },
-    {
-      "label": "LoveCounter.jsx",
-      "file_type": "code",
-      "source_file": "src/components/LoveCounter.jsx",
-      "source_location": "L1",
-      "_origin": "ast",
-      "id": "components_lovecounter",
-      "community": 8,
-      "norm_label": "lovecounter.jsx"
-    },
-    {
-      "label": "LoveCounter()",
-      "file_type": "code",
-      "source_file": "src/components/LoveCounter.jsx",
-      "source_location": "L4",
-      "_origin": "ast",
-      "id": "components_lovecounter_lovecounter",
-      "community": 8,
-      "norm_label": "lovecounter()"
+      "id": "components_navbar_navbar",
+      "community": 3,
+      "norm_label": "navbar()"
     },
     {
       "label": "ProgressiveImage.jsx",
@@ -427,7 +407,7 @@
       "label": "Projects()",
       "file_type": "code",
       "source_file": "src/components/Projects.jsx",
-      "source_location": "L6",
+      "source_location": "L7",
       "_origin": "ast",
       "id": "components_projects_projects",
       "community": 5,
@@ -440,7 +420,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_scroll_to_top",
-      "community": 9,
+      "community": 3,
       "norm_label": "scroll-to-top.jsx"
     },
     {
@@ -450,7 +430,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "components_scroll_to_top_scrolltotop",
-      "community": 9,
+      "community": 3,
       "norm_label": "scrolltotop()"
     },
     {
@@ -460,7 +440,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "components_skills",
-      "community": 10,
+      "community": 3,
       "norm_label": "skills.jsx"
     },
     {
@@ -470,7 +450,7 @@
       "source_location": "L4",
       "_origin": "ast",
       "id": "components_skills_skills",
-      "community": 10,
+      "community": 3,
       "norm_label": "skills()"
     },
     {
@@ -480,7 +460,7 @@
       "source_location": "L1",
       "_origin": "ast",
       "id": "src_main",
-      "community": 6,
+      "community": 3,
       "norm_label": "main.jsx"
     },
     {
@@ -494,17 +474,84 @@
       "norm_label": "vite.config.js"
     },
     {
+      "label": "graphify.md",
+      "file_type": "document",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "rules_graphify",
+      "community": 7,
+      "norm_label": "graphify.md"
+    },
+    {
+      "label": "graphify",
+      "file_type": "document",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "rules_graphify_graphify",
+      "community": 7,
+      "norm_label": "graphify"
+    },
+    {
+      "label": "graphify.md",
+      "file_type": "document",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "workflows_graphify",
+      "community": 8,
+      "norm_label": "graphify.md"
+    },
+    {
+      "label": "Workflow: graphify",
+      "file_type": "document",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L6",
+      "_origin": "ast",
+      "id": "workflows_graphify_workflow_graphify",
+      "community": 8,
+      "norm_label": "workflow: graphify"
+    },
+    {
       "label": "README.md",
       "file_type": "document",
       "source_file": "README.md",
-      "source_location": null,
-      "source_url": null,
-      "captured_at": null,
-      "author": null,
-      "contributor": null,
-      "id": "portfolio_readme",
-      "community": 0,
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme",
+      "community": 6,
       "norm_label": "readme.md"
+    },
+    {
+      "label": "React + Vite",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "_origin": "ast",
+      "id": "readme_react_vite",
+      "community": 6,
+      "norm_label": "react + vite"
+    },
+    {
+      "label": "React Compiler",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L10",
+      "_origin": "ast",
+      "id": "readme_react_compiler",
+      "community": 6,
+      "norm_label": "react compiler"
+    },
+    {
+      "label": "Expanding the ESLint configuration",
+      "file_type": "document",
+      "source_file": "README.md",
+      "source_location": "L14",
+      "_origin": "ast",
+      "id": "readme_expanding_the_eslint_configuration",
+      "community": 6,
+      "norm_label": "expanding the eslint configuration"
     },
     {
       "label": "index.html",
@@ -515,9 +562,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "portfolio_index_html",
-      "community": 6,
-      "norm_label": "index.html"
+      "community": 3,
+      "norm_label": "index.html",
+      "id": "portfolio_index_html"
     },
     {
       "label": "graphify.md (Rules)",
@@ -528,9 +575,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "agents_rules_graphify",
       "community": 0,
-      "norm_label": "graphify.md (rules)"
+      "norm_label": "graphify.md (rules)",
+      "id": "agents_rules_graphify"
     },
     {
       "label": "graphify.md (Workflows)",
@@ -541,9 +588,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "agents_workflows_graphify",
       "community": 0,
-      "norm_label": "graphify.md (workflows)"
+      "norm_label": "graphify.md (workflows)",
+      "id": "agents_workflows_graphify"
     },
     {
       "label": "Naqi_Haider_CV.pdf",
@@ -554,9 +601,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "public_naqi_haider_cv",
       "community": 12,
-      "norm_label": "naqi_haider_cv.pdf"
+      "norm_label": "naqi_haider_cv.pdf",
+      "id": "public_naqi_haider_cv"
     },
     {
       "label": "Naqi Haider Portfolio",
@@ -567,9 +614,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "concepts_portfolio",
       "community": 0,
-      "norm_label": "naqi haider portfolio"
+      "norm_label": "naqi haider portfolio",
+      "id": "concepts_portfolio"
     },
     {
       "label": "YouTube Clone",
@@ -580,9 +627,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "concepts_youtube_clone",
       "community": 0,
-      "norm_label": "youtube clone"
+      "norm_label": "youtube clone",
+      "id": "concepts_youtube_clone"
     },
     {
       "label": "Movie Ticket Booking System",
@@ -593,9 +640,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "concepts_movie_ticket",
       "community": 0,
-      "norm_label": "movie ticket booking system"
+      "norm_label": "movie ticket booking system",
+      "id": "concepts_movie_ticket"
     },
     {
       "label": "Amazon RawJS Clone",
@@ -606,9 +653,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "concepts_amazon_clone",
       "community": 0,
-      "norm_label": "amazon rawjs clone"
+      "norm_label": "amazon rawjs clone",
+      "id": "concepts_amazon_clone"
     },
     {
       "label": "Shopify Store Clone",
@@ -619,9 +666,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "concepts_shopify_clone",
       "community": 0,
-      "norm_label": "shopify store clone"
+      "norm_label": "shopify store clone",
+      "id": "concepts_shopify_clone"
     },
     {
       "label": "Frontend Development",
@@ -632,9 +679,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "concepts_frontend_dev",
       "community": 0,
-      "norm_label": "frontend development"
+      "norm_label": "frontend development",
+      "id": "concepts_frontend_dev"
     },
     {
       "label": "Backend Development",
@@ -645,9 +692,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "concepts_backend_dev",
       "community": 0,
-      "norm_label": "backend development"
+      "norm_label": "backend development",
+      "id": "concepts_backend_dev"
     },
     {
       "label": "Shopify & E-commerce",
@@ -658,9 +705,9 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "id": "concepts_shopify_ecommerce",
       "community": 0,
-      "norm_label": "shopify & e-commerce"
+      "norm_label": "shopify & e-commerce",
+      "id": "concepts_shopify_ecommerce"
     }
   ],
   "links": [
@@ -670,9 +717,9 @@
       "source_file": "package.json",
       "source_location": "L12",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_dependencies",
-      "confidence_score": 1.0
+      "target": "package_dependencies"
     },
     {
       "relation": "contains",
@@ -680,9 +727,9 @@
       "source_file": "package.json",
       "source_location": "L19",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_devdependencies",
-      "confidence_score": 1.0
+      "target": "package_devdependencies"
     },
     {
       "relation": "contains",
@@ -690,9 +737,9 @@
       "source_file": "package.json",
       "source_location": "L2",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_name",
-      "confidence_score": 1.0
+      "target": "package_name"
     },
     {
       "relation": "contains",
@@ -700,9 +747,9 @@
       "source_file": "package.json",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_private",
-      "confidence_score": 1.0
+      "target": "package_private"
     },
     {
       "relation": "contains",
@@ -710,9 +757,9 @@
       "source_file": "package.json",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_scripts",
-      "confidence_score": 1.0
+      "target": "package_scripts"
     },
     {
       "relation": "contains",
@@ -720,9 +767,9 @@
       "source_file": "package.json",
       "source_location": "L5",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_type",
-      "confidence_score": 1.0
+      "target": "package_type"
     },
     {
       "relation": "contains",
@@ -730,9 +777,9 @@
       "source_file": "package.json",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package",
-      "target": "package_version",
-      "confidence_score": 1.0
+      "target": "package_version"
     },
     {
       "relation": "contains",
@@ -740,9 +787,9 @@
       "source_file": "package.json",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_scripts",
-      "target": "package_scripts_build",
-      "confidence_score": 1.0
+      "target": "package_scripts_build"
     },
     {
       "relation": "contains",
@@ -750,9 +797,9 @@
       "source_file": "package.json",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_scripts",
-      "target": "package_scripts_dev",
-      "confidence_score": 1.0
+      "target": "package_scripts_dev"
     },
     {
       "relation": "contains",
@@ -760,9 +807,9 @@
       "source_file": "package.json",
       "source_location": "L9",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_scripts",
-      "target": "package_scripts_lint",
-      "confidence_score": 1.0
+      "target": "package_scripts_lint"
     },
     {
       "relation": "contains",
@@ -770,9 +817,9 @@
       "source_file": "package.json",
       "source_location": "L10",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_scripts",
-      "target": "package_scripts_preview",
-      "confidence_score": 1.0
+      "target": "package_scripts_preview"
     },
     {
       "relation": "contains",
@@ -780,9 +827,9 @@
       "source_file": "package.json",
       "source_location": "L14",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_dependencies",
-      "target": "package_dependencies_framer_motion",
-      "confidence_score": 1.0
+      "target": "package_dependencies_framer_motion"
     },
     {
       "relation": "contains",
@@ -790,9 +837,9 @@
       "source_file": "package.json",
       "source_location": "L15",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_dependencies",
-      "target": "package_dependencies_lenis",
-      "confidence_score": 1.0
+      "target": "package_dependencies_lenis"
     },
     {
       "relation": "contains",
@@ -800,9 +847,9 @@
       "source_file": "package.json",
       "source_location": "L16",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_dependencies",
-      "target": "package_dependencies_react",
-      "confidence_score": 1.0
+      "target": "package_dependencies_react"
     },
     {
       "relation": "contains",
@@ -810,9 +857,9 @@
       "source_file": "package.json",
       "source_location": "L17",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_dependencies",
-      "target": "package_dependencies_react_dom",
-      "confidence_score": 1.0
+      "target": "package_dependencies_react_dom"
     },
     {
       "relation": "contains",
@@ -820,9 +867,9 @@
       "source_file": "package.json",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_dependencies",
-      "target": "package_dependencies_studio_freight_lenis",
-      "confidence_score": 1.0
+      "target": "package_dependencies_studio_freight_lenis"
     },
     {
       "relation": "contains",
@@ -830,9 +877,9 @@
       "source_file": "package.json",
       "source_location": "L24",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_eslint",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_eslint"
     },
     {
       "relation": "contains",
@@ -840,9 +887,9 @@
       "source_file": "package.json",
       "source_location": "L20",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_eslint_js",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_eslint_js"
     },
     {
       "relation": "contains",
@@ -850,9 +897,9 @@
       "source_file": "package.json",
       "source_location": "L25",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_eslint_plugin_react_hooks",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_eslint_plugin_react_hooks"
     },
     {
       "relation": "contains",
@@ -860,9 +907,9 @@
       "source_file": "package.json",
       "source_location": "L26",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_eslint_plugin_react_refresh",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_eslint_plugin_react_refresh"
     },
     {
       "relation": "contains",
@@ -870,9 +917,9 @@
       "source_file": "package.json",
       "source_location": "L27",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_globals",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_globals"
     },
     {
       "relation": "contains",
@@ -880,9 +927,9 @@
       "source_file": "package.json",
       "source_location": "L21",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_types_react",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_types_react"
     },
     {
       "relation": "contains",
@@ -890,9 +937,9 @@
       "source_file": "package.json",
       "source_location": "L22",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_types_react_dom",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_types_react_dom"
     },
     {
       "relation": "contains",
@@ -900,9 +947,9 @@
       "source_file": "package.json",
       "source_location": "L28",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_vite",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_vite"
     },
     {
       "relation": "contains",
@@ -910,9 +957,53 @@
       "source_file": "package.json",
       "source_location": "L23",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "package_devdependencies",
-      "target": "package_devdependencies_vitejs_plugin_react",
-      "confidence_score": 1.0
+      "target": "package_devdependencies_vitejs_plugin_react"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "components_about"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L5",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "components_about_about"
+    },
+    {
+      "relation": "imports_from",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "components_footer"
+    },
+    {
+      "relation": "imports",
+      "context": "import",
+      "confidence": "EXTRACTED",
+      "source_file": "src/App.jsx",
+      "source_location": "L10",
+      "weight": 1.0,
+      "confidence_score": 1.0,
+      "source": "src_app",
+      "target": "components_footer_footer"
     },
     {
       "relation": "imports_from",
@@ -922,7 +1013,7 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_app",
-      "target": "components_about",
+      "target": "components_hero",
       "confidence_score": 1.0
     },
     {
@@ -933,29 +1024,7 @@
       "source_location": "L5",
       "weight": 1.0,
       "source": "src_app",
-      "target": "components_about_about",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "source": "src_app",
-      "target": "components_footer",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L10",
-      "weight": 1.0,
-      "source": "src_app",
-      "target": "components_footer_footer",
+      "target": "components_hero_hero",
       "confidence_score": 1.0
     },
     {
@@ -966,7 +1035,7 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_app",
-      "target": "components_header",
+      "target": "components_navbar",
       "confidence_score": 1.0
     },
     {
@@ -977,51 +1046,7 @@
       "source_location": "L4",
       "weight": 1.0,
       "source": "src_app",
-      "target": "components_header_header",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "src_app",
-      "target": "components_jumbo",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L6",
-      "weight": 1.0,
-      "source": "src_app",
-      "target": "components_jumbo_jumbo",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports_from",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "src_app",
-      "target": "components_lovecounter",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "imports",
-      "context": "import",
-      "confidence": "EXTRACTED",
-      "source_file": "src/App.jsx",
-      "source_location": "L9",
-      "weight": 1.0,
-      "source": "src_app",
-      "target": "components_lovecounter_lovecounter",
+      "target": "components_navbar_navbar",
       "confidence_score": 1.0
     },
     {
@@ -1031,9 +1056,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_projects",
-      "confidence_score": 1.0
+      "target": "components_projects"
     },
     {
       "relation": "imports",
@@ -1042,9 +1067,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L8",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_projects_projects",
-      "confidence_score": 1.0
+      "target": "components_projects_projects"
     },
     {
       "relation": "imports_from",
@@ -1053,9 +1078,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_scroll_to_top",
-      "confidence_score": 1.0
+      "target": "components_scroll_to_top"
     },
     {
       "relation": "imports",
@@ -1064,9 +1089,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L11",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_scroll_to_top_scrolltotop",
-      "confidence_score": 1.0
+      "target": "components_scroll_to_top_scrolltotop"
     },
     {
       "relation": "imports_from",
@@ -1075,9 +1100,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_skills",
-      "confidence_score": 1.0
+      "target": "components_skills"
     },
     {
       "relation": "imports",
@@ -1086,9 +1111,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L7",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "components_skills_skills",
-      "confidence_score": 1.0
+      "target": "components_skills_skills"
     },
     {
       "relation": "contains",
@@ -1096,9 +1121,9 @@
       "source_file": "src/App.jsx",
       "source_location": "L13",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_app",
-      "target": "src_app_app",
-      "confidence_score": 1.0
+      "target": "src_app_app"
     },
     {
       "relation": "imports_from",
@@ -1107,9 +1132,9 @@
       "source_file": "src/main.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_main",
-      "target": "src_app",
-      "confidence_score": 1.0
+      "target": "src_app"
     },
     {
       "relation": "imports",
@@ -1118,9 +1143,9 @@
       "source_file": "src/main.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "src_main",
-      "target": "src_app_app",
-      "confidence_score": 1.0
+      "target": "src_app_app"
     },
     {
       "relation": "contains",
@@ -1128,9 +1153,9 @@
       "source_file": "src/components/About.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_about",
-      "target": "components_about_about",
-      "confidence_score": 1.0
+      "target": "components_about_about"
     },
     {
       "relation": "contains",
@@ -1138,38 +1163,28 @@
       "source_file": "src/components/Footer.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_footer",
-      "target": "components_footer_footer",
+      "target": "components_footer_footer"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "src/components/Hero.jsx",
+      "source_location": "L4",
+      "weight": 1.0,
+      "source": "components_hero",
+      "target": "components_hero_hero",
       "confidence_score": 1.0
     },
     {
       "relation": "contains",
       "confidence": "EXTRACTED",
-      "source_file": "src/components/Header.jsx",
+      "source_file": "src/components/Navbar.jsx",
       "source_location": "L4",
       "weight": 1.0,
-      "source": "components_header",
-      "target": "components_header_header",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/Jumbo.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "components_jumbo",
-      "target": "components_jumbo_jumbo",
-      "confidence_score": 1.0
-    },
-    {
-      "relation": "contains",
-      "confidence": "EXTRACTED",
-      "source_file": "src/components/LoveCounter.jsx",
-      "source_location": "L4",
-      "weight": 1.0,
-      "source": "components_lovecounter",
-      "target": "components_lovecounter_lovecounter",
+      "source": "components_navbar",
+      "target": "components_navbar_navbar",
       "confidence_score": 1.0
     },
     {
@@ -1178,9 +1193,9 @@
       "source_file": "src/components/ProgressiveImage.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_progressiveimage",
-      "target": "components_progressiveimage_progressiveimage",
-      "confidence_score": 1.0
+      "target": "components_progressiveimage_progressiveimage"
     },
     {
       "relation": "imports_from",
@@ -1189,9 +1204,9 @@
       "source_file": "src/components/Projects.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_projects",
-      "target": "components_progressiveimage",
-      "confidence_score": 1.0
+      "target": "components_progressiveimage"
     },
     {
       "relation": "imports",
@@ -1200,9 +1215,9 @@
       "source_file": "src/components/Projects.jsx",
       "source_location": "L3",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_projects",
-      "target": "components_progressiveimage_progressiveimage",
-      "confidence_score": 1.0
+      "target": "components_progressiveimage_progressiveimage"
     },
     {
       "relation": "contains",
@@ -1210,9 +1225,9 @@
       "source_file": "src/components/Projects.jsx",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_projects",
-      "target": "components_projects_projects",
-      "confidence_score": 1.0
+      "target": "components_projects_projects"
     },
     {
       "relation": "contains",
@@ -1220,9 +1235,9 @@
       "source_file": "src/components/Scroll-to-top.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_scroll_to_top",
-      "target": "components_scroll_to_top_scrolltotop",
-      "confidence_score": 1.0
+      "target": "components_scroll_to_top_scrolltotop"
     },
     {
       "relation": "contains",
@@ -1230,9 +1245,9 @@
       "source_file": "src/components/Skills.jsx",
       "source_location": "L4",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "components_skills",
-      "target": "components_skills_skills",
-      "confidence_score": 1.0
+      "target": "components_skills_skills"
     },
     {
       "relation": "references",
@@ -1245,6 +1260,26 @@
       "target": "src_main"
     },
     {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/rules/graphify.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "rules_graphify",
+      "target": "rules_graphify_graphify",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": ".agents/workflows/graphify.md",
+      "source_location": "L6",
+      "weight": 1.0,
+      "source": "workflows_graphify",
+      "target": "workflows_graphify_workflow_graphify",
+      "confidence_score": 1.0
+    },
+    {
       "relation": "references",
       "confidence": "EXTRACTED",
       "confidence_score": 1.0,
@@ -1252,7 +1287,37 @@
       "source_location": null,
       "weight": 1.0,
       "source": "concepts_portfolio",
-      "target": "portfolio_readme"
+      "target": "readme"
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0,
+      "source": "readme",
+      "target": "readme_react_vite",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L14",
+      "weight": 1.0,
+      "source": "readme_react_vite",
+      "target": "readme_expanding_the_eslint_configuration",
+      "confidence_score": 1.0
+    },
+    {
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L10",
+      "weight": 1.0,
+      "source": "readme_react_vite",
+      "target": "readme_react_compiler",
+      "confidence_score": 1.0
     },
     {
       "relation": "rationale_for",

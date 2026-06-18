@@ -29,7 +29,7 @@ const About = () => {
   const stats = [
     { number: '2+', label: 'Years Experience', type: 'number' },
     { number: '10+', label: 'Projects Completed', type: 'number' },
-    { number: '100%', label: 'Job Success', type: 'success', icon: true }
+    { number: 'MERN • Unity • Liquid', label: 'Core Engineering Frameworks', type: 'wide' }
   ];
 
   const metaData = [
@@ -78,10 +78,9 @@ const About = () => {
               ))}
             </div>
 
-            {/* Stats Row */}
             <div className="stats-grid">
               {stats.map((stat, index) => (
-                <div key={index} className={`stat-box ${stat.type === 'success' ? 'success-box' : ''}`}>
+                <div key={index} className={`stat-box ${stat.type === 'wide' ? 'wide-box' : ''}`}>
                   <span className="stat-num">{stat.number}</span>
                   <span className="stat-lbl">{stat.label}</span>
                 </div>

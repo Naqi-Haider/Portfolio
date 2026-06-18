@@ -1,13 +1,18 @@
 # Graph Report - Portfolio  (2026-06-18)
 
 ## Corpus Check
-- 16 files · ~18,569 words
+- 17 files · ~19,127 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 67 nodes · 69 edges · 12 communities (9 shown, 3 thin omitted)
+- 69 nodes · 70 edges · 12 communities (9 shown, 3 thin omitted)
 - Extraction: 86% EXTRACTED · 14% INFERRED · 0% AMBIGUOUS · INFERRED: 10 edges (avg confidence: 0.85)
 - Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `3bdb2acd`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - [[_COMMUNITY_Portfolio Concepts & Documentation|Portfolio Concepts & Documentation]]
@@ -16,7 +21,6 @@
 - [[_COMMUNITY_Core Application Layout & Navigation|Core Application Layout & Navigation]]
 - [[_COMMUNITY_Production Dependencies & Libraries|Production Dependencies & Libraries]]
 - [[_COMMUNITY_Projects and Image Rendering Components|Projects and Image Rendering Components]]
-- [[_COMMUNITY_Application Bootstrapping & Mounting|Application Bootstrapping & Mounting]]
 - [[_COMMUNITY_HeroJumbotron Visual Element|Hero/Jumbotron Visual Element]]
 - [[_COMMUNITY_Interactive LoveCounter Component|Interactive LoveCounter Component]]
 
@@ -50,8 +54,8 @@
 ## Communities (12 total, 3 thin omitted)
 
 ### Community 0 - "Portfolio Concepts & Documentation"
-Cohesion: 0.22
-Nodes (10): graphify.md (Rules), graphify.md (Workflows), Amazon RawJS Clone, Backend Development, Frontend Development, Movie Ticket Booking System, Naqi Haider Portfolio, Shopify Store Clone (+2 more)
+Cohesion: 0.15
+Nodes (13): graphify.md (Rules), graphify.md (Workflows), Amazon RawJS Clone, Backend Development, Frontend Development, Movie Ticket Booking System, Naqi Haider Portfolio, Shopify Store Clone (+5 more)
 
 ### Community 1 - "Package Configurations & Scripts"
 Cohesion: 0.20
@@ -69,10 +73,6 @@ Nodes (7): About(), Footer(), Hero(), Navbar(), ScrollToTop(), Skills(), App()
 Cohesion: 0.33
 Nodes (6): dependencies, framer-motion, lenis, react, react-dom, @studio-freight/lenis
 
-### Community 6 - "Application Bootstrapping & Mounting"
-Cohesion: 0.50
-Nodes (3): Expanding the ESLint configuration, React Compiler, React + Vite
-
 ## Knowledge Gaps
 - **31 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+26 more)
   These have ≤1 connection - possible missing edges or undocumented components.
@@ -82,9 +82,9 @@ Nodes (3): Expanding the ESLint configuration, React Compiler, React + Vite
 _Questions this graph is uniquely positioned to answer:_
 
 - **Why does `devDependencies` connect `Development Dependencies & Tooling` to `Package Configurations & Scripts`?**
-  _High betweenness centrality (0.084) - this node is a cross-community bridge._
+  _High betweenness centrality (0.079) - this node is a cross-community bridge._
 - **Why does `dependencies` connect `Production Dependencies & Libraries` to `Package Configurations & Scripts`?**
-  _High betweenness centrality (0.051) - this node is a cross-community bridge._
+  _High betweenness centrality (0.048) - this node is a cross-community bridge._
 - **Are the 6 inferred relationships involving `Naqi Haider Portfolio` (e.g. with `graphify.md (Rules)` and `graphify.md (Workflows)`) actually correct?**
   _`Naqi Haider Portfolio` has 6 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
