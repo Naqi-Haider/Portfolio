@@ -24,12 +24,13 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'YouTube Clone (HTML / CSS Learning Project)',
-      description: 'A fully functional video player layout replicating search inputs, recommendation feeds, channel profiles, and responsive video streaming layouts. Built as a HTML/CSS stylesheet learning playground.',
-      image: '/Youtube-clone.webp',
-      category: 'HTML & CSS PRACTICE',
-      technologies: ['HTML', 'CSS', 'JavaScript', 'Responsive UI'],
-      github: 'https://github.com/Naqi-Haider/youtube-clone'
+      title: 'Learning Management System (LMS)',
+      description: 'A multi-role admin, instructor, and student role-based simplified LMS system featuring course enrollment, assignment progression tracking, and comprehensive educational management attributes.',
+      image: '/LMS Multi.webp',
+      category: 'FULLSTACK LMS APP',
+      technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
+      github: 'https://github.com/Naqi-Haider/LMS',
+      live: 'https://learningmanagementsystem-naqi.netlify.app/'
     },
     {
       id: 3,
@@ -146,59 +147,59 @@ const Projects = () => {
           <h2 className="section-title">Selected Work</h2>
 
           {/* Mobile Horizontal Scroll Track */}
-        <div className="mobile-carousel-container" ref={scrollContainerRef}>
-          <div className="mobile-carousel-track">
-            {projectsData.map((project) => (
-              <div key={project.id} className="mobile-project-card">
-                <div className="mobile-project-image">
-                  <ProgressiveImage
-                    src={project.image}
-                    alt={project.title}
-                    fallbackText={project.title}
-                    aspectRatio="16/10"
-                  />
-                </div>
-
-                <div className="mobile-project-content">
-                  <span className="project-category">{project.category}</span>
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-
-                  <div className="project-tech-stack">
-                    {project.technologies.map((tech, i) => (
-                      <span key={i} className="skill-chip-dark">{tech}</span>
-                    ))}
+          <div className="mobile-carousel-container" ref={scrollContainerRef}>
+            <div className="mobile-carousel-track">
+              {projectsData.map((project) => (
+                <div key={project.id} className="mobile-project-card">
+                  <div className="mobile-project-image">
+                    <ProgressiveImage
+                      src={project.image}
+                      alt={project.title}
+                      fallbackText={project.title}
+                      aspectRatio="16/10"
+                    />
                   </div>
 
-                  <div className="project-button-group">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="project-link-btn btn-source"
-                    >
-                      GitHub
-                    </a>
-                    {project.live && (
+                  <div className="mobile-project-content">
+                    <span className="project-category">{project.category}</span>
+                    <h3 className="project-title">{project.title}</h3>
+                    <p className="project-description">{project.description}</p>
+
+                    <div className="project-tech-stack">
+                      {project.technologies.map((tech, i) => (
+                        <span key={i} className="skill-chip-dark">{tech}</span>
+                      ))}
+                    </div>
+
+                    <div className="project-button-group">
                       <a
-                        href={project.live}
+                        href={project.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="project-link-btn live-btn"
+                        className="project-link-btn btn-source"
                       >
-                        Live Demo
+                        GitHub
                       </a>
-                    )}
+                      {project.live && (
+                        <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="project-link-btn live-btn"
+                        >
+                          Live
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
 
-        <div className="swipe-indicator fade-in">
-          <span>← Swipe to view projects →</span>
-        </div>
+          <div className="swipe-indicator fade-in">
+            <span>← Swipe to view projects →</span>
+          </div>
         </div>
       </section>
     );
@@ -214,103 +215,103 @@ const Projects = () => {
         <div className="project-carousel-wrapper fade-in">
           {/* Carousel Content */}
           <div className="project-carousel">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentIndex}
-              className="project-slide"
-              variants={slideVariants}
-              initial="enter"
-              animate="center"
-              exit="exit"
-              transition={{ duration: 0.35, ease: 'easeInOut' }}
-            >
-              {/* Left Column - Project Info */}
-              <div className="project-info">
-                <span className="project-category">{currentProject.category}</span>
-                <h3 className="project-title">{currentProject.title}</h3>
-                <p className="project-description">{currentProject.description}</p>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentIndex}
+                className="project-slide"
+                variants={slideVariants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{ duration: 0.35, ease: 'easeInOut' }}
+              >
+                {/* Left Column - Project Info */}
+                <div className="project-info">
+                  <span className="project-category">{currentProject.category}</span>
+                  <h3 className="project-title">{currentProject.title}</h3>
+                  <p className="project-description">{currentProject.description}</p>
 
-                <div className="project-tech-stack">
-                  {currentProject.technologies.map((tech, i) => (
-                    <span key={i} className="skill-chip-dark">{tech}</span>
-                  ))}
-                </div>
+                  <div className="project-tech-stack">
+                    {currentProject.technologies.map((tech, i) => (
+                      <span key={i} className="skill-chip-dark">{tech}</span>
+                    ))}
+                  </div>
 
-                <div className="project-button-group">
-                  <a
-                    href={currentProject.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="project-link-btn btn-source"
-                  >
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                    </svg>
-                    Source Code
-                  </a>
-                  {currentProject.live && (
+                  <div className="project-button-group">
                     <a
-                      href={currentProject.live}
+                      href={currentProject.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="project-link-btn live-btn"
+                      className="project-link-btn btn-source"
                     >
-                      Live Demo
-                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                        <line x1="5" y1="12" x2="19" y2="12" />
-                        <polyline points="12 5 19 12 12 19" />
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                       </svg>
+                      Source Code
                     </a>
-                  )}
+                    {currentProject.live && (
+                      <a
+                        href={currentProject.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="project-link-btn live-btn"
+                      >
+                        Live
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <line x1="5" y1="12" x2="19" y2="12" />
+                          <polyline points="12 5 19 12 12 19" />
+                        </svg>
+                      </a>
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              {/* Right Column - Project Image */}
-              <a
-                href={currentProject.live || currentProject.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-image-wrapper"
-              >
-                <ProgressiveImage
-                  src={currentProject.image}
-                  alt={currentProject.title}
-                  fallbackText={currentProject.title}
-                  aspectRatio="16/10"
+                {/* Right Column - Project Image */}
+                <a
+                  href={currentProject.live || currentProject.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="project-image-wrapper"
+                >
+                  <ProgressiveImage
+                    src={currentProject.image}
+                    alt={currentProject.title}
+                    fallbackText={currentProject.title}
+                    aspectRatio="16/10"
+                  />
+                </a>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          {/* Bottom Pagination */}
+          <div className="carousel-bottom-nav">
+            <div className="pagination-dots">
+              {projectsData.map((_, index) => (
+                <button
+                  key={index}
+                  className={`dot ${index === currentIndex ? 'active' : ''}`}
+                  onClick={() => goToSlide(index)}
+                  aria-label={`Go to project ${index + 1}`}
                 />
-              </a>
-            </motion.div>
-          </AnimatePresence>
-        </div>
-
-        {/* Bottom Pagination */}
-        <div className="carousel-bottom-nav">
-          <div className="pagination-dots">
-            {projectsData.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${index === currentIndex ? 'active' : ''}`}
-                onClick={() => goToSlide(index)}
-                aria-label={`Go to project ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          <div className="slide-counter-wrapper">
-            <button className="nav-arrow-inline prev" onClick={goToPrev} aria-label="Previous project">
-              ←
-            </button>
-            <div className="slide-counter">
-              <span className="current">{String(currentIndex + 1).padStart(2, '0')}</span>
-              <span className="divider">/</span>
-              <span className="total">{String(projectsData.length).padStart(2, '0')}</span>
+              ))}
             </div>
-            <button className="nav-arrow-inline next" onClick={goToNext} aria-label="Next project">
-              →
-            </button>
+
+            <div className="slide-counter-wrapper">
+              <button className="nav-arrow-inline prev" onClick={goToPrev} aria-label="Previous project">
+                ←
+              </button>
+              <div className="slide-counter">
+                <span className="current">{String(currentIndex + 1).padStart(2, '0')}</span>
+                <span className="divider">/</span>
+                <span className="total">{String(projectsData.length).padStart(2, '0')}</span>
+              </div>
+              <button className="nav-arrow-inline next" onClick={goToNext} aria-label="Next project">
+                →
+              </button>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </section>
   );

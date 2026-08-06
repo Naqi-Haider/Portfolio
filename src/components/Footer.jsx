@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import '../styles/footer.css';
 
 const Footer = () => {
@@ -11,84 +11,6 @@ const Footer = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState('');
 
-  // LoveCounter State
-  const [likeCount, setLikeCount] = useState(0);
-  const [hasLiked, setHasLiked] = useState(false);
-  const [isLikeAnimating, setIsLikeAnimating] = useState(false);
-  const [isLikeLoading, setIsLikeLoading] = useState(true);
-
-  const STORAGE_KEY = 'naqi_portfolio_liked_v1';
-  const API_NAMESPACE = 'naqi-portfolio-prod';
-  const API_KEY = 'likes-v1';
-
-  const createCounter = useCallback(async () => {
-    try {
-      const response = await fetch(
-        `https://api.countapi.xyz/create?namespace=${API_NAMESPACE}&key=${API_KEY}&value=0`
-      );
-      const data = await response.json();
-      if (data && data.value !== undefined) {
-        setLikeCount(data.value);
-      }
-    } catch {
-      console.log('Failed to create counter');
-      setLikeCount(0);
-    }
-  }, [API_NAMESPACE, API_KEY]);
-
-  const fetchCount = useCallback(async () => {
-    try {
-      const response = await fetch(
-        `https://api.countapi.xyz/get/${API_NAMESPACE}/${API_KEY}`
-      );
-      const data = await response.json();
-      if (data && data.value !== undefined && data.value !== null) {
-        setLikeCount(data.value);
-      } else {
-        await createCounter();
-      }
-    } catch {
-      console.log('CountAPI unavailable - starting at 0');
-      setLikeCount(0);
-    } finally {
-      setIsLikeLoading(false);
-    }
-  }, [createCounter, API_NAMESPACE, API_KEY]);
-
-  // Check localStorage and fetch count on mount
-  useEffect(() => {
-    const liked = localStorage.getItem(STORAGE_KEY);
-    if (liked === 'true') {
-      setHasLiked(true);
-    }
-    fetchCount();
-  }, [fetchCount]);
-
-  const incrementCount = async () => {
-    if (hasLiked) return;
-
-    setIsLikeAnimating(true);
-    setHasLiked(true);
-    localStorage.setItem(STORAGE_KEY, 'true');
-
-    try {
-      const response = await fetch(
-        `https://api.countapi.xyz/hit/${API_NAMESPACE}/${API_KEY}`
-      );
-      const data = await response.json();
-      if (data && data.value !== undefined) {
-        setLikeCount(data.value);
-      } else {
-        setLikeCount((prev) => prev + 1);
-      }
-    } catch {
-      console.log('Failed to update count - applying local increment');
-      setLikeCount((prev) => prev + 1);
-    }
-
-    setTimeout(() => setIsLikeAnimating(false), 600);
-  };
-
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -99,16 +21,33 @@ const Footer = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitStatus('');
 
-    setTimeout(() => {
+    try {
+      const dataToSubmit = new FormData(e.target);
+      dataToSubmit.append('access_key', 'cb33eb17-0270-4aa0-b8cd-0f50e9ef768a');
+
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: dataToSubmit
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch {
+      setSubmitStatus('error');
+    } finally {
       setIsSubmitting(false);
-      setSubmitStatus('success');
-      setFormData({ name: '', email: '', message: '' });
-
       setTimeout(() => {
         setSubmitStatus('');
-      }, 3000);
-    }, 1500);
+      }, 4000);
+    }
   };
 
   const socialLinks = [
@@ -151,33 +90,6 @@ const Footer = () => {
         {/* Highlight quote */}
         <div className="contact-quote-bar">
           <p className="contact-quote">"Let's build something meaningful."</p>
-        </div>
-
-        {/* Embedded Love Counter */}
-        <div className="love-counter-box">
-          <span className="love-prompt">Enjoyed this portfolio? Show some support!</span>
-          <button
-            className={`love-hit-button ${hasLiked ? 'liked' : ''} ${isLikeAnimating ? 'animating' : ''}`}
-            onClick={incrementCount}
-            disabled={hasLiked}
-            aria-label={hasLiked ? 'Already liked' : 'Like this portfolio'}
-          >
-            <span className="heart-svg">
-              {hasLiked ? (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
-              ) : (
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                </svg>
-              )}
-            </span>
-            <span className="love-count-num">
-              {isLikeLoading ? '...' : likeCount.toLocaleString()}
-            </span>
-          </button>
-          {hasLiked && <span className="love-thanks">Thank you! 💛</span>}
         </div>
 
         {/* Contact Grid */}
@@ -281,6 +193,11 @@ const Footer = () => {
               {submitStatus === 'success' && (
                 <div className="form-success-banner">
                   ✓ Message sent successfully!
+                </div>
+              )}
+              {submitStatus === 'error' && (
+                <div className="form-error-banner">
+                  ✕ Something went wrong. Please try again.
                 </div>
               )}
             </form>

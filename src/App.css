@@ -139,7 +139,7 @@ main {
 .section-card.about-card {
   background: #FFFFE3;
   color: #4A4A4A;
-  border: 3px solid rgba(74, 74, 74, 0.08);
+  border: none;
 }
 
 .section-card.skills-card {

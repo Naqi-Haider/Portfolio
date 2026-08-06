@@ -5,7 +5,7 @@ from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib import colors
 
 def build_pdf():
-    pdf_path = r"d:\Projects\Portfolio\public\Naqi_Haider_CV.pdf"
+    pdf_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "public", "Naqi_Haider_CV.pdf")
     
     # A4 size is 595 x 842 points
     doc = SimpleDocTemplate(
