@@ -137,8 +137,8 @@ def build_pdf():
         story.append(t)
         story.append(Spacer(1, 3))
         
-    def get_job_header(title, date_location):
-        t = Table([[Paragraph(title, job_title), Paragraph(date_location, job_meta)]], colWidths=[380, 155])
+    def get_job_header(title, date_location, colWidths=[315, 220]):
+        t = Table([[Paragraph(title, job_title), Paragraph(date_location, job_meta)]], colWidths=colWidths)
         t.setStyle(TableStyle([
             ('VALIGN', (0,0), (-1,-1), 'BOTTOM'),
             ('LEFTPADDING', (0,0), (-1,-1), 0),
