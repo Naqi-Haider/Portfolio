@@ -119,7 +119,7 @@ def build_pdf():
     story.append(Paragraph(contact_text, contact_style))
     story.append(Spacer(1, 1))
     
-    links_text = '<a href="https://www.linkedin.com/in/m-naqi-haider-8b6772322" color="#6D8196">LinkedIn Profile</a>  |  <a href="https://github.com/Naqi-Haider" color="#6D8196">GitHub Profile</a>'
+    links_text = '<a href="https://www.linkedin.com/in/m-naqi-haider-8b6772322" color="#6D8196">LinkedIn Profile</a>  |  <a href="https://github.com/Naqi-Haider" color="#6D8196">GitHub Profile</a>  |  <a href="https://naqi-portfolio.netlify.app/" color="#6D8196">Portfolio</a>'
     story.append(Paragraph(links_text, contact_style))
     story.append(Spacer(1, 6))
     
