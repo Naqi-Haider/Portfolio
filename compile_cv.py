@@ -181,6 +181,21 @@ def build_pdf():
     story.append(Paragraph("• Designed and scripted interactive user interfaces (menus, HUDs, and inventory systems) to enhance player navigation and engagement.", bullet_style))
     story.append(Spacer(1, 4))
     
+    # --- Key Projects ---
+    add_section_divider("KEY PROJECTS")
+    
+    # Learning Management System (LMS)
+    story.append(get_job_header("Learning Management System (LMS)", "React.js | Node.js | Express | MongoDB"))
+    story.append(Paragraph("• Architected a multi-role educational platform featuring dedicated workflows for Administrators, Instructors, and Students.", bullet_style))
+    story.append(Paragraph("• Implemented core LMS features including course enrollment, assignment progression tracking, and user management.", bullet_style))
+    story.append(Spacer(1, 4))
+    
+    # Typing Sprint Game
+    story.append(get_job_header("Typing Sprint Game", "React.js | Node.js | Express | MongoDB"))
+    story.append(Paragraph("• Developed an interactive typing assessment application calculating live speed metrics (WPM) and accuracy percentages.", bullet_style))
+    story.append(Paragraph("• Implemented a persistent MongoDB leaderboard with RESTful API endpoints for score submission and ranking updates.", bullet_style))
+    story.append(Spacer(1, 4))
+    
     # --- Education ---
     add_section_divider("EDUCATION")
     story.append(get_job_header("Bachelor of Computer Science (BS CS)", "Expected Graduation: 2026"))
