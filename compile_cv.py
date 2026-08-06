@@ -11,10 +11,10 @@ def build_pdf():
     doc = SimpleDocTemplate(
         pdf_path,
         pagesize=A4,
-        leftMargin=36,
-        rightMargin=36,
-        topMargin=36,
-        bottomMargin=36
+        leftMargin=30,
+        rightMargin=30,
+        topMargin=24,
+        bottomMargin=24
     )
     
     styles = getSampleStyleSheet()
@@ -29,8 +29,8 @@ def build_pdf():
         'NameStyle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=18,
-        leading=21,
+        fontSize=17,
+        leading=19,
         alignment=1, # Center
         textColor=charcoal
     )
@@ -39,8 +39,8 @@ def build_pdf():
         'SubtitleStyle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=10,
-        leading=13,
+        fontSize=9.5,
+        leading=12,
         alignment=1, # Center
         textColor=slate_blue
     )
@@ -49,7 +49,8 @@ def build_pdf():
         'ContactStyle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=8.5,
+        fontSize=8,
+        leading=10,
         alignment=1, # Center
         textColor=charcoal
     )
@@ -58,19 +59,19 @@ def build_pdf():
         'SectionHeading',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=10.5,
-        leading=13,
+        fontSize=10,
+        leading=12,
         textColor=charcoal,
-        spaceBefore=8,
-        spaceAfter=2
+        spaceBefore=5,
+        spaceAfter=1
     )
     
     job_title = ParagraphStyle(
         'JobTitle',
         parent=styles['Normal'],
         fontName='Helvetica-Bold',
-        fontSize=9,
-        leading=11,
+        fontSize=8.5,
+        leading=10.5,
         textColor=charcoal
     )
     
@@ -78,8 +79,8 @@ def build_pdf():
         'JobMeta',
         parent=styles['Normal'],
         fontName='Helvetica-Oblique',
-        fontSize=8.5,
-        leading=11,
+        fontSize=8,
+        leading=10,
         textColor=slate_blue,
         alignment=2 # Right
     )
@@ -88,44 +89,44 @@ def build_pdf():
         'BulletStyle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=8.5,
-        leading=11.5,
+        fontSize=8,
+        leading=10.5,
         textColor=charcoal,
-        leftIndent=12,
-        firstLineIndent=-8,
-        spaceAfter=2
+        leftIndent=10,
+        firstLineIndent=-6,
+        spaceAfter=1.5
     )
     
     body_style = ParagraphStyle(
         'BodyStyle',
         parent=styles['Normal'],
         fontName='Helvetica',
-        fontSize=8.5,
-        leading=11.5,
+        fontSize=8,
+        leading=10.5,
         textColor=charcoal,
-        spaceAfter=4
+        spaceAfter=3
     )
     
     story = []
     
     # --- Header ---
     story.append(Paragraph("MUHAMMAD NAQI HAIDER", name_style))
-    story.append(Spacer(1, 2))
+    story.append(Spacer(1, 1))
     story.append(Paragraph("Software Engineer | Full-Stack Developer", subtitle_style))
-    story.append(Spacer(1, 3))
+    story.append(Spacer(1, 2))
     
     contact_text = "Sheikhupura, Pakistan  |  +92 3091010431  |  naqi073@gmail.com"
     story.append(Paragraph(contact_text, contact_style))
-    story.append(Spacer(1, 2))
+    story.append(Spacer(1, 1))
     
     links_text = '<a href="https://www.linkedin.com/in/m-naqi-haider-8b6772322" color="#6D8196">LinkedIn Profile</a>  |  <a href="https://github.com/Naqi-Haider" color="#6D8196">GitHub Profile</a>'
     story.append(Paragraph(links_text, contact_style))
-    story.append(Spacer(1, 10))
+    story.append(Spacer(1, 6))
     
     # Divider helper
     def add_section_divider(title):
         story.append(Paragraph(title, section_heading))
-        t = Table([['']], colWidths=[523], rowHeights=[0.5])
+        t = Table([['']], colWidths=[535], rowHeights=[0.5])
         t.setStyle(TableStyle([
             ('LINEBELOW', (0,0), (-1,-1), 0.75, silver),
             ('LEFTPADDING', (0,0), (-1,-1), 0),
@@ -134,10 +135,10 @@ def build_pdf():
             ('TOPPADDING', (0,0), (-1,-1), 0),
         ]))
         story.append(t)
-        story.append(Spacer(1, 5))
+        story.append(Spacer(1, 3))
         
     def get_job_header(title, date_location):
-        t = Table([[Paragraph(title, job_title), Paragraph(date_location, job_meta)]], colWidths=[370, 153])
+        t = Table([[Paragraph(title, job_title), Paragraph(date_location, job_meta)]], colWidths=[380, 155])
         t.setStyle(TableStyle([
             ('VALIGN', (0,0), (-1,-1), 'BOTTOM'),
             ('LEFTPADDING', (0,0), (-1,-1), 0),
@@ -150,7 +151,7 @@ def build_pdf():
     # --- Professional Summary ---
     add_section_divider("PROFESSIONAL SUMMARY")
     summary_text = (
-        "Versatile Web Developer with 3+ years of experience crafting responsive interfaces and "
+        "Versatile Web Developer with 2+ years of experience crafting responsive interfaces and "
         "1 year of specialized Shopify Theme development. Proven ability to bridge the gap between "
         "custom code and e-commerce functionality to enhance site performance. Dedicated to delivering "
         "scalable, pixel-perfect solutions that drive user engagement and business growth."
@@ -163,9 +164,10 @@ def build_pdf():
     
     # Axiolink Systems
     story.append(get_job_header("Software Engineer Intern | Axiolink Systems", "March 2026 – June 2026"))
-    story.append(Paragraph("• Engineered frontend and backend features for a multi-vendor AI-solutions startup system using Next.js and Node.js.", bullet_style))
-    story.append(Paragraph("• Built scalable RESTful API endpoints and integrated mapping controls utilizing OSRM (Open Source Routing Machine) on the backend.", bullet_style))
-    story.append(Paragraph("• Designed and implemented pixel-perfect dashboard user flows for both administrator and buyer dashboard consoles.", bullet_style))
+    story.append(Paragraph("• Engineered Next.js API endpoints and backend logic for a multi-vendor delivery platform, implementing spatial data with PostgreSQL + PostGIS and H3 hexagonal indexing for location-based matching.", bullet_style))
+    story.append(Paragraph("• Built real-time rider tracking using Socket.IO and Redis GEOSEARCH, and integrated OSRM for route mapping and delivery-distance calculations.", bullet_style))
+    story.append(Paragraph("• Implemented Cloudinary-based image management for product and vendor listings.", bullet_style))
+    story.append(Paragraph("• Designed and implemented pixel-perfect dashboard UX flows for the Admin and Buyer consoles.", bullet_style))
     story.append(Spacer(1, 4))
     
     # Shopify Developer
@@ -184,6 +186,14 @@ def build_pdf():
     # --- Key Projects ---
     add_section_divider("KEY PROJECTS")
     
+    # NeuroHaven
+    story.append(get_job_header("NeuroHaven (Alzheimer's Care Platform)", "Next.js | TypeScript | Tailwind CSS | Supabase"))
+    story.append(Paragraph("• Built the Doctor Dashboard for a team-built Alzheimer's caregiving and monitoring platform — the web bridge between the Flutter-based patient app and clinicians, integrating with a Python backend (Uvicorn + ngrok) for cross-service communication.", bullet_style))
+    story.append(Paragraph("• Engineered real-time doctor-patient chat, calling, and a distress-alert system, plus a cognitive scoring engine (streak-adjusted 0–100 scale) with four color-coded risk tiers, weekly adherence grids, and live behavioral trend graphs.", bullet_style))
+    story.append(Paragraph("• Built the Admin panel for platform moderation, including a support ticket system and one-to-many doctor-patient assignment logic with reassignment support.", bullet_style))
+    story.append(Paragraph("• Added chat export to CSV/TXT for clinical record-keeping.", bullet_style))
+    story.append(Spacer(1, 4))
+
     # Learning Management System (LMS)
     story.append(get_job_header("Learning Management System (LMS)", "React.js | Node.js | Express | MongoDB"))
     story.append(Paragraph("• Architected a multi-role educational platform featuring dedicated workflows for Administrators, Instructors, and Students.", bullet_style))
