@@ -140,6 +140,13 @@ main {
   background: #FFFFE3;
   color: #4A4A4A;
   border: none;
+  border-radius: 0;
+}
+
+.section-card.about-card:not(.is-active) {
+  transform: none;
+  opacity: 1;
+  filter: none;
 }
 
 .section-card.skills-card {

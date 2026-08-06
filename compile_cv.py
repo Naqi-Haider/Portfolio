@@ -187,7 +187,7 @@ def build_pdf():
     add_section_divider("KEY PROJECTS")
     
     # NeuroHaven
-    story.append(get_job_header("NeuroHaven (Alzheimer's Care Platform)", "Next.js | TypeScript | Tailwind CSS | Supabase"))
+    story.append(get_job_header("NeuroHaven (Early Stage Alzheimer's Care Platform)", "Next.js | TypeScript | Tailwind CSS | Supabase"))
     story.append(Paragraph("• Built the Doctor Dashboard for a team-built Alzheimer's caregiving and monitoring platform — the web bridge between the Flutter-based patient app and clinicians, integrating with a Python backend (Uvicorn + ngrok) for cross-service communication.", bullet_style))
     story.append(Paragraph("• Engineered real-time doctor-patient chat, calling, and a distress-alert system, plus a cognitive scoring engine (streak-adjusted 0–100 scale) with four color-coded risk tiers, weekly adherence grids, and live behavioral trend graphs.", bullet_style))
     story.append(Paragraph("• Built the Admin panel for platform moderation, including a support ticket system and one-to-many doctor-patient assignment logic with reassignment support.", bullet_style))
