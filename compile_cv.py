@@ -166,15 +166,15 @@ def build_pdf():
     add_section_divider("WORK EXPERIENCE")
 
     # Associate Software Developer Job
-    story.append(get_job_header("MERN Stack Software Engineer | Axiolink Systems", "July 2025 - April 2026"))
-    story.append(Paragraph("• Engineered Next.js API endpoints and backend logic for a multi-vendor delivery platform, implementing spatial data with PostgreSQL + PostGIS and H3 hexagonal indexing for location-based matching.", bullet_style))
-    story.append(Paragraph("• Built Frontend Dashboards for Admins, Buyers, Sellers and Riders using React and Tailwind CSS.", bullet_style))
-    story.append(Paragraph("• Integrated Mapbox for real-time location tracking and route optimization.", bullet_style))
-    story.append(Paragraph("• Developed a modular e-commerce system using Node.js and Express, incorporating Stripe payment gateway integration and real-time order tracking with Mapbox.", bullet_style))
+    story.append(get_job_header("MERN Stack Engineer | Remote", "March 2025 - Present"))
+    story.append(Paragraph("• Developed full-stack web applications using React, Next.js, Node.js, Express.js, MongoDB, and TypeScript based on real-world project requirements.", bullet_style))
+    story.append(Paragraph("• Built REST APIs, authentication, CRUD systems, database integrations, and responsive frontend features across independent projects.", bullet_style))
+    story.append(Paragraph("• Debugged existing applications, implemented new functionality, and adapted solutions to changing client and project requirements.", bullet_style))
+    story.append(Paragraph("• Built projects including a role-based LMS and TypingSprint, a full-stack typing practice platform.", bullet_style))
     story.append(Spacer(1, 4))
 
     # Axiolink Systems
-    story.append(get_job_header("Software Engineer Intern | Axiolink Systems", "March 2025 - June 2025"))
+    story.append(get_job_header("Software Engineer Intern | Axiolink Systems", "April 2026 - June 2026"))
     story.append(Paragraph("• Engineered Next.js API endpoints and backend logic for a multi-vendor delivery platform, implementing spatial data with PostgreSQL + PostGIS and H3 hexagonal indexing for location-based matching.", bullet_style))
     story.append(Paragraph("• Built real-time rider tracking using Socket.IO and Redis GEOSEARCH, and integrated OSRM for route mapping and delivery-distance calculations.", bullet_style))
     story.append(Paragraph("• Implemented Cloudinary-based image management for product and vendor listings.", bullet_style))
