@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 // eslint-disable-next-line no-unused-vars
 import { motion, AnimatePresence } from 'framer-motion';
 import ProgressiveImage from './ProgressiveImage';
+import ProjectGallery from './ProjectGallery';
 import '../styles/projects.css';
 
 const Projects = () => {
@@ -12,7 +13,7 @@ const Projects = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
 
-  // Filtered Selected Work Data (NeuroHaven first, Typing Sprint second, Amazon clone hidden)
+  // Selected Work Data: NeuroHaven (1st with gallery), CogDrift (2nd), Typing Sprint (3rd), LMS (4th)
   const selectedWorkData = [
     {
       id: 1,
@@ -29,36 +30,126 @@ const Projects = () => {
       image: '/NeuroHavenLP.webp',
       category: 'Final-year project · Team',
       technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Socket.IO', 'Zustand', 'Recharts'],
-      github: 'https://github.com/Naqi-Haider/NeuroHaven-Doc-Module'
+      github: 'https://github.com/Naqi-Haider/NeuroHaven-Doc-Module',
+      githubLabel: 'Source Code',
+      gallery: [
+        {
+          id: 0,
+          group: 'doctor',
+          groupLabel: 'Doctor Dashboard',
+          title: 'Landing Page',
+          caption: "Landing page: early-stage Alzheimer's companion platform",
+          image: '/NeuroHavenLP.webp'
+        },
+        {
+          id: 1,
+          group: 'doctor',
+          groupLabel: 'Doctor Dashboard',
+          title: 'Clinical Overview',
+          caption: 'Clinical overview: active care pathways, cohort metrics, and cognitive trend telemetry',
+          image: '/neurohaven-ss/1st.webp'
+        },
+        {
+          id: 2,
+          group: 'doctor',
+          groupLabel: 'Doctor Dashboard',
+          title: 'Alerts Centre',
+          caption: 'Alerts centre: distress alerts by severity',
+          image: '/neurohaven-ss/2nd.webp'
+        },
+        {
+          id: 3,
+          group: 'doctor',
+          groupLabel: 'Doctor Dashboard',
+          title: 'Patient Directory',
+          caption: 'Patient directory: cohort monitoring, risk indexes, and recency',
+          image: '/neurohaven-ss/3rd.webp'
+        },
+        {
+          id: 4,
+          group: 'doctor',
+          groupLabel: 'Doctor Dashboard',
+          title: 'Patient Profile & Scoring',
+          caption: 'Patient profile and scoring: longitudinal history and activity ledger',
+          image: '/neurohaven-ss/4th.webp'
+        },
+        {
+          id: 5,
+          group: 'doctor',
+          groupLabel: 'Doctor Dashboard',
+          title: 'Doctor-Patient Chat',
+          caption: 'Doctor-patient chat: real-time clinical channel and telemetry snapshot',
+          image: '/neurohaven-ss/5th.webp'
+        },
+        {
+          id: 6,
+          group: 'admin',
+          groupLabel: 'Admin Console',
+          title: 'Admin Console',
+          caption: 'Systems console: clinician credentials and patient directory management',
+          image: '/neurohaven-ss/6th.webp'
+        },
+        {
+          id: 7,
+          group: 'admin',
+          groupLabel: 'Admin Console',
+          title: 'Support Tickets',
+          caption: 'Help desk: support tickets, bug triage, and account resolution',
+          image: '/neurohaven-ss/7th.webp'
+        },
+        {
+          id: 8,
+          group: 'admin',
+          groupLabel: 'Admin Console',
+          title: 'Clinical Audits',
+          caption: 'Clinical audits: case records, feedback, and doctor-patient assignment',
+          image: '/neurohaven-ss/8th.webp'
+        }
+      ]
     },
     {
       id: 2,
+      title: 'CogDrift: Clinician-Gated Anomaly Monitoring Engine',
+      tagline: 'Flags unusual patterns in cognitive-game data for clinician review. It never diagnoses and never alerts caregivers directly.',
+      description: "A standalone service spun out of NeuroHaven. Two detectors run on each patient's own history: a rolling 30-day z-score trend detector and an Isolation Forest over the 10-game score vector, both with persistence rules to avoid single-day noise. Flags go to a clinician review queue, and only clinician-confirmed flags produce a caregiver message, which is content-filtered server-side to block medication or dosage instructions.",
+      bullets: [
+        "JWT-based RBAC with caregiver access scoped to their own patients, enforced at the endpoint and covered by tests.",
+        "Dual-mode event dispatch (in-process or RabbitMQ).",
+        "Deployed on Vercel, Back4App (Docker), and Neon PostgreSQL.",
+        "Evaluated on a synthetic dataset with documented limitations."
+      ],
+      note: 'Built with FastAPI, Python, scikit-learn, PostgreSQL, React, TypeScript, and Docker.',
+      image: '/CogDrift.webp',
+      category: 'Open source · Research prototype',
+      technologies: ['FastAPI', 'Python', 'scikit-learn', 'PostgreSQL', 'React', 'TypeScript', 'Docker'],
+      github: 'https://github.com/Naqi-Haider/cogdrift',
+      githubLabel: 'Source Code',
+      live: 'https://cogdrift-theta.vercel.app/',
+      liveLabel: 'Live Demo'
+    },
+    {
+      id: 3,
       title: 'Typing Sprint Game',
       description: 'Interactive utility to test and improve typing speed and accuracy, featuring live typing metrics (WPM/accuracy), database-backed leaderboard systems, and clean game state transitions.',
       image: '/typing-sprint thumbnail.webp',
       category: 'FULLSTACK APP',
       technologies: ['React', 'CSS', 'Node.js', 'Express', 'MongoDB'],
       github: 'https://github.com/Naqi-Haider/TypingSprint',
-      live: 'https://typing-sprint.netlify.app'
+      githubLabel: 'Source Code',
+      live: 'https://typing-sprint.netlify.app',
+      liveLabel: 'Live Demo'
     },
     {
-      id: 3,
+      id: 4,
       title: 'Learning Management System (LMS)',
       description: 'A multi-role admin, instructor, and student role-based simplified LMS system featuring course enrollment, assignment progression tracking, and comprehensive educational management attributes.',
       image: '/LMS Multi.webp',
       category: 'FULLSTACK LMS APP',
       technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
       github: 'https://github.com/Naqi-Haider/LMS',
-      live: 'https://learningmanagementsystem-naqi.netlify.app/'
-    },
-    {
-      id: 4,
-      title: 'Movie Ticket Booking System (C++ / OOP)',
-      description: 'A comprehensive backend seat reservation engine managing cinema database states, seat maps, checkouts, and transactional receipts. Built to practice pure OOP concepts and algorithms.',
-      image: '/Movie-Ticket-Booking-System.webp',
-      category: 'OOP SYSTEM',
-      technologies: ['C++', 'OOP', 'Data Structures', 'Algorithms'],
-      github: 'https://github.com/Naqi-Haider/movie-ticket-booking'
+      githubLabel: 'Source Code',
+      live: 'https://learningmanagementsystem-naqi.netlify.app/',
+      liveLabel: 'Live Demo'
     }
   ];
 
@@ -214,7 +305,7 @@ const Projects = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Helper render for Right Side media (Image vs YouTube Video)
+  // Helper render for Right Side media (Image vs Gallery vs YouTube Video)
   const renderMediaPane = (project) => {
     if (activeTab === 'shopify') {
       const embedUrl = getYouTubeEmbedUrl(project.videoUrl);
@@ -243,6 +334,15 @@ const Projects = () => {
             <span className="placeholder-sub">Provide YouTube URL to activate video embed</span>
           </div>
         </div>
+      );
+    }
+
+    if (project.gallery && project.gallery.length > 0) {
+      return (
+        <ProjectGallery
+          gallery={project.gallery}
+          onInteraction={clearAutoPlay}
+        />
       );
     }
 
@@ -326,7 +426,7 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           className="project-link-btn btn-source"
                         >
-                          GitHub
+                          {project.githubLabel || 'Source Code'}
                         </a>
                         {project.live && (
                           <a
@@ -335,7 +435,7 @@ const Projects = () => {
                             rel="noopener noreferrer"
                             className="project-link-btn live-btn"
                           >
-                            Live
+                            {project.liveLabel || 'Live Demo'}
                           </a>
                         )}
                       </div>
@@ -432,7 +532,7 @@ const Projects = () => {
                         <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
                           <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                         </svg>
-                        Source Code
+                        {currentProject.githubLabel || 'Source Code'}
                       </a>
                       {currentProject.live && (
                         <a
@@ -441,7 +541,7 @@ const Projects = () => {
                           rel="noopener noreferrer"
                           className="project-link-btn live-btn"
                         >
-                          Live
+                          {currentProject.liveLabel || 'Live Demo'}
                           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                             <line x1="5" y1="12" x2="19" y2="12" />
                             <polyline points="12 5 19 12 12 19" />
