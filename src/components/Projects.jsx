@@ -312,8 +312,6 @@ const Projects = () => {
                       </ul>
                     )}
 
-                    {project.note && <p className="project-note">{project.note}</p>}
-
                     <div className="project-tech-stack">
                       {project.technologies.map((tech, i) => (
                         <span key={i} className="skill-chip-dark">{tech}</span>
@@ -415,10 +413,6 @@ const Projects = () => {
                         <li key={i}>{bullet}</li>
                       ))}
                     </ul>
-                  )}
-
-                  {currentProject.note && (
-                    <p className="project-note">{currentProject.note}</p>
                   )}
 
                   <div className="project-tech-stack">
