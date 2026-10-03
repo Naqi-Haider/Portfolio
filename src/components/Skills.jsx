@@ -28,19 +28,19 @@ const Skills = () => {
 
   const skillCategories = [
     {
-      title: 'Systems & Backend',
-      description: 'Building robust backend architectures, databases, and structured object-oriented software layers.',
-      skills: ['Node.js', 'Express', 'C++', 'OOP', 'Data Structures', 'MongoDB']
+      title: 'Backend & Databases',
+      description: 'Building robust backend architectures, REST APIs, real-time services, and relational/document databases.',
+      skills: ['Node.js', 'Express', 'TypeScript', 'PostgreSQL', 'Redis', 'Socket.IO', 'Supabase', 'Prisma', 'MongoDB']
     },
     {
       title: 'Frontend & Architectures',
-      description: 'Developing highly interactive web user interfaces, reusable systems, and state-driven behaviors.',
-      skills: ['React', 'Next.js', 'JavaScript', 'HTML5', 'CSS3', 'State Management']
+      description: 'Developing highly interactive web user interfaces, component systems, and state-driven client architectures.',
+      skills: ['React', 'Next.js', 'JavaScript', 'Tailwind CSS', 'State Management', 'HTML5', 'CSS3']
     },
     {
       title: 'E-commerce & Interactive',
-      description: 'Engineering customizable Shopify themes, Liquid templates, and immersive game builds in Unity.',
-      skills: ['Shopify', 'Liquid', 'Custom Themes', 'Unity', 'C#', 'Game Development']
+      description: 'Engineering customizable Shopify themes, Liquid templates, storefront APIs, and interactive game builds in Unity.',
+      skills: ['Shopify', 'Liquid', 'Custom Themes', 'Metafields', 'Cart API', 'Section Rendering API', 'Unity', 'C#']
     }
   ];
 

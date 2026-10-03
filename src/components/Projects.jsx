@@ -12,20 +12,37 @@ const Projects = () => {
   const sectionRef = useRef(null);
   const scrollContainerRef = useRef(null);
 
-  // Filtered Selected Work Data (Shopify Clone Store hidden)
+  // Filtered Selected Work Data (NeuroHaven first, Typing Sprint second, Amazon clone hidden)
   const selectedWorkData = [
     {
       id: 1,
-      title: 'Typing Sprint Game (Fullstack Project)',
+      title: "NeuroHaven: Doctor Dashboard for an Alzheimer's Care Platform",
+      tagline: "The clinician-facing web dashboard for an early-stage Alzheimer's caregiving and monitoring platform.",
+      description: "NeuroHaven is a team-built platform connecting Alzheimer's patients, caregivers, and clinicians. I built the web side: the Doctor Dashboard bridging the Flutter patient app and clinicians (integrating with a Python backend), and the Admin panel.",
+      bullets: [
+        "Real-time doctor-patient chat, calling, distress-alert system, and chat export (CSV/TXT).",
+        "Cognitive scoring engine (streak-adjusted 0–100 scale) with four color-coded risk tiers.",
+        "Weekly adherence grids and live behavioral trend graphs.",
+        "Admin panel for platform moderation, support tickets, and doctor-patient assignment/reassignment."
+      ],
+      note: "Built with Next.js, TypeScript, Tailwind CSS, Supabase, Socket.IO, Zustand, and Recharts.",
+      image: '/NeuroHavenLP.webp',
+      category: 'Final-year project · Team',
+      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Socket.IO', 'Zustand', 'Recharts'],
+      github: 'https://github.com/Naqi-Haider/NeuroHaven-Doc-Module'
+    },
+    {
+      id: 2,
+      title: 'Typing Sprint Game',
       description: 'Interactive utility to test and improve typing speed and accuracy, featuring live typing metrics (WPM/accuracy), database-backed leaderboard systems, and clean game state transitions.',
       image: '/typing-sprint thumbnail.webp',
-      category: 'FULLSTACK GAMEPLAY',
+      category: 'FULLSTACK APP',
       technologies: ['React', 'CSS', 'Node.js', 'Express', 'MongoDB'],
       github: 'https://github.com/Naqi-Haider/TypingSprint',
       live: 'https://typing-sprint.netlify.app'
     },
     {
-      id: 2,
+      id: 3,
       title: 'Learning Management System (LMS)',
       description: 'A multi-role admin, instructor, and student role-based simplified LMS system featuring course enrollment, assignment progression tracking, and comprehensive educational management attributes.',
       image: '/LMS Multi.webp',
@@ -35,22 +52,13 @@ const Projects = () => {
       live: 'https://learningmanagementsystem-naqi.netlify.app/'
     },
     {
-      id: 3,
+      id: 4,
       title: 'Movie Ticket Booking System (C++ / OOP)',
       description: 'A comprehensive backend seat reservation engine managing cinema database states, seat maps, checkouts, and transactional receipts. Built to practice pure OOP concepts and algorithms.',
       image: '/Movie-Ticket-Booking-System.webp',
       category: 'OOP SYSTEM',
       technologies: ['C++', 'OOP', 'Data Structures', 'Algorithms'],
       github: 'https://github.com/Naqi-Haider/movie-ticket-booking'
-    },
-    {
-      id: 4,
-      title: 'Amazon Clone (Vanilla JS Learning Project)',
-      description: 'A modular vanilla Javascript frontend storefront replica featuring dynamic shopping cart state synchronization, search filtering, catalogs, local database integration, and order audits.',
-      image: '/JavaScript Amazon RawJS Clone.webp',
-      category: 'JAVASCRIPT DEVELOPMENT',
-      technologies: ['JavaScript', 'HTML5', 'CSS3', 'Data Storage'],
-      github: 'https://github.com/Naqi-Haider/amazon-rawjs'
     }
   ];
 
@@ -103,6 +111,18 @@ const Projects = () => {
     setActiveTab(tab);
     setCurrentIndex(0);
   };
+
+  // Listen for global tab switch requests (e.g. from Hero buttons)
+  useEffect(() => {
+    const handleSwitchTab = (e) => {
+      if (e.detail) {
+        setActiveTab(e.detail);
+        setCurrentIndex(0);
+      }
+    };
+    window.addEventListener('switch-projects-tab', handleSwitchTab);
+    return () => window.removeEventListener('switch-projects-tab', handleSwitchTab);
+  }, []);
 
   // Helper to extract embeddable YouTube URL
   const getYouTubeEmbedUrl = (url) => {

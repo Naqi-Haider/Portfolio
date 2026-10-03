@@ -5,6 +5,8 @@
   --bg-card: #ffffff;          /* Card Background (Light default) */
   --text-color: #4A4A4A;       /* Charcoal Slate Body text */
   --text-secondary: #6D8196;   /* Muted Slate Blue */
+  --accent-color: #E07A5F;     /* Warm Terracotta / Amber Accent */
+  --accent-hover: #C86348;     /* Darker Terracotta Hover */
   --border-color: #4A4A4A;     /* Charcoal Border */
   --border-subtle: #CBCBCB;    /* Silver Divider */
 
@@ -150,9 +152,17 @@ main {
 }
 
 .section-card.skills-card {
-  background: #CBCBCB;
-  color: #4A4A4A;
-  border: 3px solid rgba(74, 74, 74, 0.08);
+  background: #2D3748;
+  color: #FFFFE3;
+  border: 3px solid rgba(255, 255, 227, 0.1);
+}
+
+.skills-card .section-title {
+  color: #FFFFE3;
+}
+
+.skills-card .section-label {
+  color: rgba(255, 255, 227, 0.7);
 }
 
 .section-card.projects-card {

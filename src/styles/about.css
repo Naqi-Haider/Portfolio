@@ -38,15 +38,14 @@
   margin-top: 1.5rem;
   position: relative;
   padding-left: 28px;
-  border-left: 4px solid var(--text-secondary);
+  border-left: 4px solid var(--accent-color);
 }
 
 .about-quote {
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-style: italic;
-  color: var(--text-secondary);
-  opacity: 0.85;
+  color: #2D3748; /* High contrast Dark Slate on Cream (7.5:1 ratio) */
   line-height: 1.4;
   margin: 0;
 }

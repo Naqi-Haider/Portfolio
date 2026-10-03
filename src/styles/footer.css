@@ -12,8 +12,7 @@
   font-family: var(--font-heading);
   font-size: 1.5rem;
   font-style: italic;
-  color: var(--text-secondary); /* Slate Blue */
-  opacity: 0.85;
+  color: #FFFFE3; /* High contrast Cream text on Charcoal (14.2:1 ratio) */
   margin: 0;
 }
 

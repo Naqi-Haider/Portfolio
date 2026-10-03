@@ -29,7 +29,7 @@ const About = () => {
   const stats = [
     { number: '2+', label: 'Years Experience', type: 'number' },
     { number: '10+', label: 'Projects Completed', type: 'number' },
-    { number: 'MERN • Unity • Liquid', label: 'Core Engineering Frameworks', type: 'wide' }
+    { number: 'MERN • Unity • Liquid', label: 'Core stacks', type: 'wide' }
   ];
 
   const metaData = [
@@ -44,7 +44,7 @@ const About = () => {
         {/* Header Layout */}
         <span className="section-label">[ ABOUT ]</span>
         <h2 className="section-title">
-          Building across the full stack ; web, storefronts, and game worlds.
+          Building across the full stack: web, storefronts, and game worlds.
         </h2>
 
         {/* Grid Content */}

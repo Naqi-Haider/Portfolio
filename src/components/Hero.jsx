@@ -29,6 +29,11 @@ const Hero = () => {
     }
   };
 
+  const scrollToProjectsTab = (tab = 'selected') => {
+    window.dispatchEvent(new CustomEvent('switch-projects-tab', { detail: tab }));
+    scrollToSection('projects');
+  };
+
   return (
     <section className="section-card home-card" id="home" ref={sectionRef}>
       <div className="hero-container fade-in">
@@ -42,8 +47,11 @@ const Hero = () => {
           <span className="hero-subheading-tag">Full-Stack Developer | Shopify Theme Developer</span>
 
           <div className="hero-actions-container">
-            <button className="btn-primary-pill" onClick={() => scrollToSection('projects')}>
-              View Projects →
+            <button className="btn-primary-pill" onClick={() => scrollToProjectsTab('selected')}>
+              Selected Work →
+            </button>
+            <button className="btn-accent-pill" onClick={() => scrollToProjectsTab('shopify')}>
+              Shopify Projects 🛍️
             </button>
             <a href="/Naqi_Haider_CV.pdf" download="Naqi_Haider_CV.pdf" className="btn-ghost-pill">
               Download CV ↓
