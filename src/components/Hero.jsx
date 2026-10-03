@@ -39,7 +39,7 @@ const Hero = () => {
             Muhammad<br />Naqi Haider
           </h1>
 
-          <span className="hero-subheading-tag">Full-Stack developer</span>
+          <span className="hero-subheading-tag">Full-Stack Developer | Shopify Theme Developer</span>
 
           <div className="hero-actions-container">
             <button className="btn-primary-pill" onClick={() => scrollToSection('projects')}>
