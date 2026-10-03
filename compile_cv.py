@@ -137,8 +137,11 @@ def build_pdf():
         story.append(t)
         story.append(Spacer(1, 3))
         
+    job_title_s = ParagraphStyle('JobTitleS', parent=job_title, firstLineIndent=-0.7)
+
     def get_job_header(title, date_location, colWidths=[315, 220]):
-        t = Table([[Paragraph(title, job_title), Paragraph(date_location, job_meta)]], colWidths=colWidths)
+        style = job_title_s if title.startswith('S') else job_title
+        t = Table([[Paragraph(title, style), Paragraph(date_location, job_meta)]], colWidths=colWidths)
         t.setStyle(TableStyle([
             ('VALIGN', (0,0), (-1,-1), 'BOTTOM'),
             ('LEFTPADDING', (0,0), (-1,-1), 0),
@@ -161,9 +164,17 @@ def build_pdf():
     
     # --- Work Experience ---
     add_section_divider("WORK EXPERIENCE")
-    
+
+    # Associate Software Developer Job
+    story.append(get_job_header("MERN Stack Software Engineer | Axiolink Systems", "July 2025 - April 2026"))
+    story.append(Paragraph("• Engineered Next.js API endpoints and backend logic for a multi-vendor delivery platform, implementing spatial data with PostgreSQL + PostGIS and H3 hexagonal indexing for location-based matching.", bullet_style))
+    story.append(Paragraph("• Built Frontend Dashboards for Admins, Buyers, Sellers and Riders using React and Tailwind CSS.", bullet_style))
+    story.append(Paragraph("• Integrated Mapbox for real-time location tracking and route optimization.", bullet_style))
+    story.append(Paragraph("• Developed a modular e-commerce system using Node.js and Express, incorporating Stripe payment gateway integration and real-time order tracking with Mapbox.", bullet_style))
+    story.append(Spacer(1, 4))
+
     # Axiolink Systems
-    story.append(get_job_header("Software Engineer Intern | Axiolink Systems", "March 2026 – June 2026"))
+    story.append(get_job_header("Software Engineer Intern | Axiolink Systems", "March 2025 - June 2025"))
     story.append(Paragraph("• Engineered Next.js API endpoints and backend logic for a multi-vendor delivery platform, implementing spatial data with PostgreSQL + PostGIS and H3 hexagonal indexing for location-based matching.", bullet_style))
     story.append(Paragraph("• Built real-time rider tracking using Socket.IO and Redis GEOSEARCH, and integrated OSRM for route mapping and delivery-distance calculations.", bullet_style))
     story.append(Paragraph("• Implemented Cloudinary-based image management for product and vendor listings.", bullet_style))
