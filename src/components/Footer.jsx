@@ -126,6 +126,35 @@ const Footer = () => {
                 <span className="details-value">Pakistan</span>
               </div>
             </div>
+
+            {/* Curriculum Vitae Download Section */}
+            <div className="inner-brutal-card cv-contact-card">
+              <span className="details-header">Curriculum Vitae</span>
+              <div className="contact-cv-actions">
+                <a
+                  href="/cv/Naqi-Haider-MERN-CV.pdf"
+                  download="Naqi-Haider-MERN-CV.pdf"
+                  className="contact-cv-btn"
+                >
+                  <div className="contact-cv-btn-info">
+                    <span className="contact-cv-btn-title">Full-Stack / MERN CV (PDF)</span>
+                    <span className="contact-cv-btn-note">PDF · 1 page</span>
+                  </div>
+                  <span className="contact-cv-btn-arrow" aria-hidden="true">↓</span>
+                </a>
+                <a
+                  href="/cv/Naqi-Haider-Shopify-CV.pdf"
+                  download="Naqi-Haider-Shopify-CV.pdf"
+                  className="contact-cv-btn"
+                >
+                  <div className="contact-cv-btn-info">
+                    <span className="contact-cv-btn-title">Shopify Developer CV (PDF)</span>
+                    <span className="contact-cv-btn-note">PDF · 1 page</span>
+                  </div>
+                  <span className="contact-cv-btn-arrow" aria-hidden="true">↓</span>
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Right Column - Contact Form */}
@@ -209,6 +238,16 @@ const Footer = () => {
           <p>
             © {new Date().getFullYear()} <strong>Muhammad Naqi Haider</strong>. All rights reserved.
           </p>
+          <div className="footer-cv-quicklinks">
+            <span className="footer-cv-label">Resumes:</span>
+            <a href="/cv/Naqi-Haider-MERN-CV.pdf" download="Naqi-Haider-MERN-CV.pdf" className="footer-cv-link">
+              Full-Stack / MERN CV (PDF)
+            </a>
+            <span className="footer-cv-sep" aria-hidden="true">•</span>
+            <a href="/cv/Naqi-Haider-Shopify-CV.pdf" download="Naqi-Haider-Shopify-CV.pdf" className="footer-cv-link">
+              Shopify Developer CV (PDF)
+            </a>
+          </div>
           <p className="footer-credits">
             Built with React & Space Grotesk
           </p>

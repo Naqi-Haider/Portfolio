@@ -1,8 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../styles/hero.css';
 
 const Hero = () => {
   const sectionRef = useRef(null);
+  const [isCvMenuOpen, setIsCvMenuOpen] = useState(false);
+  const cvMenuRef = useRef(null);
+  const cvTriggerRef = useRef(null);
+  const menuItemRefs = useRef([]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -21,6 +25,64 @@ const Hero = () => {
 
     return () => observer.disconnect();
   }, []);
+
+  // Close CV menu on outside click or Escape
+  useEffect(() => {
+    if (!isCvMenuOpen) return;
+
+    const handleClickOutside = (e) => {
+      if (cvMenuRef.current && !cvMenuRef.current.contains(e.target)) {
+        setIsCvMenuOpen(false);
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        setIsCvMenuOpen(false);
+        cvTriggerRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isCvMenuOpen]);
+
+  const handleTriggerKeyDown = (e) => {
+    if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
+      if (!isCvMenuOpen) {
+        e.preventDefault();
+        setIsCvMenuOpen(true);
+        setTimeout(() => {
+          menuItemRefs.current[0]?.focus();
+        }, 30);
+      }
+    }
+  };
+
+  const handleItemKeyDown = (e, index) => {
+    if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      const nextIndex = (index + 1) % 2;
+      menuItemRefs.current[nextIndex]?.focus();
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      const prevIndex = (index - 1 + 2) % 2;
+      menuItemRefs.current[prevIndex]?.focus();
+    } else if (e.key === 'Escape') {
+      e.preventDefault();
+      setIsCvMenuOpen(false);
+      cvTriggerRef.current?.focus();
+    } else if (e.key === 'Tab') {
+      setIsCvMenuOpen(false);
+    }
+  };
 
   const scrollToSection = (sectionId, offset = -70) => {
     const element = document.getElementById(sectionId);
@@ -88,10 +150,82 @@ const Hero = () => {
                 <path d="M12.7896 9.42437C11.7896 9.0035 9.19076 8.24627 8.50372 10.266C8.1332 11.3553 8.79795 12.5183 10.2171 13.6331C12.2041 15.1939 11.867 16.524 11.5033 17.0001C10.2176 18.6837 7.64621 17.7016 6.78906 17.0001" />
               </svg>
             </button>
-            <a href="/Naqi_Haider_CV_Updated.pdf" download="Naqi_Haider_CV_Updated.pdf" className="btn-ghost-pill">
-              Download CV ↓
-            </a>
+
+            {/* Download CV Accessible Menu */}
+            <div className="cv-menu-wrapper" ref={cvMenuRef}>
+              <button
+                ref={cvTriggerRef}
+                type="button"
+                className={`btn-ghost-pill cv-menu-trigger ${isCvMenuOpen ? 'active' : ''}`}
+                onClick={() => setIsCvMenuOpen((prev) => !prev)}
+                onKeyDown={handleTriggerKeyDown}
+                aria-haspopup="menu"
+                aria-expanded={isCvMenuOpen}
+                aria-controls="hero-cv-dropdown"
+                id="hero-cv-trigger"
+              >
+                Download CV
+                <svg
+                  className={`cv-chevron ${isCvMenuOpen ? 'is-open' : ''}`}
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              {isCvMenuOpen && (
+                <div
+                  id="hero-cv-dropdown"
+                  className="cv-dropdown-menu"
+                  role="menu"
+                  aria-labelledby="hero-cv-trigger"
+                >
+                  <a
+                    ref={(el) => (menuItemRefs.current[0] = el)}
+                    href="/cv/Naqi-Haider-MERN-CV.pdf"
+                    download="Naqi-Haider-MERN-CV.pdf"
+                    className="cv-dropdown-item"
+                    role="menuitem"
+                    onClick={() => setIsCvMenuOpen(false)}
+                    onKeyDown={(e) => handleItemKeyDown(e, 0)}
+                  >
+                    <div className="cv-dropdown-item-content">
+                      <span className="cv-dropdown-item-title">Full-Stack / MERN CV (PDF)</span>
+                      <span className="cv-dropdown-item-note">PDF · 1 page</span>
+                    </div>
+                    <span className="cv-dropdown-download-icon" aria-hidden="true">↓</span>
+                  </a>
+
+                  <div className="cv-dropdown-divider" role="separator" />
+
+                  <a
+                    ref={(el) => (menuItemRefs.current[1] = el)}
+                    href="/cv/Naqi-Haider-Shopify-CV.pdf"
+                    download="Naqi-Haider-Shopify-CV.pdf"
+                    className="cv-dropdown-item"
+                    role="menuitem"
+                    onClick={() => setIsCvMenuOpen(false)}
+                    onKeyDown={(e) => handleItemKeyDown(e, 1)}
+                  >
+                    <div className="cv-dropdown-item-content">
+                      <span className="cv-dropdown-item-title">Shopify Developer CV (PDF)</span>
+                      <span className="cv-dropdown-item-note">PDF · 1 page</span>
+                    </div>
+                    <span className="cv-dropdown-download-icon" aria-hidden="true">↓</span>
+                  </a>
+                </div>
+              )}
+            </div>
           </div>
+
         </div>
 
         {/* Right Column - Profile Card + Orbit Graphic */}

@@ -117,6 +117,71 @@ a.details-value:hover {
   text-decoration: underline;
 }
 
+/* Contact Section CV Card */
+.cv-contact-card {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.contact-cv-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.contact-cv-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(74, 74, 74, 0.04);
+  border: 1.5px solid var(--border-subtle);
+  border-radius: 14px;
+  text-decoration: none;
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.contact-cv-btn:hover {
+  background: rgba(224, 122, 95, 0.08);
+  border-color: var(--accent-color);
+  transform: translateY(-2px);
+}
+
+.contact-cv-btn-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.contact-cv-btn-title {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.contact-cv-btn-note {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.contact-cv-btn-arrow {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.contact-cv-btn:hover .contact-cv-btn-arrow {
+  color: var(--accent-color);
+  transform: translateY(2px);
+}
+
 /* Contact Form Styling */
 .form-element {
   display: flex;
@@ -219,10 +284,38 @@ a.details-value:hover {
   color: #FFFFE3;
 }
 
+.footer-cv-quicklinks {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+
+.footer-cv-label {
+  color: rgba(255, 255, 227, 0.5);
+}
+
+.footer-cv-link {
+  color: #FFFFE3;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color var(--transition);
+}
+
+.footer-cv-link:hover {
+  color: var(--accent-color);
+}
+
+.footer-cv-sep {
+  color: rgba(255, 255, 227, 0.3);
+}
+
 .footer-credits {
   font-family: var(--font-mono);
   font-size: 0.8rem;
 }
+
 
 /* Responsiveness overrides */
 @media (max-width: 1024px) {
@@ -308,6 +401,25 @@ a.details-value:hover {
     margin-top: 3rem;
     padding-top: 20px;
     font-size: 0.8rem;
-    gap: 10px;
+    gap: 12px;
+  }
+
+  .footer-cv-quicklinks {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .cv-contact-card {
+    padding: 16px 20px;
+    border-radius: 20px;
+  }
+
+  .contact-cv-btn {
+    padding: 10px 14px;
+  }
+
+  .contact-cv-btn-title {
+    font-size: 0.875rem;
   }
 }
