@@ -1,31 +1,59 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { createPortal } from 'react-dom';
 
 const ProjectGallery = ({ gallery, onInteraction }) => {
-  const [activeTab, setActiveTab] = useState('doctor'); // 'doctor' | 'admin'
-  // Default to the Doctor Overview screenshot (id: 1)
-  const [activeImageId, setActiveImageId] = useState(1);
+  // Extract unique groups and group labels dynamically
+  const groups = useMemo(() => {
+    const unique = [];
+    gallery.forEach((item) => {
+      const g = item.group || 'default';
+      if (!unique.includes(g)) {
+        unique.push(g);
+      }
+    });
+    return unique;
+  }, [gallery]);
+
+  // Initial group: default to first item's group or 'doctor' if present
+  const initialGroup = useMemo(() => {
+    if (groups.includes('doctor')) return 'doctor';
+    return groups[0] || 'default';
+  }, [groups]);
+
+  const [activeTab, setActiveTab] = useState(initialGroup);
+
+  // Initial screenshot: default to id: 1 (Doctor Overview for NeuroHaven, Clinician Portal for CogDrift)
+  const initialImageId = useMemo(() => {
+    const hasOne = gallery.find((item) => item.id === 1);
+    if (hasOne) return 1;
+    return gallery[0]?.id ?? 0;
+  }, [gallery]);
+
+  const [activeImageId, setActiveImageId] = useState(initialImageId);
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
-  // Group items
-  const doctorScreenshots = gallery.filter((item) => item.group === 'doctor');
-  const adminScreenshots = gallery.filter((item) => item.group === 'admin');
+  // Sync active tab/image if gallery changes (e.g. carousel slide change)
+  useEffect(() => {
+    setActiveTab(initialGroup);
+    setActiveImageId(initialImageId);
+  }, [gallery, initialGroup, initialImageId]);
 
-  const visibleScreenshots = activeTab === 'doctor' ? doctorScreenshots : adminScreenshots;
+  const visibleScreenshots = useMemo(() => {
+    if (groups.length <= 1) return gallery;
+    return gallery.filter((item) => (item.group || 'default') === activeTab);
+  }, [gallery, activeTab, groups]);
 
-  const activeScreenshot = gallery.find((item) => item.id === activeImageId) || gallery[1] || gallery[0];
+  const activeScreenshot = useMemo(() => {
+    return gallery.find((item) => item.id === activeImageId) || visibleScreenshots[0] || gallery[0];
+  }, [gallery, activeImageId, visibleScreenshots]);
 
-  // Handle Tab Change
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
+  // Tab switching
+  const handleTabChange = (groupKey) => {
+    setActiveTab(groupKey);
     if (onInteraction) onInteraction();
-    if (tab === 'doctor') {
-      // Default to Doctor Overview (id: 1) when switching to Doctor
-      setActiveImageId(1);
-    } else {
-      // Default to first admin screen (id: 6)
-      if (adminScreenshots.length > 0) {
-        setActiveImageId(adminScreenshots[0].id);
-      }
+    const itemsInGroup = gallery.filter((item) => (item.group || 'default') === groupKey);
+    if (itemsInGroup.length > 0) {
+      setActiveImageId(itemsInGroup[0].id);
     }
   };
 
@@ -48,7 +76,7 @@ const ProjectGallery = ({ gallery, onInteraction }) => {
     const nextIndex = (currentIndex + 1) % gallery.length;
     const nextItem = gallery[nextIndex];
     setActiveImageId(nextItem.id);
-    if (nextItem.group !== activeTab) {
+    if (nextItem.group && nextItem.group !== activeTab) {
       setActiveTab(nextItem.group);
     }
   }, [gallery, activeImageId, activeTab]);
@@ -58,7 +86,7 @@ const ProjectGallery = ({ gallery, onInteraction }) => {
     const prevIndex = (currentIndex - 1 + gallery.length) % gallery.length;
     const prevItem = gallery[prevIndex];
     setActiveImageId(prevItem.id);
-    if (prevItem.group !== activeTab) {
+    if (prevItem.group && prevItem.group !== activeTab) {
       setActiveTab(prevItem.group);
     }
   }, [gallery, activeImageId, activeTab]);
@@ -92,23 +120,26 @@ const ProjectGallery = ({ gallery, onInteraction }) => {
 
   return (
     <div className="gallery-pane-container">
-      {/* Sub-tabs: Doctor (n) and Admin (n) */}
-      <div className="gallery-subtabs">
-        <button
-          type="button"
-          className={`gallery-subtab-btn ${activeTab === 'doctor' ? 'active' : ''}`}
-          onClick={() => handleTabChange('doctor')}
-        >
-          Doctor ({doctorScreenshots.length})
-        </button>
-        <button
-          type="button"
-          className={`gallery-subtab-btn ${activeTab === 'admin' ? 'active' : ''}`}
-          onClick={() => handleTabChange('admin')}
-        >
-          Admin ({adminScreenshots.length})
-        </button>
-      </div>
+      {/* Sub-tabs if multiple groups exist */}
+      {groups.length > 1 && (
+        <div className="gallery-subtabs">
+          {groups.map((groupKey) => {
+            const count = gallery.filter((item) => (item.group || 'default') === groupKey).length;
+            const item = gallery.find((item) => (item.group || 'default') === groupKey);
+            const label = item?.groupLabel || (groupKey.charAt(0).toUpperCase() + groupKey.slice(1));
+            return (
+              <button
+                key={groupKey}
+                type="button"
+                className={`gallery-subtab-btn ${activeTab === groupKey ? 'active' : ''}`}
+                onClick={() => handleTabChange(groupKey)}
+              >
+                {label} ({count})
+              </button>
+            );
+          })}
+        </div>
+      )}
 
       {/* Main Preview with Click to Enlarge */}
       <div
@@ -116,7 +147,7 @@ const ProjectGallery = ({ gallery, onInteraction }) => {
         onClick={openLightbox}
         role="button"
         tabIndex={0}
-        aria-label="Click to enlarge screenshot in full-screen lightbox"
+        aria-label="Click to enlarge screenshot in full-screen theater lightbox"
         onKeyDown={(e) => {
           if (e.key === 'Enter' || e.key === ' ') {
             e.preventDefault();
@@ -169,21 +200,21 @@ const ProjectGallery = ({ gallery, onInteraction }) => {
         })}
       </div>
 
-      {/* Lightbox Modal */}
-      {isLightboxOpen && (
+      {/* Full-Screen Theater Mode Lightbox via React Portal */}
+      {isLightboxOpen && typeof document !== 'undefined' && createPortal(
         <div
-          className="gallery-lightbox-overlay"
+          className="gallery-lightbox-overlay theater-mode"
           onClick={closeLightbox}
           role="dialog"
           aria-modal="true"
-          aria-label="Screenshot Lightbox"
+          aria-label="Screenshot Fullscreen Lightbox"
         >
           <div className="gallery-lightbox-content" onClick={(e) => e.stopPropagation()}>
             {/* Lightbox Header Bar */}
             <div className="lightbox-header">
               <div className="lightbox-title-group">
                 <span className="lightbox-group-badge">
-                  {activeScreenshot.group === 'doctor' ? 'Doctor Dashboard' : 'Admin Console'}
+                  {activeScreenshot.groupLabel || (activeScreenshot.group === 'doctor' ? 'Doctor Dashboard' : 'Admin Console')}
                 </span>
                 <span className="lightbox-counter">
                   {currentGalleryIndex + 1} / {gallery.length}
@@ -240,9 +271,9 @@ const ProjectGallery = ({ gallery, onInteraction }) => {
                     className={`lightbox-mini-thumb ${item.id === activeImageId ? 'active' : ''}`}
                     onClick={() => {
                       setActiveImageId(item.id);
-                      if (item.group !== activeTab) setActiveTab(item.group);
+                      if (item.group && item.group !== activeTab) setActiveTab(item.group);
                     }}
-                    aria-label={`Jump to slide ${idx + 1}`}
+                    aria-label={`Jump to slide ${idx + 1}: ${item.title}`}
                   >
                     <img src={item.image} alt={item.title} />
                   </button>
@@ -250,7 +281,8 @@ const ProjectGallery = ({ gallery, onInteraction }) => {
               </div>
             </div>
           </div>
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

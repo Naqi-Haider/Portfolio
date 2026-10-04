@@ -119,13 +119,31 @@ const Projects = () => {
         "Evaluated on a synthetic dataset with documented limitations."
       ],
       note: 'Built with FastAPI, Python, scikit-learn, PostgreSQL, React, TypeScript, and Docker.',
-      image: '/CogDrift.webp',
+      image: '/cg-ss/cg1.webp',
       category: 'Open source · Research prototype',
       technologies: ['FastAPI', 'Python', 'scikit-learn', 'PostgreSQL', 'React', 'TypeScript', 'Docker'],
       github: 'https://github.com/Naqi-Haider/cogdrift',
       githubLabel: 'Source Code',
       live: 'https://cogdrift-theta.vercel.app/',
-      liveLabel: 'Live Demo'
+      liveLabel: 'Live Demo',
+      gallery: [
+        {
+          id: 1,
+          group: 'clinician',
+          groupLabel: 'Clinician Portal',
+          title: 'Clinician Portal',
+          caption: 'Clinician workflow queue: pending signals & 30-day rolling baseline trajectory chart',
+          image: '/cg-ss/cg1.webp'
+        },
+        {
+          id: 2,
+          group: 'caregiver',
+          groupLabel: 'Caregiver Portal',
+          title: 'Caregiver Portal',
+          caption: 'Authorized caregiver feed: human-in-the-loop verified guidance notes and patient scope',
+          image: '/cg-ss/cg2.webp'
+        }
+      ]
     },
     {
       id: 3,
