@@ -240,6 +240,7 @@ main {
     width: 100%;
     margin-bottom: 60px;
     min-height: auto;
+    overflow: visible;
   }
 }
 
@@ -248,10 +249,12 @@ main {
     padding: 2rem 1.25rem;
     border-radius: 28px;
     margin-bottom: 40px;
+    overflow: visible;
   }
 
   .section-card.home-card {
     margin-top: 80px;
+    overflow: visible;
   }
 
   .section-card.contact-card {

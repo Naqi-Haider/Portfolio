@@ -54,6 +54,23 @@ const Hero = () => {
     };
   }, [isCvMenuOpen]);
 
+  const toggleCvMenu = () => {
+    setIsCvMenuOpen((prev) => {
+      const willOpen = !prev;
+      if (willOpen && typeof window !== 'undefined' && window.innerWidth <= 768) {
+        setTimeout(() => {
+          if (cvMenuRef.current) {
+            const rect = cvMenuRef.current.getBoundingClientRect();
+            if (rect.bottom > window.innerHeight) {
+              cvMenuRef.current.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+          }
+        }, 120);
+      }
+      return willOpen;
+    });
+  };
+
   const handleTriggerKeyDown = (e) => {
     if (e.key === 'ArrowDown' || e.key === 'Enter' || e.key === ' ') {
       if (!isCvMenuOpen) {
@@ -65,6 +82,7 @@ const Hero = () => {
       }
     }
   };
+
 
   const handleItemKeyDown = (e, index) => {
     if (e.key === 'ArrowDown') {
@@ -157,13 +175,14 @@ const Hero = () => {
                 ref={cvTriggerRef}
                 type="button"
                 className={`btn-ghost-pill cv-menu-trigger ${isCvMenuOpen ? 'active' : ''}`}
-                onClick={() => setIsCvMenuOpen((prev) => !prev)}
+                onClick={toggleCvMenu}
                 onKeyDown={handleTriggerKeyDown}
                 aria-haspopup="menu"
                 aria-expanded={isCvMenuOpen}
                 aria-controls="hero-cv-dropdown"
                 id="hero-cv-trigger"
               >
+
                 Download CV
                 <svg
                   className={`cv-chevron ${isCvMenuOpen ? 'is-open' : ''}`}
