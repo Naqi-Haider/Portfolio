@@ -22,16 +22,22 @@ const Hero = () => {
     return () => observer.disconnect();
   }, []);
 
-  const scrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId, offset = -70) => {
     const element = document.getElementById(sectionId);
-    if (element) {
+    if (!element) return;
+
+    if (window.__lenis) {
+      window.__lenis.scrollTo(element, { offset, duration: 1.2 });
+    } else {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   const scrollToProjectsTab = (tab = 'selected') => {
     window.dispatchEvent(new CustomEvent('switch-projects-tab', { detail: tab }));
-    scrollToSection('projects');
+    setTimeout(() => {
+      scrollToSection('projects');
+    }, 40);
   };
 
   return (

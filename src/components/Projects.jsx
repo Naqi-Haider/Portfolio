@@ -23,6 +23,23 @@ export default function Projects() {
     return PROJECTS_DATA.filter((p) => p.tags.includes(activeFilter));
   }, [activeFilter]);
 
+  // Listen for custom tab switch events (e.g. from Hero buttons)
+  useEffect(() => {
+    const handleSwitchProjectsTab = (e) => {
+      const tab = e.detail;
+      if (tab === 'shopify' || tab === 'Shopify') {
+        setActiveFilter('Shopify');
+      } else if (tab === 'selected' || tab === 'All' || tab === 'all') {
+        setActiveFilter('All');
+      } else if (tab && filterCategories.includes(tab)) {
+        setActiveFilter(tab);
+      }
+    };
+
+    window.addEventListener('switch-projects-tab', handleSwitchProjectsTab);
+    return () => window.removeEventListener('switch-projects-tab', handleSwitchProjectsTab);
+  }, [filterCategories]);
+
   const selectedProject = useMemo(() => {
     return PROJECTS_DATA.find((p) => p.slug === selectedSlug) || null;
   }, [selectedSlug]);
