@@ -57,9 +57,9 @@
 /* Responsive */
 @media (max-width: 480px) {
   .scroll-to-top {
-    bottom: 24px;
-    right: 24px;
-    width: 46px;
-    height: 46px;
+    bottom: 16px;
+    right: 16px;
+    width: 42px;
+    height: 42px;
   }
 }
