@@ -24,6 +24,14 @@
   --transition: all 0.3s ease;
   --transition-slow: all 0.5s ease;
   --transition-card: transform 0.4s ease, opacity 0.4s ease, filter 0.4s ease;
+
+  /* Scroll containment */
+  scrollbar-gutter: stable;
+}
+
+/* Background scroll lock while drawer dialog is open */
+html:has(.project-drawer[open]) {
+  overflow: hidden;
 }
 
 /* Lenis Smooth Scroll Setup */

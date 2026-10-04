@@ -1,612 +1,200 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
-// eslint-disable-next-line no-unused-vars
-import { motion, AnimatePresence } from 'framer-motion';
-import ProgressiveImage from './ProgressiveImage';
-import ProjectGallery from './ProjectGallery';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import { PROJECTS_DATA } from '../data/projects';
+import ProjectDrawer from './ProjectDrawer';
 import '../styles/projects.css';
 
-const Projects = () => {
-  const [activeTab, setActiveTab] = useState('selected'); // 'selected' | 'shopify'
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-  const autoPlayRef = useRef(null);
-  const sectionRef = useRef(null);
-  const scrollContainerRef = useRef(null);
+export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState('All');
+  const [selectedSlug, setSelectedSlug] = useState(null);
 
-  // Selected Work Data: NeuroHaven (1st with gallery), CogDrift (2nd), Typing Sprint (3rd), LMS (4th)
-  const selectedWorkData = [
-    {
-      id: 1,
-      title: "NeuroHaven: Doctor Dashboard for an Alzheimer's Care Platform",
-      tagline: "The clinician-facing web dashboard for an early-stage Alzheimer's caregiving and monitoring platform.",
-      description: "NeuroHaven is a team-built platform connecting Alzheimer's patients, caregivers, and clinicians. I built the web side: the Doctor Dashboard bridging the Flutter patient app and clinicians (integrating with a Python backend), and the Admin panel.",
-      bullets: [
-        "Real-time doctor-patient chat, calling, distress-alert system, and chat export (CSV/TXT).",
-        "Cognitive scoring engine (streak-adjusted 0–100 scale) with four color-coded risk tiers.",
-        "Weekly adherence grids and live behavioral trend graphs.",
-        "Admin panel for platform moderation, support tickets, and doctor-patient assignment/reassignment."
-      ],
-      note: "Built with Next.js, TypeScript, Tailwind CSS, Supabase, Socket.IO, Zustand, and Recharts.",
-      image: '/NeuroHavenLP.webp',
-      category: 'Final-year project · Team',
-      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Supabase', 'Socket.IO', 'Zustand', 'Recharts'],
-      github: 'https://github.com/Naqi-Haider/NeuroHaven-Doc-Module',
-      githubLabel: 'Source Code',
-      gallery: [
-        {
-          id: 0,
-          group: 'doctor',
-          groupLabel: 'Doctor Dashboard',
-          title: 'Landing Page',
-          caption: "Landing page: early-stage Alzheimer's companion platform",
-          image: '/NeuroHavenLP.webp'
-        },
-        {
-          id: 1,
-          group: 'doctor',
-          groupLabel: 'Doctor Dashboard',
-          title: 'Clinical Overview',
-          caption: 'Clinical overview: active care pathways, cohort metrics, and cognitive trend telemetry',
-          image: '/neurohaven-ss/1st.webp'
-        },
-        {
-          id: 2,
-          group: 'doctor',
-          groupLabel: 'Doctor Dashboard',
-          title: 'Alerts Centre',
-          caption: 'Alerts centre: distress alerts by severity',
-          image: '/neurohaven-ss/2nd.webp'
-        },
-        {
-          id: 3,
-          group: 'doctor',
-          groupLabel: 'Doctor Dashboard',
-          title: 'Patient Directory',
-          caption: 'Patient directory: cohort monitoring, risk indexes, and recency',
-          image: '/neurohaven-ss/3rd.webp'
-        },
-        {
-          id: 4,
-          group: 'doctor',
-          groupLabel: 'Doctor Dashboard',
-          title: 'Patient Profile & Scoring',
-          caption: 'Patient profile and scoring: longitudinal history and activity ledger',
-          image: '/neurohaven-ss/4th.webp'
-        },
-        {
-          id: 5,
-          group: 'doctor',
-          groupLabel: 'Doctor Dashboard',
-          title: 'Doctor-Patient Chat',
-          caption: 'Doctor-patient chat: real-time clinical channel and telemetry snapshot',
-          image: '/neurohaven-ss/5th.webp'
-        },
-        {
-          id: 6,
-          group: 'admin',
-          groupLabel: 'Admin Console',
-          title: 'Admin Console',
-          caption: 'Systems console: clinician credentials and patient directory management',
-          image: '/neurohaven-ss/6th.webp'
-        },
-        {
-          id: 7,
-          group: 'admin',
-          groupLabel: 'Admin Console',
-          title: 'Support Tickets',
-          caption: 'Help desk: support tickets, bug triage, and account resolution',
-          image: '/neurohaven-ss/7th.webp'
-        },
-        {
-          id: 8,
-          group: 'admin',
-          groupLabel: 'Admin Console',
-          title: 'Clinical Audits',
-          caption: 'Clinical audits: case records, feedback, and doctor-patient assignment',
-          image: '/neurohaven-ss/8th.webp'
-        }
-      ]
-    },
-    {
-      id: 2,
-      title: 'CogDrift: Clinician-Gated Anomaly Monitoring Engine',
-      tagline: 'Flags unusual patterns in cognitive-game data for clinician review. It never diagnoses and never alerts caregivers directly.',
-      description: "A standalone service spun out of NeuroHaven. Two detectors run on each patient's own history: a rolling 30-day z-score trend detector and an Isolation Forest over the 10-game score vector, both with persistence rules to avoid single-day noise. Flags go to a clinician review queue, and only clinician-confirmed flags produce a caregiver message, which is content-filtered server-side to block medication or dosage instructions.",
-      bullets: [
-        "JWT-based RBAC with caregiver access scoped to their own patients, enforced at the endpoint and covered by tests.",
-        "Dual-mode event dispatch (in-process or RabbitMQ).",
-        "Deployed on Vercel, Back4App (Docker), and Neon PostgreSQL.",
-        "Evaluated on a synthetic dataset with documented limitations."
-      ],
-      note: 'Built with FastAPI, Python, scikit-learn, PostgreSQL, React, TypeScript, and Docker.',
-      image: '/cg-ss/cg1.webp',
-      category: 'Open source · Research prototype',
-      technologies: ['FastAPI', 'Python', 'scikit-learn', 'PostgreSQL', 'React', 'TypeScript', 'Docker'],
-      github: 'https://github.com/Naqi-Haider/cogdrift',
-      githubLabel: 'Source Code',
-      live: 'https://cogdrift-theta.vercel.app/',
-      liveLabel: 'Live Demo',
-      gallery: [
-        {
-          id: 1,
-          group: 'clinician',
-          groupLabel: 'Clinician Portal',
-          title: 'Clinician Portal',
-          caption: 'Clinician workflow queue: pending signals & 30-day rolling baseline trajectory chart',
-          image: '/cg-ss/cg1.webp'
-        },
-        {
-          id: 2,
-          group: 'caregiver',
-          groupLabel: 'Caregiver Portal',
-          title: 'Caregiver Portal',
-          caption: 'Authorized caregiver feed: human-in-the-loop verified guidance notes and patient scope',
-          image: '/cg-ss/cg2.webp'
-        }
-      ]
-    },
-    {
-      id: 3,
-      title: 'Typing Sprint Game',
-      description: 'Interactive utility to test and improve typing speed and accuracy, featuring live typing metrics (WPM/accuracy), database-backed leaderboard systems, and clean game state transitions.',
-      image: '/typing-sprint thumbnail.webp',
-      category: 'FULLSTACK APP',
-      technologies: ['React', 'CSS', 'Node.js', 'Express', 'MongoDB'],
-      github: 'https://github.com/Naqi-Haider/TypingSprint',
-      githubLabel: 'Source Code',
-      live: 'https://typing-sprint.netlify.app',
-      liveLabel: 'Live Demo'
-    },
-    {
-      id: 4,
-      title: 'Learning Management System (LMS)',
-      description: 'A multi-role admin, instructor, and student role-based simplified LMS system featuring course enrollment, assignment progression tracking, and comprehensive educational management attributes.',
-      image: '/LMS Multi.webp',
-      category: 'FULLSTACK LMS APP',
-      technologies: ['React', 'Node.js', 'Express', 'MongoDB'],
-      github: 'https://github.com/Naqi-Haider/LMS',
-      githubLabel: 'Source Code',
-      live: 'https://learningmanagementsystem-naqi.netlify.app/',
-      liveLabel: 'Live Demo'
-    }
-  ];
+  const cardRefs = useRef({});
+  const lastOpenedSlugRef = useRef(null);
 
-  // 3 Shopify Theme Projects
-  const shopifyProjectsData = [
-    {
-      id: 1,
-      title: '1. Tiered Free Gift Cart Drawer',
-      tagline: 'A cart drawer that unlocks free gifts at spend milestones, with a live progress bar.',
-      description: 'A custom cart drawer feature built on Dawn that rewards customers with free gifts at two spend thresholds. At $60, a free gift (gloves) is added automatically, and at $100 a second one (a beanie). Both are backed by Buy X Get Y automatic discounts in the Shopify admin. The merchant can choose any product as the gift for each tier and change the threshold amounts from the theme editor, with no code changes.',
-      bullets: [
-        'A progress bar with tier markers and a live "Add $X more to unlock…" message.',
-        'Free Gift badges with the original price struck through.',
-        'A "You saved with free gifts" line once gifts are applied.',
-        'Safe reverting: if the cart drops below a threshold, the gift is removed automatically and a loader shows while the cart updates.'
-      ],
-      note: 'Built with Liquid, JavaScript, the Cart API, and Shopify automatic discounts.',
-      category: 'SHOPIFY THEME FEATURE',
-      technologies: ['Liquid', 'JavaScript', 'Cart API', 'Automatic Discounts', 'Theme Editor Settings'],
-      videoUrl: 'https://youtu.be/rRrfYAfhp3k'
-    },
-    {
-      id: 2,
-      title: '2. Linked Product Swatches (Cross-Product Switching)',
-      tagline: 'Switch between related products, such as shirt colors, without a page reload.',
-      description: 'A custom swatch selector for products that are listed separately but belong together, such as the same shirt in brown, blue, red, and yellow. Related products are connected through a "Linked products" metafield (list of products) on each product. On a product page, the swatches show the other linked products. Clicking one fetches that product\'s template with the Section Rendering API and swaps in its media, title, price, and details, with no full page refresh and the URL updating to the new product. Built with Liquid, JavaScript, metafields, and the Section Rendering API.',
-      bullets: [],
-      note: '',
-      category: 'SHOPIFY THEME FEATURE',
-      technologies: ['Liquid', 'JavaScript', 'Metafields', 'Section Rendering API'],
-      videoUrl: 'https://youtu.be/_3M6osuuCQs'
-    },
-    {
-      id: 3,
-      title: '3. Voluspa Product Page Recreation',
-      tagline: 'A premium product page rebuilt as an editable Dawn template, with a custom related-products section.',
-      description: 'A recreation of the Voluspa product page inside a Dawn theme, built to practice turning a real-world design into editable theme sections and blocks. It covers the layout, responsive styling, and a custom related-products section made just for this template. The merchant adds products from the theme editor, and the section is styled to match the original\'s related-products layout. Built with Liquid, HTML/CSS, and JavaScript. This is a learning project and isn\'t affiliated with the brand.',
-      bullets: [],
-      note: '',
-      category: 'SHOPIFY TEMPLATE RECREATION',
-      technologies: ['Liquid', 'HTML/CSS', 'JavaScript', 'Custom Sections'],
-      videoUrl: 'https://youtu.be/rXeda9wYzV8'
-    }
-  ];
+  // Dynamically derive filter categories from data tags
+  const filterCategories = useMemo(() => {
+    const tags = new Set();
+    PROJECTS_DATA.forEach((p) => p.tags.forEach((t) => tags.add(t)));
+    return ['All', ...Array.from(tags)];
+  }, []);
 
-  const activeProjectsList = activeTab === 'selected' ? selectedWorkData : shopifyProjectsData;
+  // Filter grid items
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === 'All') return PROJECTS_DATA;
+    return PROJECTS_DATA.filter((p) => p.tags.includes(activeFilter));
+  }, [activeFilter]);
 
-  // Reset index when tab switches
-  const handleTabChange = (tab) => {
-    setActiveTab(tab);
-    setCurrentIndex(0);
-  };
+  const selectedProject = useMemo(() => {
+    return PROJECTS_DATA.find((p) => p.slug === selectedSlug) || null;
+  }, [selectedSlug]);
 
-  // Listen for global tab switch requests (e.g. from Hero buttons)
+  // Direct load deep linking & popstate handling
   useEffect(() => {
-    const handleSwitchTab = (e) => {
-      if (e.detail) {
-        setActiveTab(e.detail);
-        setCurrentIndex(0);
+    const handleLocationChange = () => {
+      const match = window.location.hash.match(/^#project\/([a-z0-9-]+)$/);
+      if (match) {
+        const found = PROJECTS_DATA.find((p) => p.slug === match[1]);
+        if (found) {
+          setSelectedSlug(match[1]);
+          lastOpenedSlugRef.current = match[1];
+        } else {
+          // Reject invalid slug without opening drawer
+          setSelectedSlug(null);
+        }
+      } else {
+        setSelectedSlug(null);
       }
     };
-    window.addEventListener('switch-projects-tab', handleSwitchTab);
-    return () => window.removeEventListener('switch-projects-tab', handleSwitchTab);
+
+    handleLocationChange();
+    window.addEventListener('popstate', handleLocationChange);
+    return () => window.removeEventListener('popstate', handleLocationChange);
   }, []);
 
-  // Helper to extract embeddable YouTube URL
-  const getYouTubeEmbedUrl = (url) => {
-    if (!url || typeof url !== 'string') return null;
-    const trimmed = url.trim();
-    if (!trimmed) return null;
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = trimmed.match(regExp);
-    if (match && match[2].length === 11) {
-      return `https://www.youtube.com/embed/${match[2]}?rel=0`;
+  // Return focus to originating card when drawer closes (safari-safe)
+  useEffect(() => {
+    if (!selectedSlug && lastOpenedSlugRef.current) {
+      cardRefs.current[lastOpenedSlugRef.current]?.focus();
+      lastOpenedSlugRef.current = null;
     }
-    return trimmed;
+  }, [selectedSlug]);
+
+  const openProject = (slug) => {
+    lastOpenedSlugRef.current = slug;
+    window.history.pushState({ projectSlug: slug, drawerPushed: true }, '', `#project/${slug}`);
+    setSelectedSlug(slug);
   };
 
-  // Mobile layout checker
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
-  }, []);
-
-  const clearAutoPlay = useCallback(() => {
-    if (autoPlayRef.current) {
-      clearInterval(autoPlayRef.current);
-      autoPlayRef.current = null;
+  const closeProject = () => {
+    if (window.history.state?.drawerPushed === true) {
+      window.history.back(); // Naturally triggers popstate and clears selectedSlug
+    } else {
+      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      setSelectedSlug(null); // replaceState does not fire popstate
     }
-  }, []);
-
-  const startAutoPlay = useCallback(() => {
-    if (isMobile) return;
-    clearAutoPlay();
-    autoPlayRef.current = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % activeProjectsList.length);
-    }, 20000);
-  }, [clearAutoPlay, activeProjectsList.length, isMobile]);
-
-  useEffect(() => {
-    if (!isMobile) {
-      startAutoPlay();
-    }
-    return () => clearAutoPlay();
-  }, [startAutoPlay, clearAutoPlay, isMobile, activeTab]);
-
-  const goToNext = useCallback(() => {
-    clearAutoPlay();
-    setCurrentIndex((prev) => (prev + 1) % activeProjectsList.length);
-    startAutoPlay();
-  }, [clearAutoPlay, startAutoPlay, activeProjectsList.length]);
-
-  const goToPrev = useCallback(() => {
-    clearAutoPlay();
-    setCurrentIndex((prev) => (prev - 1 + activeProjectsList.length) % activeProjectsList.length);
-    startAutoPlay();
-  }, [clearAutoPlay, startAutoPlay, activeProjectsList.length]);
-
-  const goToSlide = useCallback((index) => {
-    if (index === currentIndex) return;
-    clearAutoPlay();
-    setCurrentIndex(index);
-    startAutoPlay();
-  }, [currentIndex, clearAutoPlay, startAutoPlay]);
-
-  const currentProject = activeProjectsList[currentIndex] || activeProjectsList[0];
-
-  const slideVariants = {
-    enter: { opacity: 0, x: 40 },
-    center: { opacity: 1, x: 0 },
-    exit: { opacity: 0, x: -40 }
   };
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-          }
-        });
-      },
-      { threshold: 0.1 }
+  // Prev / Next always iterates through canonical PROJECTS_DATA list
+  const handleNavigate = (direction) => {
+    const currentIndex = PROJECTS_DATA.findIndex((p) => p.slug === selectedSlug);
+    if (currentIndex === -1) return;
+
+    const nextIndex =
+      direction === 'next'
+        ? (currentIndex + 1) % PROJECTS_DATA.length
+        : (currentIndex - 1 + PROJECTS_DATA.length) % PROJECTS_DATA.length;
+
+    const nextSlug = PROJECTS_DATA[nextIndex].slug;
+    const wasPushed = Boolean(window.history.state?.drawerPushed);
+
+    window.history.replaceState(
+      { projectSlug: nextSlug, drawerPushed: wasPushed },
+      '',
+      `#project/${nextSlug}`
     );
-
-    const elements = sectionRef.current?.querySelectorAll('.fade-in');
-    elements?.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
-
-  // Helper render for Right Side media (Image vs Gallery vs YouTube Video)
-  const renderMediaPane = (project) => {
-    if (activeTab === 'shopify') {
-      const embedUrl = getYouTubeEmbedUrl(project.videoUrl);
-      if (embedUrl) {
-        return (
-          <div className="video-embed-container">
-            <iframe
-              src={embedUrl}
-              title={project.title}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="youtube-embed-iframe"
-            />
-          </div>
-        );
-      }
-      return (
-        <div className="video-placeholder-container">
-          <div className="video-placeholder-inner">
-            <div className="youtube-play-icon">
-              <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
-              </svg>
-            </div>
-            <span className="placeholder-title">Demo Video Walkthrough</span>
-            <span className="placeholder-sub">Provide YouTube URL to activate video embed</span>
-          </div>
-        </div>
-      );
-    }
-
-    if (project.gallery && project.gallery.length > 0) {
-      return (
-        <ProjectGallery
-          gallery={project.gallery}
-          onInteraction={clearAutoPlay}
-        />
-      );
-    }
-
-    return (
-      <a
-        href={project.live || project.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="project-image-wrapper"
-      >
-        <ProgressiveImage
-          src={project.image}
-          alt={project.title}
-          fallbackText={project.title}
-          aspectRatio="16/10"
-        />
-      </a>
-    );
+    setSelectedSlug(nextSlug);
+    lastOpenedSlugRef.current = nextSlug;
   };
 
-  // Mobile Layout
-  if (isMobile) {
-    return (
-      <section className="section-card projects-card projects-mobile" id="projects" ref={sectionRef}>
-        <div className="projects-container">
-          <div className="projects-header-wrapper">
-            <span className="section-label">Projects</span>
-            <h2 className="section-title">Projects Portfolio</h2>
-
-            {/* Tab Switcher */}
-            <div className="projects-tab-switcher">
-              <button
-                className={`tab-switch-btn ${activeTab === 'selected' ? 'active' : ''}`}
-                onClick={() => handleTabChange('selected')}
-              >
-                Selected Work
-              </button>
-              <button
-                className={`tab-switch-btn ${activeTab === 'shopify' ? 'active' : ''}`}
-                onClick={() => handleTabChange('shopify')}
-              >
-                Shopify Projects
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Horizontal Scroll Track */}
-          <div className="mobile-carousel-container" ref={scrollContainerRef}>
-            <div className="mobile-carousel-track">
-              {activeProjectsList.map((project) => (
-                <div key={project.id} className="mobile-project-card">
-                  <div className="mobile-project-image">
-                    {renderMediaPane(project)}
-                  </div>
-
-                  <div className="mobile-project-content">
-                    <span className="project-category">{project.category}</span>
-                    <h3 className="project-title">{project.title}</h3>
-                    {project.tagline && <p className="project-tagline">{project.tagline}</p>}
-                    <p className="project-description">{project.description}</p>
-
-                    {project.bullets && project.bullets.length > 0 && (
-                      <ul className="project-bullet-list">
-                        {project.bullets.map((b, i) => (
-                          <li key={i}>{b}</li>
-                        ))}
-                      </ul>
-                    )}
-
-                    <div className="project-tech-stack">
-                      {project.technologies.map((tech, i) => (
-                        <span key={i} className="skill-chip-dark">{tech}</span>
-                      ))}
-                    </div>
-
-                    {activeTab === 'selected' && (
-                      <div className="project-button-group">
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-link-btn btn-source"
-                        >
-                          {project.githubLabel || 'Source Code'}
-                        </a>
-                        {project.live && (
-                          <a
-                            href={project.live}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="project-link-btn live-btn"
-                          >
-                            {project.liveLabel || 'Live Demo'}
-                          </a>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div className="swipe-indicator fade-in">
-            <span>← Swipe to view projects →</span>
-          </div>
-        </div>
-      </section>
-    );
-  }
-
-  // Desktop Carousel View
   return (
-    <section className="section-card projects-card" id="projects" ref={sectionRef}>
+    <section className="projects-section" id="projects">
       <div className="projects-container">
-        {/* Header and Tab Switcher */}
         <div className="projects-header-wrapper">
           <div className="projects-title-group">
-            <span className="section-label">Projects</span>
-            <h2 className="section-title">
-              {activeTab === 'selected' ? 'Selected Work' : 'Shopify Theme Projects'}
-            </h2>
+            <h2 className="section-title">Selected Work</h2>
+            <p className="projects-subtitle">Full-stack systems, custom ecommerce features, and utilities.</p>
           </div>
 
-          {/* Premium Pill Tab Switcher */}
-          <div className="projects-tab-switcher">
-            <button
-              className={`tab-switch-btn ${activeTab === 'selected' ? 'active' : ''}`}
-              onClick={() => handleTabChange('selected')}
-            >
-              Selected Work
-            </button>
-            <button
-              className={`tab-switch-btn ${activeTab === 'shopify' ? 'active' : ''}`}
-              onClick={() => handleTabChange('shopify')}
-            >
-              Shopify Projects
-            </button>
+          {/* Dynamic Filter Chips */}
+          <div className="filter-chips-container" role="group" aria-label="Filter projects">
+            {filterCategories.map((cat) => (
+              <button
+                key={cat}
+                type="button"
+                className={`filter-chip ${activeFilter === cat ? 'active' : ''}`}
+                onClick={() => setActiveFilter(cat)}
+                aria-pressed={activeFilter === cat}
+              >
+                {cat}
+              </button>
+            ))}
           </div>
         </div>
 
-        <div className="project-carousel-wrapper fade-in">
-          {/* Carousel Content */}
-          <div className="project-carousel">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={`${activeTab}-${currentIndex}`}
-                className="project-slide"
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.35, ease: 'easeInOut' }}
-              >
-                {/* Left Column - Project Info */}
-                <div className="project-info">
-                  <span className="project-category">{currentProject.category}</span>
-                  <h3 className="project-title">{currentProject.title}</h3>
-                  {currentProject.tagline && (
-                    <p className="project-tagline">{currentProject.tagline}</p>
-                  )}
-
-                  <p className="project-description">{currentProject.description}</p>
-
-                  {currentProject.bullets && currentProject.bullets.length > 0 && (
-                    <ul className="project-bullet-list">
-                      {currentProject.bullets.map((bullet, i) => (
-                        <li key={i}>{bullet}</li>
-                      ))}
-                    </ul>
-                  )}
-
-                  <div className="project-tech-stack">
-                    {currentProject.technologies.map((tech, i) => (
-                      <span key={i} className="skill-chip-dark">{tech}</span>
-                    ))}
-                  </div>
-
-                  {activeTab === 'selected' && (
-                    <div className="project-button-group">
-                      <a
-                        href={currentProject.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="project-link-btn btn-source"
-                      >
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                          <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
-                        </svg>
-                        {currentProject.githubLabel || 'Source Code'}
-                      </a>
-                      {currentProject.live && (
-                        <a
-                          href={currentProject.live}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="project-link-btn live-btn"
-                        >
-                          {currentProject.liveLabel || 'Live Demo'}
-                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                            <line x1="5" y1="12" x2="19" y2="12" />
-                            <polyline points="12 5 19 12 12 19" />
-                          </svg>
-                        </a>
-                      )}
-                    </div>
-                  )}
-                </div>
-
-                {/* Right Column - Project Media (Image vs YouTube Embed) */}
-                {renderMediaPane(currentProject)}
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Bottom Pagination */}
-          <div className="carousel-bottom-nav">
-            <div className="pagination-dots">
-              {activeProjectsList.map((_, index) => (
-                <button
-                  key={index}
-                  className={`dot ${index === currentIndex ? 'active' : ''}`}
-                  onClick={() => goToSlide(index)}
-                  aria-label={`Go to project ${index + 1}`}
+        {/* Project Grid */}
+        <div className="projects-grid">
+          {filteredProjects.map((project) => (
+            <a
+              key={project.slug}
+              href={`#project/${project.slug}`}
+              ref={(el) => (cardRefs.current[project.slug] = el)}
+              className={`project-card ${project.featured ? 'featured-card' : ''} ${project.wide ? 'wide-card' : ''}`}
+              onClick={(e) => {
+                // Allow Cmd/Ctrl/Shift/Middle click to open natively in new tab
+                if (e.metaKey || e.ctrlKey || e.shiftKey || e.button !== 0) return;
+                e.preventDefault();
+                openProject(project.slug);
+              }}
+            >
+              <div className="card-media">
+                <img
+                  src={project.cover}
+                  alt={project.coverAlt}
+                  width="480"
+                  height="300"
+                  loading="lazy"
+                  onError={(e) => {
+                    if (project.coverFallback && e.target.src !== project.coverFallback) {
+                      e.target.src = project.coverFallback;
+                    }
+                  }}
                 />
-              ))}
-            </div>
-
-            <div className="slide-counter-wrapper">
-              <button className="nav-arrow-inline prev" onClick={goToPrev} aria-label="Previous project">
-                ←
-              </button>
-              <div className="slide-counter">
-                <span className="current">{String(currentIndex + 1).padStart(2, '0')}</span>
-                <span className="divider">/</span>
-                <span className="total">{String(activeProjectsList.length).padStart(2, '0')}</span>
+                <div className="card-hover-cue" aria-hidden="true">
+                  <span>View details →</span>
+                </div>
               </div>
-              <button className="nav-arrow-inline next" onClick={goToNext} aria-label="Next project">
-                →
-              </button>
-            </div>
-          </div>
+              <div className="card-meta">
+                <span className="card-label">{project.label}</span>
+                <h3 className="card-title">{project.shortTitle ?? project.title}</h3>
+                <p className="card-tagline">{project.tagline}</p>
+                <div className="card-chips">
+                  {project.techStackPreview.map((tech) => (
+                    <span key={tech} className="skill-chip-compact">{tech}</span>
+                  ))}
+                </div>
+              </div>
+            </a>
+          ))}
+
+          {/* Render GitHub tile ONLY when filtering by Game */}
+          {activeFilter === 'Game' && (
+            <a
+              href="https://github.com/Naqi-Haider?tab=repositories"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-card github-more-card"
+            >
+              <div className="github-card-content">
+                <div className="github-icon-bubble" aria-hidden="true">
+                  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                </div>
+                <span className="card-label">Open Source</span>
+                <h3 className="card-title">More on GitHub</h3>
+                <p className="card-tagline">Explore additional repositories, coursework, and early experiments on GitHub.</p>
+                <span className="github-card-link">View Naqi-Haider Repositories →</span>
+              </div>
+            </a>
+          )}
         </div>
       </div>
+
+      <ProjectDrawer
+        project={selectedProject}
+        onClose={closeProject}
+        onPrev={() => handleNavigate('prev')}
+        onNext={() => handleNavigate('next')}
+      />
     </section>
   );
-};
-
-export default Projects;
+}

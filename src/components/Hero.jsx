@@ -82,7 +82,7 @@ const Hero = () => {
                 <path d="M12.7896 9.42437C11.7896 9.0035 9.19076 8.24627 8.50372 10.266C8.1332 11.3553 8.79795 12.5183 10.2171 13.6331C12.2041 15.1939 11.867 16.524 11.5033 17.0001C10.2176 18.6837 7.64621 17.7016 6.78906 17.0001" />
               </svg>
             </button>
-            <a href="/Naqi_Haider_CV.pdf" download="Naqi_Haider_CV.pdf" className="btn-ghost-pill">
+            <a href="/Naqi_Haider_CV_Updated.pdf" download="Naqi_Haider_CV_Updated.pdf" className="btn-ghost-pill">
               Download CV ↓
             </a>
           </div>
