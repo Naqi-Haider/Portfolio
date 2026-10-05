@@ -209,8 +209,8 @@ const Hero = () => {
                 >
                   <a
                     ref={(el) => (menuItemRefs.current[0] = el)}
-                    href="/cv/Naqi-Haider-MERN-CV.pdf"
-                    download="Naqi-Haider-MERN-CV.pdf"
+                    href="/cv/Naqi_Haider_MERN-CV.pdf"
+                    download="Naqi_Haider_MERN-CV.pdf"
                     className="cv-dropdown-item"
                     role="menuitem"
                     onClick={() => setIsCvMenuOpen(false)}
